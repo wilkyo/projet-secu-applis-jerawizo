@@ -1,0 +1,36 @@
+########################################################################
+# build.sh                                                             #
+########################################################################
+
+Permet de compiler un projet Android ayant été décompilé à l'aide d'apktool.
+
+Utilisation:
+	Ne devrait pas être utilisé directement...
+	Rendez-vous au niveau du Makefile et exécutez "make".
+
+
+########################################################################
+# absolute_diffrec.sh                                                  #
+########################################################################
+
+Permet de faire un diff récursif sur une arborescence.
+
+Utilisation:
+	./absolute_diffrec.sh /abolute/path/to/dir /abolute/path/to/other_dir /abolute/path/to/diff
+	Ou plus simple, dans le dossier script:
+	make diff
+
+
+########################################################################
+# relative_diffrec.sh                                                  #
+########################################################################
+
+Permet de prendre en compte les chemins relatifs depuis le script shell.
+
+Utilisation:
+	./relative_diffrec.sh relative/path/to/dir relative/path/to/other_dir relative/path/to/diff
+
+Exemple:
+	./relative_diffrec.sh ../out ../out.1.3.3 ../diff
+
+
