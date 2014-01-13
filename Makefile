@@ -35,7 +35,7 @@ $(OUT):
 # make build lance la recompilation
 build: $(OUT) $(APK)
 	@echo "===== Compiling ====="
-	$(COMP) $(APK) $(EVIL)
+	$(COMP) $(APK) $(EVIL) $(OUT)
 
 
 # make evil.apk lance la compilation, mais make sans paramètre devrait être utilisé

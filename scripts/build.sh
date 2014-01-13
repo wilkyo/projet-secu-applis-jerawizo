@@ -10,9 +10,11 @@ else
 	if [ $1 = $2 ]; then echo "You should specify another file..."; exit 2; fi
 	OUT=$2
 fi
+if [ -z $3 ]; then echo "You should specify another file..."; exit 3; fi
+BUILD_DIR=$3
 echo $OUT
 rm -r out.apk $OUT tmp 2>/dev/null
-apktool b out out.apk
+apktool b $BUILD_DIR out.apk
 mkdir tmp
 cd tmp/
 unzip ../$APK
