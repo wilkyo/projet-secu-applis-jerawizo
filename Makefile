@@ -8,9 +8,9 @@
 COMP=./scripts/build.sh
 
 # Sources
-SRC=com.hz.game.cd
+SRC=com.xxogli.xadroid.checkers
 EVIL=evil.apk
-OUT=out
+OUT=checkers_apk
 
 # Le fichier apk
 APK = $(SRC:=.apk)
