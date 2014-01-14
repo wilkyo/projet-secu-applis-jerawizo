@@ -5,3 +5,5 @@ out/*
 *.fnt
 *.ogg
 *.so
+*.class
+
