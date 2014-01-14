@@ -596,7 +596,7 @@ public class a extends Thread
       if (i7 == 0)
       {
         return i3;
-        i1 = M[''];
+        i1 = M['��'];
         break;
         label69: i3 ^= M[(0 + 4 * Integer.numberOfTrailingZeros(i4))];
         i4 &= i4 - 1;
@@ -625,7 +625,7 @@ public class a extends Thread
         i1 = 31 - i1;
         i2 = 31 - i2;
       }
-      return h.a[(i1 + i2 * 16)];
+      return EndGameTableBase.a[(i1 + i2 * 16)];
       i1 = Integer.numberOfTrailingZeros(paramInt2);
     }
   }
@@ -642,8 +642,8 @@ public class a extends Thread
       i3 = 31 - i3;
     }
     if (paramBoolean1)
-      return h.i[(i3 + (i1 * 1024 + i2 * 32))];
-    return h.j[(i3 + (i1 * 1024 + i2 * 32))];
+      return EndGameTableBase.i[(i3 + (i1 * 1024 + i2 * 32))];
+    return EndGameTableBase.j[(i3 + (i1 * 1024 + i2 * 32))];
   }
 
   private final int a(boolean paramBoolean1, int paramInt1, int paramInt2, boolean paramBoolean2)
@@ -657,8 +657,8 @@ public class a extends Thread
     }
     int i3 = i2 - 4;
     if (paramBoolean1)
-      return h.b[(i1 + i3 * 32)];
-    return h.c[(i1 + i3 * 32)];
+      return EndGameTableBase.b[(i1 + i3 * 32)];
+    return EndGameTableBase.c[(i1 + i3 * 32)];
   }
 
   private final void a(int paramInt1, int paramInt2, int paramInt3, int paramInt4, int paramInt5)
@@ -829,7 +829,7 @@ public class a extends Thread
     for (int i2 = Integer.numberOfTrailingZeros(paramInt2); ; i2 = 31 - Integer.numberOfTrailingZeros(paramInt1))
     {
       int i3 = i2 - 4;
-      return h.d[(i1 + i3 * 28)];
+      return EndGameTableBase.d[(i1 + i3 * 28)];
       i1 = 31 - Integer.numberOfTrailingZeros(paramInt2);
     }
   }
@@ -847,8 +847,8 @@ public class a extends Thread
     }
     int i4 = i3 - 4;
     if (paramBoolean1)
-      return h.k[(i2 + (i4 * 896 + i1 * 32))];
-    return h.l[(i2 + (i4 * 896 + i1 * 32))];
+      return EndGameTableBase.k[(i2 + (i4 * 896 + i1 * 32))];
+    return EndGameTableBase.l[(i2 + (i4 * 896 + i1 * 32))];
   }
 
   private final int b(boolean paramBoolean1, int paramInt1, int paramInt2, boolean paramBoolean2)
@@ -865,8 +865,8 @@ public class a extends Thread
     int i4 = i3 - 4;
     if (i1 < i2);
     for (int i5 = i1 + L[i2]; paramBoolean1; i5 = i2 + L[i1])
-      return h.g[(i5 + i4 * 496)];
-    return h.h[(i5 + i4 * 496)];
+      return EndGameTableBase.g[(i5 + i4 * 496)];
+    return EndGameTableBase.h[(i5 + i4 * 496)];
   }
 
   private final void b()
@@ -911,7 +911,7 @@ public class a extends Thread
     switch (i6)
     {
     default:
-      i8 = this.x ^ M[''];
+      i8 = this.x ^ M['��'];
       i9 = i1 ^ this.d;
       if (i9 == 0)
       {
@@ -1209,8 +1209,8 @@ public class a extends Thread
     {
       if (i1 < i4);
       for (int i6 = i1 + L[i4]; paramBoolean; i6 = i4 + L[i1])
-        return h.e[(i5 + i6 * 16)];
-      return h.f[(i5 + i6 * 16)];
+        return EndGameTableBase.e[(i5 + i6 * 16)];
+      return EndGameTableBase.f[(i5 + i6 * 16)];
       i4 = i2;
     }
   }
@@ -1233,8 +1233,8 @@ public class a extends Thread
     {
       if (i1 < i4);
       for (int i6 = i1 + L[i4]; paramBoolean1; i6 = i4 + L[i1])
-        return h.m[(i5 + i6 * 32)];
-      return h.n[(i5 + i6 * 32)];
+        return EndGameTableBase.m[(i5 + i6 * 32)];
+      return EndGameTableBase.n[(i5 + i6 * 32)];
       i4 = i2;
     }
   }
@@ -1303,7 +1303,7 @@ public class a extends Thread
     }
     label153: label167: for (int i10 = i8 + L[i6]; ; i10 = i6 + L[i8])
     {
-      return h.q[(i10 + i9 * 496)];
+      return EndGameTableBase.q[(i10 + i9 * 496)];
       int i1 = Integer.numberOfTrailingZeros(paramInt2);
       int i2 = Integer.numberOfTrailingZeros(paramInt2 & paramInt2 - 1);
       int i3 = Integer.numberOfTrailingZeros(paramInt1);
@@ -1332,8 +1332,8 @@ public class a extends Thread
     int i4 = i3 - 4;
     if (i1 < i2);
     for (int i5 = i1 + L[i2]; paramBoolean1; i5 = i2 + L[i1])
-      return h.o[(i4 + i5 * 28)];
-    return h.p[(i4 + i5 * 28)];
+      return EndGameTableBase.o[(i4 + i5 * 28)];
+    return EndGameTableBase.p[(i4 + i5 * 28)];
   }
 
   private final void d()
@@ -1474,7 +1474,7 @@ public class a extends Thread
     int i10;
     int i11;
     int i12;
-    if ((!this.s) && (h.r))
+    if ((!this.s) && (EndGameTableBase.loaded))
     {
       bool1 = true;
       this.u = bool1;

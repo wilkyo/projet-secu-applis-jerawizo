@@ -109,7 +109,7 @@ public class ChekersView extends View {
 		this.arrayI = new int[8];
 		this.arrayJ = new int[8];
 		this.arrayK = new int[8];
-		// h.a(paramContext);
+		EndGameTableBase.load(paramContext);
 		this.p = new a(this);
 		this.text1 = null;
 		if (getData(paramSharedPreferences))
@@ -1034,9 +1034,8 @@ public class ChekersView extends View {
 					paramCanvas.drawText("Checkers for Android", i13, i12,
 							this.paint2);
 					paramCanvas.drawText("", i13, i12 + i7, this.paint2);
-					// if (!h.r)
-					// paramCanvas.drawText("no endgame TBs", i13, i12 + i7 * 2,
-					// this.c);
+					if (!EndGameTableBase.loaded)
+					paramCanvas.drawText("no endgame TBs", i13, i12 + i7 * 2,this.c);
 					if (this.booly)
 						paramCanvas.drawText("MUST CAPTURE", i11, i10, this.redCase);
 				}
