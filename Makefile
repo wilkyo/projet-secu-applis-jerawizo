@@ -48,9 +48,13 @@ sign: $(EVIL)
 	@echo "===== Signing ====="
 	jarsigner -sigalg MD5withRSA -digestalg SHA1 -keystore ~/.android/debug.keystore $(EVIL) androiddebugkey -storepass android
 
+uninstall:
+	@echo "===== Uninstalling ====="
+	adb uninstall $(SRC)
+
 # make install tente d'installer l'apk modifié sur un appareil 
-install: sign
-	@echo "===== Running ====="
+install: uninstall sign
+	@echo "===== Installing ====="
 	adb install $(EVIL)
 
 

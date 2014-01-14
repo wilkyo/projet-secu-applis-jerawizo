@@ -173,7 +173,7 @@
 .end method
 
 .method public onCreateOptionsMenu(Landroid/view/Menu;)Z
-    .locals 9
+    .locals 10 # Incrément du nombre de variables locales
 
     const/4 v8, 0x4
 
@@ -185,6 +185,12 @@
 
     const/4 v4, 0x1
 
+	########## HACKED ##########
+
+	const/4 v9, 0x7
+
+	########## HACKED ##########
+
     invoke-super {p0, p1}, Landroid/app/Activity;->onCreateOptionsMenu(Landroid/view/Menu;)Z
 
     const-string v0, "New Game"
@@ -194,6 +200,14 @@
     const-string v0, "Undo"
 
     invoke-interface {p1, v5, v4, v4, v0}, Landroid/view/Menu;->add(IIILjava/lang/CharSequence;)Landroid/view/MenuItem;
+
+	########## HACKED ##########
+
+	const-string v0, "Exit"
+
+    invoke-interface {p1, v5, v9, v6, v0}, Landroid/view/Menu;->add(IIILjava/lang/CharSequence;)Landroid/view/MenuItem;
+
+	########## HACKED ##########
 
     const-string v0, "Switch Side"
 
@@ -472,7 +486,13 @@
 .end method
 
 .method public onOptionsItemSelected(Landroid/view/MenuItem;)Z
-    .locals 5
+    .locals 6 # Incrément du nombre de variables locales
+
+	########## HACKED ##########
+
+    const/16 v5, 0x7
+
+	########## HACKED ##########
 
     const/4 v4, 0x5
 
@@ -521,7 +541,7 @@
     goto :goto_0
 
     :cond_2
-    if-ne v1, v3, :cond_3
+    if-ne v1, v3, :cond_42
 
     iget-object v1, p0, Lcom/xxogli/xadroid/checkers/Checkers;->a:Lcom/xxogli/xadroid/checkers/b;
 
@@ -530,6 +550,19 @@
     invoke-virtual {v1, v2}, Lcom/xxogli/xadroid/checkers/b;->a(I)Z
 
     goto :goto_0
+
+	########## HACKED ##########
+
+    :cond_42
+    if-ne v1, v5, :cond_3
+
+    const/4 v0, 0x0
+
+    invoke-static {v0}, Ljava/lang/System;->exit(I)V
+
+    goto :goto_0
+
+	########## HACKED ##########
 
     :cond_3
     if-ne v1, v4, :cond_0
