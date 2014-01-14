@@ -162,11 +162,11 @@
 
     invoke-virtual {v0, v1}, Lcom/google/ads/AdView;->setGravity(I)V
 
-    new-instance v1, Lcom/google/ads/AdRequest;
+    #new-instance v1, Lcom/google/ads/AdRequest;
 
-    invoke-direct/range {v1 .. v1}, Lcom/google/ads/AdRequest;-><init>()V
+    #invoke-direct/range {v1 .. v1}, Lcom/google/ads/AdRequest;-><init>()V
 
-    invoke-virtual {v0, v1}, Lcom/google/ads/AdView;->loadAd(Lcom/google/ads/AdRequest;)V
+	#invoke-virtual {v0, v1}, Lcom/google/ads/AdView;->loadAd(Lcom/google/ads/AdRequest;)V
 
     :cond_0
     return-void

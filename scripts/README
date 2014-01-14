@@ -16,7 +16,7 @@ Utilisation:
 Permet de faire un diff récursif sur une arborescence.
 
 Utilisation:
-	./absolute_diffrec.sh /abolute/path/to/dir /abolute/path/to/other_dir /abolute/path/to/diff
+	./absolute_diffrec.sh /absolute/path/to/dir /absolute/path/to/other_dir /absolute/path/to/diff
 	Ou plus simple, dans le dossier script:
 	make diff
 
