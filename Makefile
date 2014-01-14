@@ -23,7 +23,7 @@ APK = $(SRC:=.apk)
 
 
 # make sans paramètre lance le build
-all: build
+all: sign
 
 # make debuild ou make out lance la décompilation
 debuild: $(OUT)
@@ -35,13 +35,21 @@ $(OUT):
 # make build lance la recompilation
 build: $(OUT) $(APK)
 	@echo "===== Compiling ====="
-	$(COMP) $(APK) $(EVIL) $(OUT)
+	apktool b $(OUT) $(EVIL)
 
+poc:
+	@echo "===== PoCing ====="
+	$(COMP) $(APK) $(EVIL) $(OUT)
 
 # make evil.apk lance la compilation, mais make sans paramètre devrait être utilisé
 $(EVIL): build
+
+sign: $(EVIL)
+	@echo "===== Signing ====="
+	jarsigner -sigalg MD5withRSA -digestalg SHA1 -keystore ~/.android/debug.keystore $(EVIL) androiddebugkey -storepass android
+
 # make install tente d'installer l'apk modifié sur un appareil 
-install: $(EVIL)
+install: sign
 	@echo "===== Running ====="
 	adb install $(EVIL)
 
