@@ -11,40 +11,40 @@ import android.view.View;
 import android.widget.Toast;
 
 /*  */
-public class b extends View {
-	private boolean A;
-	private boolean B;
-	private boolean C;
-	private boolean D;
-	private boolean E;
-	private boolean F;
+public class ChekersView extends View {
+	private boolean boolA;
+	private boolean boolB;
+	private boolean boolC;
+	private boolean boolD;
+	private boolean boolE;
+	private boolean boolF;
 	private int G;
-	private int[] H;
-	private int[] I;
-	private int[] J;
-	private int[] K;
+	private int[] arrayH;
+	private int[] arrayI;
+	private int[] arrayJ;
+	private int[] arrayK;
 	private int L;
 	private int M;
 	private int N;
-	private String O;
+	private String text1;
 	private float P;
 	private float Q;
 	private int R;
-	private Context a;
-	private Paint b;
-	private Paint c;
-	private Paint d;
-	private Paint e;
-	private Paint f;
-	private Paint g;
-	private Paint h;
-	private Paint i;
-	private Paint j;
+	private Context context;
+	private Paint paint1;
+	private Paint paint2;
+	private Paint paint3;
+	private Paint paint4;
+	private Paint redCase;
+	private Paint paint6;
+	private Paint paint7;
+	private Paint greenCase;
+	private Paint paint9;
 	private int k;
 	private float l;
 	private int m;
 	private int n;
-	private Drawable o;
+	private Drawable drawable;
 	private a p;
 	private int q;
 	private int r;
@@ -54,63 +54,73 @@ public class b extends View {
 	private int v;
 	private int w;
 	private int x;
-	private boolean y;
+	private boolean booly;
 	private int z;
 
-	public b(Context paramContext, SharedPreferences paramSharedPreferences) {
+	public ChekersView(Context paramContext, SharedPreferences paramSharedPreferences) {
 		super(paramContext);
-		this.a = paramContext;
-		this.b = new Paint();
-		this.b.setAntiAlias(true);
-		this.b.setARGB(255, 0, 0, 0);
-		this.c = new Paint();
-		this.c.setAntiAlias(true);
-		this.c.setARGB(255, 255, 255, 255);
-		this.d = new Paint();
-		this.d.setAntiAlias(true);
-		this.d.setARGB(255, 251, 215, 174);
-		this.e = new Paint();
-		this.e.setAntiAlias(true);
-		this.e.setARGB(255, 0, 0, 0);
-		this.f = new Paint();
-		this.f.setAntiAlias(true);
-		this.f.setARGB(255, 255, 0, 0);
-		this.g = new Paint();
-		this.g.setAntiAlias(true);
-		this.g.setARGB(255, 255, 165, 0);
-		this.h = new Paint();
-		this.h.setAntiAlias(true);
-		this.h.setARGB(255, 255, 200, 0);
-		this.h.setStrokeWidth(2.0F);
-		this.i = new Paint();
-		this.i.setAntiAlias(true);
-		this.i.setARGB(255, 0, 255, 0);
-		this.j = new Paint();
-		this.j.setAntiAlias(true);
-		this.j.setARGB(255, 0, 0, 0);
-		this.j.setStyle(Paint.Style.STROKE);
-		this.j.setStrokeWidth(5.0F);
+		this.context = paramContext;
+		this.paint1 = new Paint();
+		this.paint1.setAntiAlias(true);
+		this.paint1.setARGB(255, 0, 0, 0);
+		
+		this.paint2 = new Paint();
+		this.paint2.setAntiAlias(true);
+		this.paint2.setARGB(255, 255, 255, 255);
+		
+		this.paint3 = new Paint();
+		this.paint3.setAntiAlias(true);
+		this.paint3.setARGB(255, 251, 215, 174);
+		
+		this.paint4 = new Paint();
+		this.paint4.setAntiAlias(true);
+		this.paint4.setARGB(255, 0, 0, 0);
+		
+		
+		this.redCase = new Paint();
+		this.redCase.setAntiAlias(true);
+		this.redCase.setARGB(255, 255, 0, 0);
+		
+		this.paint6 = new Paint();
+		this.paint6.setAntiAlias(true);
+		this.paint6.setARGB(255, 255, 165, 0);
+		
+		this.paint7 = new Paint();
+		this.paint7.setAntiAlias(true);
+		this.paint7.setARGB(255, 255, 200, 0);
+		this.paint7.setStrokeWidth(2.0F);
+		
+		this.greenCase = new Paint();
+		this.greenCase.setAntiAlias(true);
+		this.greenCase.setARGB(255, 0, 255, 0);
+		
+		this.paint9 = new Paint();
+		this.paint9.setAntiAlias(true);
+		this.paint9.setARGB(255, 0, 0, 0);
+		this.paint9.setStyle(Paint.Style.STROKE);
+		this.paint9.setStrokeWidth(5.0F);
+		
 		this.k = 12;
 		this.l = 0.0F;
 		this.m = 0;
 		this.n = 0;
-		this.o = this.a.getResources().getDrawable(2130837504);
-		this.H = new int[8];
-		this.I = new int[8];
-		this.J = new int[8];
-		this.K = new int[8];
+		this.drawable = this.context.getResources().getDrawable(2130837504);
+		this.arrayH = new int[8];
+		this.arrayI = new int[8];
+		this.arrayJ = new int[8];
+		this.arrayK = new int[8];
 		// h.a(paramContext);
 		this.p = new a(this);
-		this.O = null;
-		if (a(paramSharedPreferences))
+		this.text1 = null;
+		if (getData(paramSharedPreferences))
 			if (!e())
-				this.O = "restored game";
+				this.text1 = "restored game";
 		while (true) {
-			c();
+			changeColorTable();
 			this.P = -10.0F;
 			this.Q = -10.0F;
 			this.R = 0;
-			if ((this.E) && (e()))
+			if ((this.boolE) && (e()))
 				g();
 			// return;
 			this.q = 1;
@@ -121,22 +131,28 @@ public class b extends View {
 			this.v = 0;
 			this.w = 0;
 			this.x = 0;
-			this.y = false;
+			this.booly = false;
 			this.z = 3;
-			this.A = true;
-			this.B = false;
-			this.C = false;
-			this.D = false;
-			this.E = true;
-			this.F = true;
+			this.boolA = true;
+			this.boolB = false;
+			this.boolC = false;
+			this.boolD = false;
+			this.boolE = true;
+			this.boolF = true;
 			this.G = 0;
 			this.L = 0;
 			this.M = 0;
 			this.N = this.p.c;
 		}
 	}
-
-	private final void a(SharedPreferences.Editor paramEditor,
+	
+	/**
+	 * Set  SharedPreferences.Editor's value 
+	 * @param paramEditor
+	 * @param paramString
+	 * @param paramArrayOfInt
+	 */
+	private final void setPreferenceEditor(SharedPreferences.Editor paramEditor,
 			String paramString, int[] paramArrayOfInt) {
 		for (int i1 = 0;; i1++) {
 			if (i1 >= 8)
@@ -144,8 +160,14 @@ public class b extends View {
 			paramEditor.putInt(paramString + i1, paramArrayOfInt[i1]);
 		}
 	}
-
-	private final void a(SharedPreferences paramSharedPreferences,
+	
+	/**
+	 * Get Value from SharedPreferences and put it in the array
+	 * @param paramSharedPreferences
+	 * @param paramString
+	 * @param paramArrayOfInt
+	 */
+	private final void getValueFromPreferences(SharedPreferences paramSharedPreferences,
 			String paramString, int[] paramArrayOfInt) {
 		for (int i1 = 0;; i1++) {
 			if (i1 >= 8)
@@ -154,8 +176,17 @@ public class b extends View {
 					+ i1, 0);
 		}
 	}
-
-	private final void a(Canvas paramCanvas, int paramInt1, int paramInt2,
+	
+	
+	/**
+	 * Draw square's case using canvas
+	 * @param paramCanvas
+	 * @param paramInt1
+	 * @param paramInt2
+	 * @param paramInt3
+	 * @param paramInt4
+	 */
+	private final void drawSquare(Canvas paramCanvas, int paramInt1, int paramInt2,
 			int paramInt3, int paramInt4) {
 		int i1 = paramInt1 >>> 2;
 		int i2 = 1 + 2 * (paramInt1 & 0x3) - (i1 & 0x1);
@@ -164,7 +195,7 @@ public class b extends View {
 		int i8 = 0;
 		int i5 = 0;
 		int i6 = 0;
-		if (this.C) {
+		if (this.boolC) {
 			i8 = 7 - i1;
 			int i9 = 7 - i2;
 			int i10 = 7 - i3;
@@ -175,14 +206,25 @@ public class b extends View {
 		for (int i7 = i8;; i7 = i1) {
 			paramCanvas.drawLine(paramInt4 + i6 * paramInt3, paramInt4 + i7
 					* paramInt3, paramInt4 + i4 * paramInt3, paramInt4
-					+ paramInt3 * i5, this.h);
+					+ paramInt3 * i5, this.paint7);
 			// return;
 			i5 = i3;
 			i6 = i2;
 		}
 	}
-
-	private final void a(Canvas paramCanvas, int paramInt1, int paramInt2,
+	
+	/**
+	 * Draw circle using Canvas
+	 * @param paramCanvas
+	 * @param paramInt1
+	 * @param paramInt2
+	 * @param paramInt3
+	 * @param paramInt4
+	 * @param paramPaint1
+	 * @param paramPaint2
+	 * @param paramBoolean
+	 */
+	private final void drawCircle(Canvas paramCanvas, int paramInt1, int paramInt2,
 			int paramInt3, int paramInt4, Paint paramPaint1, Paint paramPaint2,
 			boolean paramBoolean) {
 		paramCanvas
@@ -204,8 +246,13 @@ public class b extends View {
 			paramCanvas.drawText("K", i2 - paramInt4, i3, paramPaint1);
 		}
 	}
-
-	private final boolean a(SharedPreferences paramSharedPreferences) {
+	
+	/**
+	 * Get Data from SharedPreferences
+	 * @param paramSharedPreferences
+	 * @return
+	 */
+	private final boolean getData(SharedPreferences paramSharedPreferences) {
 		boolean bool1;
 		if (paramSharedPreferences != null)
 			;
@@ -223,19 +270,19 @@ public class b extends View {
 				this.v = paramSharedPreferences.getInt("l1", 0);
 				this.w = paramSharedPreferences.getInt("l2", 0);
 				this.x = paramSharedPreferences.getInt("lm", 0);
-				this.y = paramSharedPreferences.getBoolean("cap", true);
+				this.booly = paramSharedPreferences.getBoolean("cap", true);
 				this.z = paramSharedPreferences.getInt("level", 3);
-				this.A = paramSharedPreferences.getBoolean("show", true);
-				this.B = paramSharedPreferences.getBoolean("free", false);
-				this.C = paramSharedPreferences.getBoolean("rot", false);
-				this.D = paramSharedPreferences.getBoolean("full", false);
-				this.E = paramSharedPreferences.getBoolean("start", true);
-				this.F = paramSharedPreferences.getBoolean("anim", true);
+				this.boolA = paramSharedPreferences.getBoolean("show", true);
+				this.boolB = paramSharedPreferences.getBoolean("free", false);
+				this.boolC = paramSharedPreferences.getBoolean("rot", false);
+				this.boolD = paramSharedPreferences.getBoolean("full", false);
+				this.boolE = paramSharedPreferences.getBoolean("start", true);
+				this.boolF = paramSharedPreferences.getBoolean("anim", true);
 				this.G = paramSharedPreferences.getInt("color", 0);
-				a(paramSharedPreferences, "lwp", this.H);
-				a(paramSharedPreferences, "lwk", this.I);
-				a(paramSharedPreferences, "lbp", this.J);
-				a(paramSharedPreferences, "lbk", this.K);
+				getValueFromPreferences(paramSharedPreferences, "lwp", this.arrayH);
+				getValueFromPreferences(paramSharedPreferences, "lwk", this.arrayI);
+				getValueFromPreferences(paramSharedPreferences, "lbp", this.arrayJ);
+				getValueFromPreferences(paramSharedPreferences, "lbk", this.arrayK);
 				this.L = paramSharedPreferences.getInt("lp", 0);
 				this.M = paramSharedPreferences.getInt("lc", 0);
 				setLevel(this.z);
@@ -244,10 +291,10 @@ public class b extends View {
 					bool2 = false;
 				synchronized (this.p) {
 					this.p.a(this.r, this.t, this.s, this.u, bool2);
-					this.p.a(0, bool2, this.B);
+					this.p.a(0, bool2, this.boolB);
 					this.N = this.p.c;
 					if ((this.q == 4) || (this.q == 2))
-						this.p.a(bool2, this.B);
+						this.p.a(bool2, this.boolB);
 					bool1 = true;
 					continue;
 					// bool2 = true;
@@ -263,7 +310,7 @@ public class b extends View {
 		}
 	}
 
-	private final boolean a(boolean paramBoolean, int paramInt1, int paramInt2,
+	private final boolean gameStatus(boolean paramBoolean, int paramInt1, int paramInt2,
 			int paramInt3, int paramInt4) {
 		int i1 = -1;
 		if (paramBoolean)
@@ -295,7 +342,7 @@ public class b extends View {
 							if ((this.q != 5) && (this.q != 6)) {
 								if (paramInt3 != 0)
 									continue;
-								this.O = "random play";
+								this.text1 = "random play";
 							}
 							i2 = 1;
 							// return i2;
@@ -306,28 +353,28 @@ public class b extends View {
 						i11 = 3;
 						// continue;
 						if (paramInt3 == i1) {
-							this.O = "only reply";
+							this.text1 = "only reply";
 							continue;
 						}
 					} finally {
 					}
 					if (paramInt3 == -2) {
-						this.O = "opening";
+						this.text1 = "opening";
 					} else if (paramInt2 <= -32000) {
-						this.O = ("loss in #" + (paramInt2 + 32500) / 2);
+						this.text1 = ("loss in #" + (paramInt2 + 32500) / 2);
 					} else if (paramInt2 >= 32000) {
-						this.O = ("win in #" + (32500 - paramInt2) / 2);
+						this.text1 = ("win in #" + (32500 - paramInt2) / 2);
 					} else {
-						this.O = ("v=" + paramInt2 + " d=" + paramInt3 + " n=" + paramInt4);
+						this.text1 = ("v=" + paramInt2 + " d=" + paramInt3 + " n=" + paramInt4);
 						// continue;
 						if (paramInt1 == -3) {
-							f();
+							alertDialog();
 							i2 = 1;
 						} else if (paramInt1 == i1) {
 							if ((this.q == 2) || (this.q == 4)) {
 								this.R = 1;
 								this.p.h = 1;
-								this.O = "stopping....";
+								this.text1 = "stopping....";
 								i2 = 1;
 							} else {
 								this.R = 0;
@@ -340,11 +387,11 @@ public class b extends View {
 								this.v = 0;
 								this.w = 0;
 								this.x = 0;
-								this.y = false;
+								this.booly = false;
 								this.L = 0;
 								this.M = 0;
 								this.N = this.p.c;
-								this.O = null;
+								this.text1 = null;
 								i2 = 1;
 							}
 						} else if (paramInt1 == -2) {
@@ -354,7 +401,7 @@ public class b extends View {
 							if ((this.q == 2) || (this.q == 4)) {
 								this.R = 2;
 								this.p.h = 1;
-								this.O = "stopping....";
+								this.text1 = "stopping....";
 								i2 = 1;
 							} else {
 								this.R = 0;
@@ -372,18 +419,18 @@ public class b extends View {
 										this.v = 0;
 										this.w = 0;
 										this.x = 0;
-										int i4 = this.p.a(0, bool1, this.B);
+										int i4 = this.p.a(0, bool1, this.boolB);
 										boolean bool2 = false;
 										if (i4 == 1)
 											bool2 = true;
-										this.y = bool2;
+										this.booly = bool2;
 										this.N = this.p.c;
-										this.O = "undid half-move";
+										this.text1 = "undid half-move";
 										i2 = 1;
 										break;
 									}
 								}
-								this.O = "no more undo";
+								this.text1 = "no more undo";
 								i2 = 1;
 							}
 						} else {
@@ -391,9 +438,9 @@ public class b extends View {
 								break;
 							if (this.q == 1) {
 								this.q = 2;
-								this.p.a(false, this.B);
-								Context localContext2 = this.a;
-								if (!this.C)
+								this.p.a(false, this.boolB);
+								Context localContext2 = this.context;
+								if (!this.boolC)
 									break;
 								str2 = "computer now plays black";
 								Toast.makeText(localContext2, str2, 0).show();
@@ -403,9 +450,9 @@ public class b extends View {
 								i2 = 0;
 								if (i5 == 3) {
 									this.q = 4;
-									this.p.a(true, this.B);
-									Context localContext1 = this.a;
-									if (!this.C)
+									this.p.a(true, this.boolB);
+									Context localContext1 = this.context;
+									if (!this.boolC)
 										break;
 									str1 = "computer now plays white\ngoto options to rotate board";
 									Toast.makeText(localContext1, str1, 0)
@@ -498,7 +545,7 @@ public class b extends View {
 					i6 = i8;
 					continue;
 				}
-				if (this.C) {
+				if (this.boolC) {
 					i9 = i4 * (7 - i7);
 					i10 = i4 * (7 - i5);
 					if ((i9 > paramFloat1) || (paramFloat1 >= i9 + i4)
@@ -524,7 +571,7 @@ public class b extends View {
 		try {
 			if (this.G != paramInt) {
 				this.G = paramInt;
-				c();
+				changeColorTable();
 				postInvalidate();
 			}
 			return;
@@ -538,7 +585,7 @@ public class b extends View {
 			int paramInt3, int paramInt4) {
 		int i1 = paramInt2 & (paramInt1 ^ 0xFFFFFFFF);
 		if (i1 == 0) {
-			a(paramCanvas, Integer.numberOfTrailingZeros(paramInt1),
+			drawSquare(paramCanvas, Integer.numberOfTrailingZeros(paramInt1),
 					Integer.numberOfTrailingZeros(paramInt1 & paramInt1 - 1),
 					paramInt3, paramInt4);
 			return;
@@ -560,9 +607,9 @@ public class b extends View {
 				int i10 = 1 << i4 | 1 << i7;
 				int i11 = 1 << i9 | 1 << i8;
 				if ((i10 & paramInt1) == i10)
-					a(paramCanvas, i4, i7, paramInt3, paramInt4);
+					drawSquare(paramCanvas, i4, i7, paramInt3, paramInt4);
 				if ((i11 & paramInt1) == i11)
-					a(paramCanvas, i9, i8, paramInt3, paramInt4);
+					drawSquare(paramCanvas, i9, i8, paramInt3, paramInt4);
 				i2 &= i2 - 1;
 			}
 			while (true) {
@@ -580,29 +627,32 @@ public class b extends View {
 			}
 		}
 	}
-
-	private final void c() {
+	
+	/**
+	 * Change Table's Color 
+	 */
+	private final void changeColorTable() {
 		switch (this.G) {
 		default:
 			return;
 		case 1:
-			this.e.setARGB(255, 102, 205, 170);
+			this.paint4.setARGB(255, 102, 205, 170);
 			return;
 		case 2:
-			this.e.setARGB(255, 69, 139, 116);
+			this.paint4.setARGB(255, 69, 139, 116);
 			return;
 		case 3:
-			this.e.setARGB(255, 30, 144, 255);
+			this.paint4.setARGB(255, 30, 144, 255);
 			return;
 		case 4:
-			this.e.setARGB(255, 142, 107, 35);
+			this.paint4.setARGB(255, 142, 107, 35);
 			return;
 		case 5:
-			this.e.setARGB(255, 108, 123, 139);
+			this.paint4.setARGB(255, 108, 123, 139);
 			return;
 		case 6:
 		}
-		this.e.setARGB(255, 204, 204, 204);
+		this.paint4.setARGB(255, 204, 204, 204);
 	}
 
 	private final void c(int paramInt) {
@@ -613,7 +663,7 @@ public class b extends View {
 			this.v = 0;
 			this.w = 0;
 			this.x = this.p.b[paramInt];
-			if (this.F) {
+			if (this.boolF) {
 				this.l = 0.9F;
 				if (!bool)
 					// break;
@@ -627,9 +677,9 @@ public class b extends View {
 			this.s = this.p.f;
 			this.t = this.p.e;
 			this.u = this.p.g;
-			this.y = false;
-			this.O = null;
-			switch (this.p.a(0, bool, this.B)) {
+			this.booly = false;
+			this.text1 = null;
+			switch (this.p.a(0, bool, this.boolB)) {
 			default:
 				// return;
 				bool = true;
@@ -649,26 +699,26 @@ public class b extends View {
 			// return;
 			break; // Willy Zou
 		}
-		this.y = true;
+		this.booly = true;
 		this.N = this.p.c;
 		if (this.q == 1) {
 			if (this.z == 0) {
 				this.q = 3;
-				this.O = "free play";
+				this.text1 = "free play";
 				return;
 			}
 			this.q = 4;
-			this.p.a(bool, this.B);
+			this.p.a(bool, this.boolB);
 			return;
 		}
 		if (this.q == 3) {
 			if (this.z == 0) {
 				this.q = 1;
-				this.O = "free play";
+				this.text1 = "free play";
 				return;
 			}
 			this.q = 2;
-			this.p.a(bool, this.B);
+			this.p.a(bool, this.boolB);
 			return;
 		}
 		if (this.q == 2) {
@@ -680,10 +730,10 @@ public class b extends View {
 
 	private final void d() {
 		int i1 = this.L;
-		this.H[i1] = this.p.d;
-		this.I[i1] = this.p.e;
-		this.J[i1] = this.p.f;
-		this.K[i1] = this.p.g;
+		this.arrayH[i1] = this.p.d;
+		this.arrayI[i1] = this.p.e;
+		this.arrayJ[i1] = this.p.f;
+		this.arrayK[i1] = this.p.g;
 		if (this.L < 7)
 			;
 		for (this.L = (1 + this.L);; this.L = 0) {
@@ -697,8 +747,8 @@ public class b extends View {
 		return this.s == -1048576;
 	}
 
-	private final void f() {
-		new AlertDialog.Builder(this.a).setMessage("Start a new game?")
+	private final void alertDialog() {
+		new AlertDialog.Builder(this.context).setMessage("Start a new game?")
 				.setCancelable(false).setPositiveButton("Yes", new c(this))
 				.setNegativeButton("No", new d(this)).show();
 	}
@@ -713,7 +763,7 @@ public class b extends View {
 				;
 			for (this.L = (-1 + this.L);; this.L = 7) {
 				int i1 = this.L;
-				this.p.a(this.H[i1], this.I[i1], this.J[i1], this.K[i1],
+				this.p.a(this.arrayH[i1], this.arrayI[i1], this.arrayJ[i1], this.arrayK[i1],
 						paramBoolean);
 				return true;
 			}
@@ -724,7 +774,7 @@ public class b extends View {
 	public final void a() {
 		CharSequence[] arrayOfCharSequence = { "Wood", "Light Aquamarine",
 				"Dark Aquamarine", "Blue", "Brown", "Grey", "Light Grey" };
-		new AlertDialog.Builder(this.a).setTitle("Board Color")
+		new AlertDialog.Builder(this.context).setTitle("Board Color")
 				.setItems(arrayOfCharSequence, new g(this)).show();
 	}
 
@@ -771,7 +821,7 @@ public class b extends View {
 
 	public final void a(int paramInt1, int paramInt2, int paramInt3,
 			int paramInt4) {
-		if (a(true, paramInt1, paramInt2, paramInt3, paramInt4))
+		if (gameStatus(true, paramInt1, paramInt2, paramInt3, paramInt4))
 			postInvalidate();
 	}
 
@@ -787,19 +837,19 @@ public class b extends View {
 			paramEditor.putInt("l1", this.v);
 			paramEditor.putInt("l2", this.w);
 			paramEditor.putInt("lm", this.x);
-			paramEditor.putBoolean("cap", this.y);
+			paramEditor.putBoolean("cap", this.booly);
 			paramEditor.putInt("level", this.z);
-			paramEditor.putBoolean("show", this.A);
-			paramEditor.putBoolean("free", this.B);
-			paramEditor.putBoolean("rot", this.C);
-			paramEditor.putBoolean("full", this.D);
-			paramEditor.putBoolean("start", this.E);
-			paramEditor.putBoolean("anim", this.F);
+			paramEditor.putBoolean("show", this.boolA);
+			paramEditor.putBoolean("free", this.boolB);
+			paramEditor.putBoolean("rot", this.boolC);
+			paramEditor.putBoolean("full", this.boolD);
+			paramEditor.putBoolean("start", this.boolE);
+			paramEditor.putBoolean("anim", this.boolF);
 			paramEditor.putInt("color", this.G);
-			a(paramEditor, "lwp", this.H);
-			a(paramEditor, "lwk", this.I);
-			a(paramEditor, "lbp", this.J);
-			a(paramEditor, "lbk", this.K);
+			setPreferenceEditor(paramEditor, "lwp", this.arrayH);
+			setPreferenceEditor(paramEditor, "lwk", this.arrayI);
+			setPreferenceEditor(paramEditor, "lbp", this.arrayJ);
+			setPreferenceEditor(paramEditor, "lbk", this.arrayK);
 			paramEditor.putInt("lp", this.L);
 			paramEditor.putInt("lc", this.M);
 			return;
@@ -810,7 +860,7 @@ public class b extends View {
 	}
 
 	public final boolean a(int paramInt) {
-		boolean bool1 = a(false, paramInt, 0, 0, 0);
+		boolean bool1 = gameStatus(false, paramInt, 0, 0, 0);
 		boolean bool2 = false;
 		if (bool1) {
 			postInvalidate();
@@ -823,12 +873,12 @@ public class b extends View {
 		if (paramBoolean)
 			;
 		try {
-			if (this.A)
+			if (this.boolA)
 				;
 			for (boolean bool2 = false;; bool2 = true) {
-				this.A = bool2;
+				this.boolA = bool2;
 				postInvalidate();
-				boolean bool1 = this.A;
+				boolean bool1 = this.boolA;
 				return bool1;
 			}
 		} finally {
@@ -838,7 +888,7 @@ public class b extends View {
 	public final void b() {
 		try {
 			int i1 = b(this.P, this.Q);
-			if ((i1 != 0) && (a(false, i1, 0, 0, 0)))
+			if ((i1 != 0) && (gameStatus(false, i1, 0, 0, 0)))
 				postInvalidate();
 			return;
 		} finally {
@@ -851,9 +901,9 @@ public class b extends View {
 			;
 		try {
 			boolean bool2;
-			if (this.B) {
+			if (this.boolB) {
 				bool2 = false;
-				this.B = bool2;
+				this.boolB = bool2;
 				if ((this.q == 3) || (this.q == i1)) {
 					if (this.q != 3)
 						// break;
@@ -866,10 +916,10 @@ public class b extends View {
 				}
 			}
 			while (true) {
-				this.y = true; // this.y = i1;
+				this.booly = true; // this.y = i1;
 				this.N = this.p.c;
 				postInvalidate();
-				boolean bool1 = this.B;
+				boolean bool1 = this.boolB;
 				// return bool1;
 				bool2 = true;// bool2 = i1;
 				// break;
@@ -881,19 +931,19 @@ public class b extends View {
 		}
 	}
 
-	public final boolean c(boolean paramBoolean) {
+	public final boolean rotatedBoardStatus(boolean paramBoolean) {
 		if (paramBoolean)
 			;
 		try {
-			boolean bool2 = this.C;
+			boolean bool2 = this.boolC;
 			boolean bool3 = false;
 			if (bool2)
 				;
 			while (true) {
-				this.C = bool3;
-				Toast.makeText(this.a, "rotated board", 0).show();
+				this.boolC = bool3;
+				Toast.makeText(this.context, "rotated board", 0).show();
 				postInvalidate();
-				boolean bool1 = this.C;
+				boolean bool1 = this.boolC;
 				// return bool1;
 				bool3 = true;
 			}
@@ -905,11 +955,11 @@ public class b extends View {
 		if (paramBoolean)
 			;
 		try {
-			if (this.D)
+			if (this.boolD)
 				;
 			for (boolean bool2 = false;; bool2 = true) {
-				this.D = bool2;
-				boolean bool1 = this.D;
+				this.boolD = bool2;
+				boolean bool1 = this.boolD;
 				return bool1;
 			}
 		} finally {
@@ -970,37 +1020,37 @@ public class b extends View {
 					i11 = i46;
 					i12 = i47;
 					i13 = 2;
-					paramCanvas.drawPaint(this.b);
+					paramCanvas.drawPaint(this.paint1);
 					if (this.G != 0)
 						continue;
-					localObject2 = this.d;
-					this.o.setBounds(0, 0, i5, i5);
-					this.o.draw(paramCanvas);
+					localObject2 = this.paint3;
+					this.drawable.setBounds(0, 0, i5, i5);
+					this.drawable.draw(paramCanvas);
 					// break;
 					if (i23 < 8)
 						break;
 					if (!e())
 						break;
 					paramCanvas.drawText("Checkers for Android", i13, i12,
-							this.c);
-					paramCanvas.drawText("", i13, i12 + i7, this.c);
+							this.paint2);
+					paramCanvas.drawText("", i13, i12 + i7, this.paint2);
 					// if (!h.r)
 					// paramCanvas.drawText("no endgame TBs", i13, i12 + i7 * 2,
 					// this.c);
-					if (this.y)
-						paramCanvas.drawText("MUST CAPTURE", i11, i10, this.f);
+					if (this.booly)
+						paramCanvas.drawText("MUST CAPTURE", i11, i10, this.redCase);
 				}
 				switch (this.q) {
 				default:
-					if ((this.A) && ((this.q == 1) || (this.q == 3))) {
+					if ((this.boolA) && ((this.q == 1) || (this.q == 3))) {
 						i29 = this.p.c;
 						arrayOfInt1 = this.p.b;
 						arrayOfInt2 = this.p.a;
 						i30 = 0;
 						break;
 					}
-					if (this.O != null)
-						paramCanvas.drawText(this.O, i11, i10 + i7 * 2, this.i);
+					if (this.text1 != null)
+						paramCanvas.drawText(this.text1, i11, i10 + i7 * 2, this.greenCase);
 					boolean bool1 = 0.0F < this.P;
 					int i24 = 0;
 					if (!bool1) {
@@ -1028,7 +1078,7 @@ public class b extends View {
 													paramCanvas.drawRect(i27,
 															i28, i27 + i4, i28
 																	+ i4,
-															this.j);
+															this.paint9);
 													i24 = 1;
 												}
 											}
@@ -1039,8 +1089,8 @@ public class b extends View {
 						}
 					}
 					if (i24 == 0) {
-						paramCanvas.drawCircle(this.P, this.Q, 5.0F, this.c);
-						paramCanvas.drawCircle(this.P, this.Q, 3.0F, this.b);
+						paramCanvas.drawCircle(this.P, this.Q, 5.0F, this.paint2);
+						paramCanvas.drawCircle(this.P, this.Q, 3.0F, this.paint1);
 					}
 					if (this.l > 0.0F) {
 						this.l = ((float) (this.l - 0.05D));
@@ -1060,8 +1110,8 @@ public class b extends View {
 					i12 = i7;
 					i13 = i9;
 					// continue;
-					Paint localPaint = this.c;
-					paramCanvas.drawRect(0.0F, 0.0F, i5, i5, this.e);
+					Paint localPaint = this.paint2;
+					paramCanvas.drawRect(0.0F, 0.0F, i5, i5, this.paint4);
 					localObject2 = localPaint;
 					// break;
 					int i17 = i4 * i16;
@@ -1069,7 +1119,7 @@ public class b extends View {
 							(Paint) localObject2);
 					i16 += 2;
 					// break;
-					if (!this.C)
+					if (!this.boolC)
 						break;
 					int i33 = i4 * (7 - i31);
 					i34 = i4 * (7 - i23);
@@ -1078,10 +1128,10 @@ public class b extends View {
 					i37 = i6 + i34;
 					if ((i32 & this.v) != 0) {
 						paramCanvas.drawRect(i35 + 1, i34 + 1, -1 + (i35 + i4),
-								-1 + (i34 + i4), this.f);
+								-1 + (i34 + i4), this.redCase);
 						if ((i32 & this.r) == 0)
 							break;
-						a(paramCanvas, i36, i37, i6, i8, this.b, this.c, false);
+						drawCircle(paramCanvas, i36, i37, i6, i8, this.paint1, this.paint2, false);
 						int i44 = i22 + 1;
 						i39 = i20;
 						i40 = i21;
@@ -1091,7 +1141,7 @@ public class b extends View {
 					}
 					if ((i32 & this.w) != 0) {
 						paramCanvas.drawRect(i35 + 1, i34 + 1, -1 + (i35 + i4),
-								-1 + (i34 + i4), this.g);
+								-1 + (i34 + i4), this.paint6);
 						continue;
 					}
 					break;
@@ -1104,12 +1154,12 @@ public class b extends View {
 				}
 			} finally {
 			}
-			if ((this.A) && ((i32 & this.x) != 0)) {
+			if ((this.boolA) && ((i32 & this.x) != 0)) {
 				paramCanvas.drawRect(i35 + 1, i34 + 1, -1 + (i35 + i4), -1
-						+ (i34 + i4), this.i);
+						+ (i34 + i4), this.greenCase);
 				// continue;
 				if ((i32 & this.s) != 0) {
-					a(paramCanvas, i36, i37, i6, i8, this.c, this.b, false);
+					drawCircle(paramCanvas, i36, i37, i6, i8, this.paint2, this.paint1, false);
 					i39 = i20 + 1;
 					i40 = i21;
 					i41 = i22;
@@ -1117,7 +1167,7 @@ public class b extends View {
 					break;
 				}
 				if ((i32 & this.t) != 0) {
-					a(paramCanvas, i36, i37, i6, i8, this.b, this.c, true);
+					drawCircle(paramCanvas, i36, i37, i6, i8, this.paint1, this.paint2, true);
 					int i43 = i21 + 1;
 					i39 = i20;
 					i40 = i43;
@@ -1126,7 +1176,7 @@ public class b extends View {
 					break;
 				}
 				if ((i32 & this.u) != 0) {
-					a(paramCanvas, i36, i37, i6, i8, this.c, this.b, true);
+					drawCircle(paramCanvas, i36, i37, i6, i8, this.paint2, this.paint1, true);
 					i38 = i19 + 1;
 					i39 = i20;
 					i40 = i21;
@@ -1134,8 +1184,8 @@ public class b extends View {
 					break;
 				}
 				if ((i32 & this.n) != 0) {
-					paramCanvas.drawCircle(i36, i37, (i6 - 2) * this.l, this.c);
-					paramCanvas.drawCircle(i36, i37, (i6 - 4) * this.l, this.b);
+					paramCanvas.drawCircle(i36, i37, (i6 - 2) * this.l, this.paint2);
+					paramCanvas.drawCircle(i36, i37, (i6 - 4) * this.l, this.paint1);
 					i38 = i19;
 					i39 = i20;
 					i40 = i21;
@@ -1144,28 +1194,28 @@ public class b extends View {
 				}
 				if ((i32 & this.m) == 0)
 					break;
-				paramCanvas.drawCircle(i36, i37, (i6 - 2) * this.l, this.b);
-				paramCanvas.drawCircle(i36, i37, (i6 - 4) * this.l, this.c);
+				paramCanvas.drawCircle(i36, i37, (i6 - 2) * this.l, this.paint1);
+				paramCanvas.drawCircle(i36, i37, (i6 - 4) * this.l, this.paint2);
 				// break;
-				paramCanvas.drawText("White", i13, i12, this.c);
-				paramCanvas.drawText("Black", i13, i12 + i7, this.c);
-				paramCanvas.drawText("Moves", i13, i12 + i7 * 2, this.c);
+				paramCanvas.drawText("White", i13, i12, this.paint2);
+				paramCanvas.drawText("Black", i13, i12 + i7, this.paint2);
+				paramCanvas.drawText("Moves", i13, i12 + i7 * 2, this.paint2);
 				paramCanvas.drawText(":  " + i22 + "+" + i21, i13 + i7 * 3,
-						i12, this.c);
+						i12, this.paint2);
 				paramCanvas.drawText(":  " + i20 + "+" + i19, i13 + i7 * 3, i12
-						+ i7, this.c);
+						+ i7, this.paint2);
 				paramCanvas.drawText(":  " + this.N, i13 + i7 * 3,
-						i12 + i7 * 2, this.c);
+						i12 + i7 * 2, this.paint2);
 				// continue;
-				paramCanvas.drawText("BLACK'S MOVE?", i11, i10 + i7, this.c);
+				paramCanvas.drawText("BLACK'S MOVE?", i11, i10 + i7, this.paint2);
 				// continue;
-				paramCanvas.drawText("WHITE'S MOVE?", i11, i10 + i7, this.c);
+				paramCanvas.drawText("WHITE'S MOVE?", i11, i10 + i7, this.paint2);
 				// continue;
-				paramCanvas.drawText("THINKING....", i11, i10 + i7, this.c);
+				paramCanvas.drawText("THINKING....", i11, i10 + i7, this.paint2);
 				// continue;
-				paramCanvas.drawText("WHITE WINS", i11, i10 + i7, this.c);
+				paramCanvas.drawText("WHITE WINS", i11, i10 + i7, this.paint2);
 				// continue;
-				paramCanvas.drawText("BLACK WINS", i11, i10 + i7, this.c);
+				paramCanvas.drawText("BLACK WINS", i11, i10 + i7, this.paint2);
 				// continue;
 				b(paramCanvas, arrayOfInt1[i30], arrayOfInt2[i30], i4, i6);
 				i30++;
@@ -1224,11 +1274,11 @@ public class b extends View {
 		if (paramBoolean)
 			;
 		try {
-			if (this.E)
+			if (this.boolE)
 				;
 			for (boolean bool2 = false;; bool2 = true) {
-				this.E = bool2;
-				boolean bool1 = this.E;
+				this.boolE = bool2;
+				boolean bool1 = this.boolE;
 				return bool1;
 			}
 		} finally {
@@ -1239,11 +1289,11 @@ public class b extends View {
 		if (paramBoolean)
 			;
 		try {
-			if (this.F)
+			if (this.boolF)
 				;
 			for (boolean bool2 = false;; bool2 = true) {
-				this.F = bool2;
-				boolean bool1 = this.F;
+				this.boolF = bool2;
+				boolean bool1 = this.boolF;
 				return bool1;
 			}
 		} finally {
@@ -1273,10 +1323,10 @@ public class b extends View {
 				if (paramInt1 > paramInt2) {
 					f2 = (paramInt1 - i1) / 10;
 					if (f2 < f1) {
-						this.b.setTextSize(f2);
-						this.c.setTextSize(f2);
-						this.i.setTextSize(f2);
-						this.f.setTextSize(f2);
+						this.paint1.setTextSize(f2);
+						this.paint2.setTextSize(f2);
+						this.greenCase.setTextSize(f2);
+						this.redCase.setTextSize(f2);
 						this.k = (1 + (int) f2);
 						// return;
 						i1 = paramInt2;
@@ -1293,7 +1343,7 @@ public class b extends View {
 		if (paramMotionEvent.getAction() == 0) {
 			int i1 = b(paramMotionEvent.getX(), paramMotionEvent.getY());
 			if (i1 != 0) {
-				if (a(false, i1, 0, 0, 0))
+				if (gameStatus(false, i1, 0, 0, 0))
 					postInvalidate();
 				return true;
 			}

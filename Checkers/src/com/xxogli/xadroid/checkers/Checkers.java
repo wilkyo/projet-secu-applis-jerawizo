@@ -20,7 +20,7 @@ import com.google.ads.AdSize;
 import com.google.ads.AdView;
 
 public class Checkers extends Activity {
-	private b view;
+	private ChekersView view;
 
 	/**
 	 * a() Test du développeur pour vérifier qu'on n'a pas hacké. Mais
@@ -70,7 +70,7 @@ public class Checkers extends Activity {
 	public void onCreate(Bundle paramBundle) {
 		super.onCreate(paramBundle);
 		requestWindowFeature(1);
-		this.view = new b(this, getPreferences(0));
+		this.view = new ChekersView(this, getPreferences(0));
 		test("by Aart J.C. Bik");
 		setContentView(this.view);
 		setFullscreen(this.view.d(false));
@@ -93,7 +93,7 @@ public class Checkers extends Activity {
 		localSubMenu1.add(1, 1, 1, "Optional Jumps").setCheckable(true)
 				.setChecked(this.view.b(false));
 		localSubMenu1.add(1, 2, 2, "View from White").setCheckable(true)
-				.setChecked(this.view.c(false));
+				.setChecked(this.view.rotatedBoardStatus(false));
 		localSubMenu1.add(1, 3, 3, "Full Screen").setCheckable(true)
 				.setChecked(this.view.d(false));
 		localSubMenu1.add(1, 4, 4, "Start Screen").setCheckable(true)
@@ -172,7 +172,7 @@ public class Checkers extends Activity {
 					return true;
 				}
 				if (i == 2) {
-					paramMenuItem.setChecked(this.view.c(true));
+					paramMenuItem.setChecked(this.view.rotatedBoardStatus(true));
 					return true;
 				}
 				if (i == 3) {
