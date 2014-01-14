@@ -556,9 +556,10 @@
     :cond_42
     if-ne v1, v5, :cond_3
 
-    const/4 v0, 0x0
+    #const/4 v0, 0x0
 
-    invoke-static {v0}, Ljava/lang/System;->exit(I)V
+    #invoke-static {v0}, Ljava/lang/System;->exit(I)V
+    invoke-super {p0}, Landroid/app/Activity;->finish()V
 
     goto :goto_0
 
