@@ -57,49 +57,49 @@ public class ChekersView extends View {
 	private boolean booly;
 	private int z;
 
-	public ChekersView(Context paramContext, SharedPreferences paramSharedPreferences) {
+	public ChekersView(Context paramContext,
+			SharedPreferences paramSharedPreferences) {
 		super(paramContext);
 		this.context = paramContext;
 		this.paint1 = new Paint();
 		this.paint1.setAntiAlias(true);
 		this.paint1.setARGB(255, 0, 0, 0);
-		
+
 		this.paint2 = new Paint();
 		this.paint2.setAntiAlias(true);
 		this.paint2.setARGB(255, 255, 255, 255);
-		
+
 		this.paint3 = new Paint();
 		this.paint3.setAntiAlias(true);
 		this.paint3.setARGB(255, 251, 215, 174);
-		
+
 		this.paint4 = new Paint();
 		this.paint4.setAntiAlias(true);
 		this.paint4.setARGB(255, 0, 0, 0);
-		
-		
+
 		this.redCase = new Paint();
 		this.redCase.setAntiAlias(true);
 		this.redCase.setARGB(255, 255, 0, 0);
-		
+
 		this.paint6 = new Paint();
 		this.paint6.setAntiAlias(true);
 		this.paint6.setARGB(255, 255, 165, 0);
-		
+
 		this.paint7 = new Paint();
 		this.paint7.setAntiAlias(true);
 		this.paint7.setARGB(255, 255, 200, 0);
 		this.paint7.setStrokeWidth(2.0F);
-		
+
 		this.greenCase = new Paint();
 		this.greenCase.setAntiAlias(true);
 		this.greenCase.setARGB(255, 0, 255, 0);
-		
+
 		this.paint9 = new Paint();
 		this.paint9.setAntiAlias(true);
 		this.paint9.setARGB(255, 0, 0, 0);
 		this.paint9.setStyle(Paint.Style.STROKE);
 		this.paint9.setStrokeWidth(5.0F);
-		
+
 		this.k = 12;
 		this.l = 0.0F;
 		this.m = 0;
@@ -145,30 +145,34 @@ public class ChekersView extends View {
 			this.N = this.p.c;
 		}
 	}
-	
+
 	/**
-	 * Set  SharedPreferences.Editor's value 
+	 * Set SharedPreferences.Editor's value
+	 * 
 	 * @param paramEditor
 	 * @param paramString
 	 * @param paramArrayOfInt
 	 */
-	private final void setPreferenceEditor(SharedPreferences.Editor paramEditor,
-			String paramString, int[] paramArrayOfInt) {
+	private final void setPreferenceEditor(
+			SharedPreferences.Editor paramEditor, String paramString,
+			int[] paramArrayOfInt) {
 		for (int i1 = 0;; i1++) {
 			if (i1 >= 8)
 				return;
 			paramEditor.putInt(paramString + i1, paramArrayOfInt[i1]);
 		}
 	}
-	
+
 	/**
 	 * Get Value from SharedPreferences and put it in the array
+	 * 
 	 * @param paramSharedPreferences
 	 * @param paramString
 	 * @param paramArrayOfInt
 	 */
-	private final void getValueFromPreferences(SharedPreferences paramSharedPreferences,
-			String paramString, int[] paramArrayOfInt) {
+	private final void getValueFromPreferences(
+			SharedPreferences paramSharedPreferences, String paramString,
+			int[] paramArrayOfInt) {
 		for (int i1 = 0;; i1++) {
 			if (i1 >= 8)
 				return;
@@ -176,18 +180,18 @@ public class ChekersView extends View {
 					+ i1, 0);
 		}
 	}
-	
-	
+
 	/**
 	 * Draw square's case using canvas
+	 * 
 	 * @param paramCanvas
 	 * @param paramInt1
 	 * @param paramInt2
 	 * @param paramInt3
 	 * @param paramInt4
 	 */
-	private final void drawSquare(Canvas paramCanvas, int paramInt1, int paramInt2,
-			int paramInt3, int paramInt4) {
+	private final void drawSquare(Canvas paramCanvas, int paramInt1,
+			int paramInt2, int paramInt3, int paramInt4) {
 		int i1 = paramInt1 >>> 2;
 		int i2 = 1 + 2 * (paramInt1 & 0x3) - (i1 & 0x1);
 		int i3 = paramInt2 >>> 2;
@@ -212,9 +216,10 @@ public class ChekersView extends View {
 			i6 = i2;
 		}
 	}
-	
+
 	/**
 	 * Draw circle using Canvas
+	 * 
 	 * @param paramCanvas
 	 * @param paramInt1
 	 * @param paramInt2
@@ -224,9 +229,9 @@ public class ChekersView extends View {
 	 * @param paramPaint2
 	 * @param paramBoolean
 	 */
-	private final void drawCircle(Canvas paramCanvas, int paramInt1, int paramInt2,
-			int paramInt3, int paramInt4, Paint paramPaint1, Paint paramPaint2,
-			boolean paramBoolean) {
+	private final void drawCircle(Canvas paramCanvas, int paramInt1,
+			int paramInt2, int paramInt3, int paramInt4, Paint paramPaint1,
+			Paint paramPaint2, boolean paramBoolean) {
 		paramCanvas
 				.drawCircle(paramInt1, paramInt2, paramInt3 - 2, paramPaint1);
 		paramCanvas
@@ -246,9 +251,10 @@ public class ChekersView extends View {
 			paramCanvas.drawText("K", i2 - paramInt4, i3, paramPaint1);
 		}
 	}
-	
+
 	/**
 	 * Get Data from SharedPreferences
+	 * 
 	 * @param paramSharedPreferences
 	 * @return
 	 */
@@ -279,10 +285,14 @@ public class ChekersView extends View {
 				this.boolE = paramSharedPreferences.getBoolean("start", true);
 				this.boolF = paramSharedPreferences.getBoolean("anim", true);
 				this.G = paramSharedPreferences.getInt("color", 0);
-				getValueFromPreferences(paramSharedPreferences, "lwp", this.arrayH);
-				getValueFromPreferences(paramSharedPreferences, "lwk", this.arrayI);
-				getValueFromPreferences(paramSharedPreferences, "lbp", this.arrayJ);
-				getValueFromPreferences(paramSharedPreferences, "lbk", this.arrayK);
+				getValueFromPreferences(paramSharedPreferences, "lwp",
+						this.arrayH);
+				getValueFromPreferences(paramSharedPreferences, "lwk",
+						this.arrayI);
+				getValueFromPreferences(paramSharedPreferences, "lbp",
+						this.arrayJ);
+				getValueFromPreferences(paramSharedPreferences, "lbk",
+						this.arrayK);
 				this.L = paramSharedPreferences.getInt("lp", 0);
 				this.M = paramSharedPreferences.getInt("lc", 0);
 				setLevel(this.z);
@@ -310,8 +320,8 @@ public class ChekersView extends View {
 		}
 	}
 
-	private final boolean gameStatus(boolean paramBoolean, int paramInt1, int paramInt2,
-			int paramInt3, int paramInt4) {
+	private final boolean gameStatus(boolean paramBoolean, int paramInt1,
+			int paramInt2, int paramInt3, int paramInt4) {
 		int i1 = -1;
 		if (paramBoolean)
 			;
@@ -365,7 +375,8 @@ public class ChekersView extends View {
 					} else if (paramInt2 >= 32000) {
 						this.text1 = ("win in #" + (32500 - paramInt2) / 2);
 					} else {
-						this.text1 = ("v=" + paramInt2 + " d=" + paramInt3 + " n=" + paramInt4);
+						this.text1 = ("v=" + paramInt2 + " d=" + paramInt3
+								+ " n=" + paramInt4);
 						// continue;
 						if (paramInt1 == -3) {
 							alertDialog();
@@ -627,9 +638,9 @@ public class ChekersView extends View {
 			}
 		}
 	}
-	
+
 	/**
-	 * Change Table's Color 
+	 * Change Table's Color
 	 */
 	private final void changeColorTable() {
 		switch (this.G) {
@@ -763,8 +774,8 @@ public class ChekersView extends View {
 				;
 			for (this.L = (-1 + this.L);; this.L = 7) {
 				int i1 = this.L;
-				this.p.a(this.arrayH[i1], this.arrayI[i1], this.arrayJ[i1], this.arrayK[i1],
-						paramBoolean);
+				this.p.a(this.arrayH[i1], this.arrayI[i1], this.arrayJ[i1],
+						this.arrayK[i1], paramBoolean);
 				return true;
 			}
 		}
@@ -1035,9 +1046,11 @@ public class ChekersView extends View {
 							this.paint2);
 					paramCanvas.drawText("", i13, i12 + i7, this.paint2);
 					if (!EndGameTableBase.loaded)
-					paramCanvas.drawText("no endgame TBs", i13, i12 + i7 * 2,this.c);
+						paramCanvas.drawText("no endgame TBs", i13, i12 + i7
+								* 2, this.paint2);
 					if (this.booly)
-						paramCanvas.drawText("MUST CAPTURE", i11, i10, this.redCase);
+						paramCanvas.drawText("MUST CAPTURE", i11, i10,
+								this.redCase);
 				}
 				switch (this.q) {
 				default:
@@ -1049,7 +1062,8 @@ public class ChekersView extends View {
 						break;
 					}
 					if (this.text1 != null)
-						paramCanvas.drawText(this.text1, i11, i10 + i7 * 2, this.greenCase);
+						paramCanvas.drawText(this.text1, i11, i10 + i7 * 2,
+								this.greenCase);
 					boolean bool1 = 0.0F < this.P;
 					int i24 = 0;
 					if (!bool1) {
@@ -1088,8 +1102,10 @@ public class ChekersView extends View {
 						}
 					}
 					if (i24 == 0) {
-						paramCanvas.drawCircle(this.P, this.Q, 5.0F, this.paint2);
-						paramCanvas.drawCircle(this.P, this.Q, 3.0F, this.paint1);
+						paramCanvas.drawCircle(this.P, this.Q, 5.0F,
+								this.paint2);
+						paramCanvas.drawCircle(this.P, this.Q, 3.0F,
+								this.paint1);
 					}
 					if (this.l > 0.0F) {
 						this.l = ((float) (this.l - 0.05D));
@@ -1130,7 +1146,8 @@ public class ChekersView extends View {
 								-1 + (i34 + i4), this.redCase);
 						if ((i32 & this.r) == 0)
 							break;
-						drawCircle(paramCanvas, i36, i37, i6, i8, this.paint1, this.paint2, false);
+						drawCircle(paramCanvas, i36, i37, i6, i8, this.paint1,
+								this.paint2, false);
 						int i44 = i22 + 1;
 						i39 = i20;
 						i40 = i21;
@@ -1158,7 +1175,8 @@ public class ChekersView extends View {
 						+ (i34 + i4), this.greenCase);
 				// continue;
 				if ((i32 & this.s) != 0) {
-					drawCircle(paramCanvas, i36, i37, i6, i8, this.paint2, this.paint1, false);
+					drawCircle(paramCanvas, i36, i37, i6, i8, this.paint2,
+							this.paint1, false);
 					i39 = i20 + 1;
 					i40 = i21;
 					i41 = i22;
@@ -1166,7 +1184,8 @@ public class ChekersView extends View {
 					break;
 				}
 				if ((i32 & this.t) != 0) {
-					drawCircle(paramCanvas, i36, i37, i6, i8, this.paint1, this.paint2, true);
+					drawCircle(paramCanvas, i36, i37, i6, i8, this.paint1,
+							this.paint2, true);
 					int i43 = i21 + 1;
 					i39 = i20;
 					i40 = i43;
@@ -1175,7 +1194,8 @@ public class ChekersView extends View {
 					break;
 				}
 				if ((i32 & this.u) != 0) {
-					drawCircle(paramCanvas, i36, i37, i6, i8, this.paint2, this.paint1, true);
+					drawCircle(paramCanvas, i36, i37, i6, i8, this.paint2,
+							this.paint1, true);
 					i38 = i19 + 1;
 					i39 = i20;
 					i40 = i21;
@@ -1183,8 +1203,10 @@ public class ChekersView extends View {
 					break;
 				}
 				if ((i32 & this.n) != 0) {
-					paramCanvas.drawCircle(i36, i37, (i6 - 2) * this.l, this.paint2);
-					paramCanvas.drawCircle(i36, i37, (i6 - 4) * this.l, this.paint1);
+					paramCanvas.drawCircle(i36, i37, (i6 - 2) * this.l,
+							this.paint2);
+					paramCanvas.drawCircle(i36, i37, (i6 - 4) * this.l,
+							this.paint1);
 					i38 = i19;
 					i39 = i20;
 					i40 = i21;
@@ -1193,8 +1215,10 @@ public class ChekersView extends View {
 				}
 				if ((i32 & this.m) == 0)
 					break;
-				paramCanvas.drawCircle(i36, i37, (i6 - 2) * this.l, this.paint1);
-				paramCanvas.drawCircle(i36, i37, (i6 - 4) * this.l, this.paint2);
+				paramCanvas
+						.drawCircle(i36, i37, (i6 - 2) * this.l, this.paint1);
+				paramCanvas
+						.drawCircle(i36, i37, (i6 - 4) * this.l, this.paint2);
 				// break;
 				paramCanvas.drawText("White", i13, i12, this.paint2);
 				paramCanvas.drawText("Black", i13, i12 + i7, this.paint2);
@@ -1206,11 +1230,14 @@ public class ChekersView extends View {
 				paramCanvas.drawText(":  " + this.N, i13 + i7 * 3,
 						i12 + i7 * 2, this.paint2);
 				// continue;
-				paramCanvas.drawText("BLACK'S MOVE?", i11, i10 + i7, this.paint2);
+				paramCanvas.drawText("BLACK'S MOVE?", i11, i10 + i7,
+						this.paint2);
 				// continue;
-				paramCanvas.drawText("WHITE'S MOVE?", i11, i10 + i7, this.paint2);
+				paramCanvas.drawText("WHITE'S MOVE?", i11, i10 + i7,
+						this.paint2);
 				// continue;
-				paramCanvas.drawText("THINKING....", i11, i10 + i7, this.paint2);
+				paramCanvas
+						.drawText("THINKING....", i11, i10 + i7, this.paint2);
 				// continue;
 				paramCanvas.drawText("WHITE WINS", i11, i10 + i7, this.paint2);
 				// continue;
