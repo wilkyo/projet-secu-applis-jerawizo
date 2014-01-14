@@ -221,33 +221,33 @@ public class CheckersView extends View {
 	 * Draw circle using Canvas
 	 * 
 	 * @param paramCanvas
-	 * @param paramInt1
-	 * @param paramInt2
-	 * @param paramInt3
+	 * @param cx
+	 * @param cy
+	 * @param radius
 	 * @param paramInt4
 	 * @param paramPaint1
 	 * @param paramPaint2
 	 * @param paramBoolean
 	 */
-	private final void drawCircle(Canvas paramCanvas, int paramInt1,
-			int paramInt2, int paramInt3, int paramInt4, Paint paramPaint1,
+	private final void drawCircle(Canvas paramCanvas, int cx,
+			int cy, int radius, int paramInt4, Paint paramPaint1,
 			Paint paramPaint2, boolean paramBoolean) {
 		paramCanvas
-				.drawCircle(paramInt1, paramInt2, paramInt3 - 2, paramPaint1);
+				.drawCircle(cx, cy, radius - 2, paramPaint1);
 		paramCanvas
-				.drawCircle(paramInt1, paramInt2, paramInt3 - 4, paramPaint2);
+				.drawCircle(cx, cy, radius - 4, paramPaint2);
 		paramCanvas
-				.drawCircle(paramInt1, paramInt2, paramInt3 - 7, paramPaint1);
+				.drawCircle(cx, cy, radius - 7, paramPaint1);
 		paramCanvas
-				.drawCircle(paramInt1, paramInt2, paramInt3 - 9, paramPaint2);
+				.drawCircle(cx, cy, radius - 9, paramPaint2);
 		if (paramBoolean) {
-			int i1 = paramInt3 >> 2;
-			int i2 = paramInt1 - i1;
-			int i3 = paramInt2 - i1;
-			paramCanvas.drawCircle(i2, i3, paramInt3 - 2, paramPaint1);
-			paramCanvas.drawCircle(i2, i3, paramInt3 - 4, paramPaint2);
-			paramCanvas.drawCircle(i2, i3, paramInt3 - 7, paramPaint1);
-			paramCanvas.drawCircle(i2, i3, paramInt3 - 9, paramPaint2);
+			int i1 = radius >> 2;
+			int i2 = cx - i1;
+			int i3 = cy - i1;
+			paramCanvas.drawCircle(i2, i3, radius - 2, paramPaint1);
+			paramCanvas.drawCircle(i2, i3, radius - 4, paramPaint2);
+			paramCanvas.drawCircle(i2, i3, radius - 7, paramPaint1);
+			paramCanvas.drawCircle(i2, i3, radius - 9, paramPaint2);
 			paramCanvas.drawText("K", i2 - paramInt4, i3, paramPaint1);
 		}
 	}
