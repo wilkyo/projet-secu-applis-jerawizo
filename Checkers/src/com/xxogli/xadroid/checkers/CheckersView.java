@@ -45,7 +45,7 @@ public class CheckersView extends View {
 	private int m;
 	private int n;
 	private Drawable drawable;
-	private a p;
+	private CheckersController p;
 	private int q;
 	private int r;
 	private int s;
@@ -110,7 +110,7 @@ public class CheckersView extends View {
 		this.arrayJ = new int[8];
 		this.arrayK = new int[8];
 		EndGameTableBase.load(paramContext);
-		this.p = new a(this);
+		this.p = new CheckersController(this);
 		this.text1 = null;
 		if (getData(paramSharedPreferences))
 			if (!e())

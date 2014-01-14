@@ -2,7 +2,7 @@ package com.xxogli.xadroid.checkers;
 
 import java.util.Random;
 
-public class a extends Thread {
+public class CheckersController extends Thread {
 	private static final int[] D;
 	private static final int[] E;
 	private static final int[] F;
@@ -289,7 +289,7 @@ public class a extends Thread {
 		L = arrayOfInt9;
 	}
 
-	public a(CheckersView paramb) {
+	public CheckersController(CheckersView paramb) {
 		this.j = paramb;
 		this.k = false;
 		this.o = new int[4096];
