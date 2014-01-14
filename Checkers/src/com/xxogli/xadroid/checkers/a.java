@@ -26,7 +26,7 @@ public class a extends Thread
   public int g;
   public volatile int h = 1000;
   private Random i = new Random();
-  private ChekersView j;
+  private CheckersView j;
   private boolean k;
   private long l;
   private boolean m;
@@ -265,7 +265,7 @@ public class a extends Thread
     arrayOfInt9[31] = 465;
   }
 
-  public a(ChekersView paramb)
+  public a(CheckersView paramb)
   {
     this.j = paramb;
     this.k = false;
