@@ -59,7 +59,7 @@ public class CheckersController extends Thread {
 	private int[] p;
 	private int[] q;
 	private int r;
-	private boolean s;
+	private boolean onJoueLesNoirs;
 	private boolean t;
 	private boolean u;
 	private int v;
@@ -297,7 +297,7 @@ public class CheckersController extends Thread {
 		this.p = new int[4096];
 		this.b = new int[64];
 		this.q = new int[64];
-		this.s = false;
+		this.onJoueLesNoirs = false;
 		d();
 		a();
 		start();
@@ -553,7 +553,7 @@ public class CheckersController extends Thread {
 		this.r = (paramInt * 64);
 		int i1 = 0xFFFFFFFF ^ (this.d | this.e | this.f | this.g);
 		int i2;
-		if (this.s) {
+		if (this.onJoueLesNoirs) {
 			boolean bool2 = a(paramInt, paramBoolean, i1);
 			boolean bool3 = b(paramInt, paramBoolean, i1);
 			if (!bool2) {
@@ -1364,8 +1364,8 @@ public class CheckersController extends Thread {
 	}
 
 	public final int a(int paramInt, boolean paramBoolean1,
-			boolean paramBoolean2) {
-		this.s = paramBoolean2;
+			boolean onJoueLesNoirs) {
+		this.onJoueLesNoirs = onJoueLesNoirs;
 		return a(paramInt, paramBoolean1);
 	}
 
@@ -1397,10 +1397,10 @@ public class CheckersController extends Thread {
 		this.x = a(paramBoolean);
 	}
 
-	public final void a(boolean paramBoolean1, boolean paramBoolean2) {
+	public final void a(boolean paramBoolean1, boolean onJoueLesNoirs) {
 		try {
 			this.t = paramBoolean1;
-			this.s = paramBoolean2;
+			this.onJoueLesNoirs = onJoueLesNoirs;
 			this.k = true;
 			notify();
 			return;
@@ -1452,7 +1452,7 @@ public class CheckersController extends Thread {
 		int i10 = 0;
 		int i11 = 0;
 		int i12 = 0;
-		if ((!this.s) && (EndGameTableBase.loaded)) {
+		if ((!this.onJoueLesNoirs) && (EndGameTableBase.loaded)) {
 			bool1 = true;
 			this.u = bool1;
 			i1 = this.c;
