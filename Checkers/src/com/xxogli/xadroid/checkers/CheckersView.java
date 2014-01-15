@@ -183,7 +183,7 @@ public class CheckersView extends View {
 
 	/**
 	 * Draw square's case using canvas
-	 * 
+	 * a()
 	 * @param paramCanvas
 	 * @param paramInt1
 	 * @param paramInt2
@@ -229,7 +229,7 @@ public class CheckersView extends View {
 	 * @param paramPaint2
 	 * @param paramBoolean
 	 */
-	private final void drawCircle(Canvas paramCanvas, int cx,
+	private final void drawCercle(Canvas paramCanvas, int cx,
 			int cy, int radius, int paramInt4, Paint paramPaint1,
 			Paint paramPaint2, boolean paramBoolean) {
 		paramCanvas
@@ -1146,7 +1146,7 @@ public class CheckersView extends View {
 								-1 + (i34 + i4), this.redCase);
 						if ((i32 & this.r) == 0)
 							break;
-						drawCircle(paramCanvas, i36, i37, i6, i8, this.paint1,
+						drawCercle(paramCanvas, i36, i37, i6, i8, this.paint1,
 								this.paint2, false);
 						int i44 = i22 + 1;
 						i39 = i20;
@@ -1175,7 +1175,7 @@ public class CheckersView extends View {
 						+ (i34 + i4), this.greenCase);
 				// continue;
 				if ((i32 & this.s) != 0) {
-					drawCircle(paramCanvas, i36, i37, i6, i8, this.paint2,
+					drawCercle(paramCanvas, i36, i37, i6, i8, this.paint2,
 							this.paint1, false);
 					i39 = i20 + 1;
 					i40 = i21;
@@ -1184,7 +1184,7 @@ public class CheckersView extends View {
 					break;
 				}
 				if ((i32 & this.t) != 0) {
-					drawCircle(paramCanvas, i36, i37, i6, i8, this.paint1,
+					drawCercle(paramCanvas, i36, i37, i6, i8, this.paint1,
 							this.paint2, true);
 					int i43 = i21 + 1;
 					i39 = i20;
@@ -1194,7 +1194,7 @@ public class CheckersView extends View {
 					break;
 				}
 				if ((i32 & this.u) != 0) {
-					drawCircle(paramCanvas, i36, i37, i6, i8, this.paint2,
+					drawCercle(paramCanvas, i36, i37, i6, i8, this.paint2,
 							this.paint1, true);
 					i38 = i19 + 1;
 					i39 = i20;
