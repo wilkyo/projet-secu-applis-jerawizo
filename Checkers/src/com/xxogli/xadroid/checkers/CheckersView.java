@@ -22,10 +22,10 @@ public class CheckersView extends View {
 	private boolean startScreen;
 	private boolean animation;
 	private int boardColor;
-	private int[] lwp;
-	private int[] lwk;
-	private int[] lbp;
-	private int[] lbk;
+	private int[] lWhitePiece;
+	private int[] lWhiteKing;
+	private int[] lBlackPiece;
+	private int[] lBlackKing;
 	private int L;
 	private int M;
 	private int N;
@@ -63,10 +63,10 @@ public class CheckersView extends View {
 	private boolean capturePriority;
 	private int level;
 
-	public CheckersView(Context paramContext,
+	public CheckersView(Context mContext,
 			SharedPreferences paramSharedPreferences) {
-		super(paramContext);
-		this.context = paramContext;
+		super(mContext);
+		this.context = mContext;
 		this.paint1 = new Paint();
 		this.paint1.setAntiAlias(true);
 		this.paint1.setARGB(255, 0, 0, 0);
@@ -111,11 +111,11 @@ public class CheckersView extends View {
 		this.m = 0;
 		this.n = 0;
 		this.drawable = this.context.getResources().getDrawable(2130837504);
-		this.lwp = new int[8];
-		this.lwk = new int[8];
-		this.lbp = new int[8];
-		this.lbk = new int[8];
-		EndGameTableBase.load(paramContext);
+		this.lWhitePiece = new int[8];
+		this.lWhiteKing = new int[8];
+		this.lBlackPiece = new int[8];
+		this.lBlackKing = new int[8];
+		EndGameTableBase.load(mContext);
 		this.controller = new CheckersController(this);
 		this.text1 = null;
 		if (getData(paramSharedPreferences))
@@ -130,10 +130,10 @@ public class CheckersView extends View {
 				g();
 			// return;
 			this.state = 1;
-			this.wp = this.controller.d;
-			this.bp = this.controller.f;
-			this.wk = this.controller.e;
-			this.bk = this.controller.g;
+			this.wp = this.controller.lWhitePiece;
+			this.bp = this.controller.lBlackPiece;
+			this.wk = this.controller.lWhiteKing;
+			this.bk = this.controller.lineBlackKing;
 			this.l1 = 0;
 			this.l2 = 0;
 			this.lm = 0;
@@ -278,19 +278,30 @@ public class CheckersView extends View {
 				this.l1 = paramSharedPreferences.getInt("l1", 0);
 				this.l2 = paramSharedPreferences.getInt("l2", 0);
 				this.lm = paramSharedPreferences.getInt("lm", 0);
-				this.capturePriority = paramSharedPreferences.getBoolean("cap", true);
+				this.capturePriority = paramSharedPreferences.getBoolean("cap",
+						true);
 				this.level = paramSharedPreferences.getInt("level", 3);
-				this.moveCoach = paramSharedPreferences.getBoolean("show", true);
-				this.onJoueLesNoirs = paramSharedPreferences.getBoolean("free", false);
-				this.viewFromWhite = paramSharedPreferences.getBoolean("rot", false);
-				this.fullscreen = paramSharedPreferences.getBoolean("full", false);
-				this.startScreen = paramSharedPreferences.getBoolean("start", true);
-				this.animation = paramSharedPreferences.getBoolean("anim", true);
+				this.moveCoach = paramSharedPreferences
+						.getBoolean("show", true);
+				this.onJoueLesNoirs = paramSharedPreferences.getBoolean("free",
+						false);
+				this.viewFromWhite = paramSharedPreferences.getBoolean("rot",
+						false);
+				this.fullscreen = paramSharedPreferences.getBoolean("full",
+						false);
+				this.startScreen = paramSharedPreferences.getBoolean("start",
+						true);
+				this.animation = paramSharedPreferences
+						.getBoolean("anim", true);
 				this.boardColor = paramSharedPreferences.getInt("color", 0);
-				getValueFromPreferences(paramSharedPreferences, "lwp", this.lwp);
-				getValueFromPreferences(paramSharedPreferences, "lwk", this.lwk);
-				getValueFromPreferences(paramSharedPreferences, "lbp", this.lbp);
-				getValueFromPreferences(paramSharedPreferences, "lbk", this.lbk);
+				getValueFromPreferences(paramSharedPreferences, "lwp",
+						this.lWhitePiece);
+				getValueFromPreferences(paramSharedPreferences, "lwk",
+						this.lWhiteKing);
+				getValueFromPreferences(paramSharedPreferences, "lbp",
+						this.lBlackPiece);
+				getValueFromPreferences(paramSharedPreferences, "lbk",
+						this.lBlackKing);
 				this.L = paramSharedPreferences.getInt("lp", 0);
 				this.M = paramSharedPreferences.getInt("lc", 0);
 				setLevel(this.level);
@@ -298,7 +309,8 @@ public class CheckersView extends View {
 				if ((this.state != 3) && (this.state != 4) && (this.state != 6))
 					bool2 = false;
 				synchronized (this.controller) {
-					this.controller.a(this.wp, this.wk, this.bp, this.bk, bool2);
+					this.controller
+							.a(this.wp, this.wk, this.bp, this.bk, bool2);
 					this.controller.a(0, bool2, this.onJoueLesNoirs);
 					this.N = this.controller.c;
 					if ((this.state == 4) || (this.state == 2))
@@ -389,10 +401,10 @@ public class CheckersView extends View {
 								this.R = 0;
 								this.controller.a();
 								this.state = 1;
-								this.wp = this.controller.d;
-								this.bp = this.controller.f;
-								this.wk = this.controller.e;
-								this.bk = this.controller.g;
+								this.wp = this.controller.lWhitePiece;
+								this.bp = this.controller.lBlackPiece;
+								this.wk = this.controller.lWhiteKing;
+								this.bk = this.controller.lineBlackKing;
 								this.l1 = 0;
 								this.l2 = 0;
 								this.lm = 0;
@@ -421,14 +433,15 @@ public class CheckersView extends View {
 									if (bool1)
 										;
 									for (this.state = 3;; this.state = 1) {
-										this.wp = this.controller.d;
-										this.bp = this.controller.f;
-										this.wk = this.controller.e;
-										this.bk = this.controller.g;
+										this.wp = this.controller.lWhitePiece;
+										this.bp = this.controller.lBlackPiece;
+										this.wk = this.controller.lWhiteKing;
+										this.bk = this.controller.lineBlackKing;
 										this.l1 = 0;
 										this.l2 = 0;
 										this.lm = 0;
-										int i4 = this.controller.a(0, bool1, this.onJoueLesNoirs);
+										int i4 = this.controller.a(0, bool1,
+												this.onJoueLesNoirs);
 										boolean bool2 = false;
 										if (i4 == 1)
 											bool2 = true;
@@ -459,7 +472,8 @@ public class CheckersView extends View {
 								i2 = 0;
 								if (i5 == 3) {
 									this.state = 4;
-									this.controller.a(true, this.onJoueLesNoirs);
+									this.controller
+											.a(true, this.onJoueLesNoirs);
 									Context localContext1 = this.context;
 									if (!this.viewFromWhite)
 										break;
@@ -682,10 +696,10 @@ public class CheckersView extends View {
 		}
 		for (this.n = 0;; this.n = (this.controller.a[paramInt] & (this.bp | this.bk))) {
 			this.controller.a(paramInt);
-			this.wp = this.controller.d;
-			this.bp = this.controller.f;
-			this.wk = this.controller.e;
-			this.bk = this.controller.g;
+			this.wp = this.controller.lWhitePiece;
+			this.bp = this.controller.lBlackPiece;
+			this.wk = this.controller.lWhiteKing;
+			this.bk = this.controller.lineBlackKing;
 			this.capturePriority = false;
 			this.text1 = null;
 			switch (this.controller.a(0, bool, this.onJoueLesNoirs)) {
@@ -739,10 +753,10 @@ public class CheckersView extends View {
 
 	private final void d() {
 		int i1 = this.L;
-		this.lwp[i1] = this.controller.d;
-		this.lwk[i1] = this.controller.e;
-		this.lbp[i1] = this.controller.f;
-		this.lbk[i1] = this.controller.g;
+		this.lWhitePiece[i1] = this.controller.lWhitePiece;
+		this.lWhiteKing[i1] = this.controller.lWhiteKing;
+		this.lBlackPiece[i1] = this.controller.lBlackPiece;
+		this.lBlackKing[i1] = this.controller.lineBlackKing;
 		if (this.L < 7)
 			;
 		for (this.L = (1 + this.L);; this.L = 0) {
@@ -772,8 +786,10 @@ public class CheckersView extends View {
 				;
 			for (this.L = (-1 + this.L);; this.L = 7) {
 				int i1 = this.L;
-				this.controller.a(this.lwp[i1], this.lwk[i1], this.lbp[i1],
-						this.lbk[i1], paramBoolean);
+				this.controller
+						.a(this.lWhitePiece[i1], this.lWhiteKing[i1],
+								this.lBlackPiece[i1], this.lBlackKing[i1],
+								paramBoolean);
 				return true;
 			}
 		}
@@ -855,10 +871,10 @@ public class CheckersView extends View {
 			paramEditor.putBoolean("start", this.startScreen);
 			paramEditor.putBoolean("anim", this.animation);
 			paramEditor.putInt("color", this.boardColor);
-			setPreferenceEditor(paramEditor, "lwp", this.lwp);
-			setPreferenceEditor(paramEditor, "lwk", this.lwk);
-			setPreferenceEditor(paramEditor, "lbp", this.lbp);
-			setPreferenceEditor(paramEditor, "lbk", this.lbk);
+			setPreferenceEditor(paramEditor, "lwp", this.lWhitePiece);
+			setPreferenceEditor(paramEditor, "lwk", this.lWhiteKing);
+			setPreferenceEditor(paramEditor, "lbp", this.lBlackPiece);
+			setPreferenceEditor(paramEditor, "lbk", this.lBlackKing);
 			paramEditor.putInt("lp", this.L);
 			paramEditor.putInt("lc", this.M);
 			return;
@@ -1052,7 +1068,8 @@ public class CheckersView extends View {
 				}
 				switch (this.state) {
 				default:
-					if ((this.moveCoach) && ((this.state == 1) || (this.state == 3))) {
+					if ((this.moveCoach)
+							&& ((this.state == 1) || (this.state == 3))) {
 						i29 = this.controller.c;
 						arrayOfInt1 = this.controller.b;
 						arrayOfInt2 = this.controller.a;

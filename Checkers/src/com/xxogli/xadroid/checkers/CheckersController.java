@@ -44,10 +44,10 @@ public class CheckersController extends Thread {
 	public int[] a;
 	public int[] b;
 	public int c;
-	public int d;
-	public int e;
-	public int f;
-	public int g;
+	public int lWhitePiece;
+	public int lWhiteKing;
+	public int lBlackPiece;
+	public int lineBlackKing;
 	public volatile int h = 1000;
 	private Random i = new Random();
 	private CheckersView j;
@@ -379,10 +379,10 @@ public class CheckersController extends Thread {
 				default:
 					i20 = this.c;
 					i21 = this.r;
-					i22 = this.d;
-					i23 = this.e;
-					i24 = this.f;
-					i25 = this.g;
+					i22 = this.lWhitePiece;
+					i23 = this.lWhiteKing;
+					i24 = this.lBlackPiece;
+					i25 = this.lineBlackKing;
 					i26 = this.v;
 					i27 = this.w;
 					i28 = this.x;
@@ -407,9 +407,11 @@ public class CheckersController extends Thread {
 						b(paramInt3, i2, i30, i32);
 					// return i32;
 					// return a(b(paramBoolean), paramInt3);
+					a(b(paramBoolean), paramInt3); // Willy Zou
 					// return a(c(paramBoolean), paramInt3);
-					if ((this.v != 2) || (this.w != 2) || (this.d != 0)
-							|| (this.f != 0))
+					if ((this.v != 2) || (this.w != 2)
+							|| (this.lWhitePiece != 0)
+							|| (this.lBlackPiece != 0))
 						break;
 					// return a(d(paramBoolean, this.e, this.g), paramInt3);
 					// return paramInt3 - 32500;
@@ -431,10 +433,10 @@ public class CheckersController extends Thread {
 					;
 				for (boolean bool = false;; bool = true) {
 					i1 = -a(i33, i34, i35, i2, i29, bool);
-					this.d = i22;
-					this.e = i23;
-					this.f = i24;
-					this.g = i25;
+					this.lWhitePiece = i22;
+					this.lWhiteKing = i23;
+					this.lBlackPiece = i24;
+					this.lineBlackKing = i25;
 					this.v = i26;
 					this.w = i27;
 					this.x = i28;
@@ -467,7 +469,7 @@ public class CheckersController extends Thread {
 					}
 				}
 				int i4 = 0;
-				int i5 = this.d;
+				int i5 = this.lWhitePiece;
 				int i6 = 0;
 				int i7 = 0;
 				int i9 = 0;
@@ -476,15 +478,15 @@ public class CheckersController extends Thread {
 				int i12;
 				int i16 = 0;
 				if (i5 == 0) {
-					i6 = this.e;
+					i6 = this.lWhiteKing;
 					i7 = i4;
 					if (i6 != 0)
 						break;
 					i9 = 0;
-					i10 = this.f;
+					i10 = this.lBlackPiece;
 					if (i10 != 0)
 						break;
-					i11 = this.g;
+					i11 = this.lineBlackKing;
 					if (i11 != 0)
 						break;
 					if (i7 != i9)
@@ -492,24 +494,25 @@ public class CheckersController extends Thread {
 					i12 = 0;
 					if (i7 >= i9)
 						break;
-					int i19 = 0x88000011 & this.e;
+					int i19 = 0x88000011 & this.lWhiteKing;
 					if (i19 != 0)
 						i12 += (Integer.bitCount(i19) << 3);
-					int i14 = this.d | this.e;
-					int i15 = this.f | this.g;
-					if ((this.f != 0) && ((i14 & 0x5) == 5))
+					int i14 = this.lWhitePiece | this.lWhiteKing;
+					int i15 = this.lBlackPiece | this.lineBlackKing;
+					if ((this.lBlackPiece != 0) && ((i14 & 0x5) == 5))
 						i12 += 12;
-					if ((this.d != 0) && ((0xA0000000 & i15) == -1610612736))
+					if ((this.lWhitePiece != 0)
+							&& ((0xA0000000 & i15) == -1610612736))
 						i12 -= 12;
 					i16 = i12
 							+ (Integer.bitCount(i14 & 0x666600) - Integer
 									.bitCount(i15 & 0x666600))
-							- (Integer.bitCount(0x18181818 & this.d) - Integer
-									.bitCount(0x18181818 & this.f));
-					int i17 = 0x10000008 & this.e;
+							- (Integer.bitCount(0x18181818 & this.lWhitePiece) - Integer
+									.bitCount(0x18181818 & this.lBlackPiece));
+					int i17 = 0x10000008 & this.lWhiteKing;
 					if (i17 != 0)
 						i16 -= (Integer.bitCount(i17) << 5);
-					int i18 = 0x10000008 & this.g;
+					int i18 = 0x10000008 & this.lineBlackKing;
 					if (i18 != 0)
 						i16 += (Integer.bitCount(i18) << 5);
 					if (!paramBoolean)
@@ -534,7 +537,7 @@ public class CheckersController extends Thread {
 					// break;
 					if (i7 <= i9)
 						break;
-					int i13 = 0x88000011 & this.g;
+					int i13 = 0x88000011 & this.lineBlackKing;
 					if (i13 == 0)
 						break;
 					i12 -= (Integer.bitCount(i13) << 3);
@@ -551,7 +554,8 @@ public class CheckersController extends Thread {
 	private final int a(int paramInt, boolean paramBoolean) {
 		this.c = 0;
 		this.r = (paramInt * 64);
-		int i1 = 0xFFFFFFFF ^ (this.d | this.e | this.f | this.g);
+		int i1 = 0xFFFFFFFF ^ (this.lWhitePiece | this.lWhiteKing
+				| this.lBlackPiece | this.lineBlackKing);
 		int i2;
 		if (this.onJoueLesNoirs) {
 			boolean bool2 = a(paramInt, paramBoolean, i1);
@@ -584,18 +588,18 @@ public class CheckersController extends Thread {
 		int i7 = 0;
 		if (paramBoolean) {
 			i1 = 0;
-			int i2 = this.d;
+			int i2 = this.lWhitePiece;
 			i3 = i1;
 			i4 = i2;
 			if (i4 != 0)
 				;// break;
-			i5 = this.e;
+			i5 = this.lWhiteKing;
 			if (i5 != 0)
 				;// break;
-			i6 = this.f;
+			i6 = this.lBlackPiece;
 			if (i6 != 0)
 				;// break;
-			i7 = this.g;
+			i7 = this.lineBlackKing;
 		}
 		while (true) {
 			if (i7 == 0) {
@@ -705,8 +709,8 @@ public class CheckersController extends Thread {
 		int i13 = 0;
 		int i15 = 0;
 		if (paramBoolean) {
-			int i12 = this.e | this.d;
-			i13 = this.g | this.f;
+			int i12 = this.lWhiteKing | this.lWhitePiece;
+			i13 = this.lineBlackKing | this.lBlackPiece;
 			int i14 = i13 & paramInt2 >>> 4;
 			i15 = 0;
 			if (i14 != 0)
@@ -716,15 +720,15 @@ public class CheckersController extends Thread {
 					& ((0xE0E0E0E0 & paramInt2) >>> 5 | (0x7070700 & paramInt2) >>> 3);
 			if (i16 != 0)
 				i15 |= i12 & i16 >>> 4;
-			if (this.e != 0) {
+			if (this.lWhiteKing != 0) {
 				int i20 = i13 & paramInt2 << 4;
 				if (i20 != 0)
-					i15 |= this.e
+					i15 |= this.lWhiteKing
 							& ((0x7070707 & i20) << 5 | (i20 & 0xE0E0E0) << 3);
 				int i21 = i13
 						& ((0x7070707 & paramInt2) << 5 | (0xE0E0E0 & paramInt2) << 3);
 				if (i21 != 0)
-					i15 |= this.e & i21 << 4;
+					i15 |= this.lWhiteKing & i21 << 4;
 			}
 			if (i15 != 0)
 				;
@@ -736,7 +740,7 @@ public class CheckersController extends Thread {
 			int i17 = Integer.numberOfTrailingZeros(i15);
 			int i18 = 1 << i17;
 			int i19 = i15 ^ i18;
-			if ((i18 & this.e) == 0) {
+			if ((i18 & this.lWhiteKing) == 0) {
 				if (((i13 & H[i17]) != 0) && ((paramInt2 & I[i17]) != 0))
 					b(paramInt1, paramInt2, i13, i17 + 7, I[i17], i18 | H[i17],
 							257, i18 | I[i17]);
@@ -761,21 +765,21 @@ public class CheckersController extends Thread {
 						i18 | J[i17], 513, i18 | K[i17]);
 			i15 = i19;
 			// break;
-			int i1 = this.g | this.f;
-			int i2 = this.e | this.d;
-			int i3 = this.g;
+			int i1 = this.lineBlackKing | this.lBlackPiece;
+			int i2 = this.lWhiteKing | this.lWhitePiece;
+			int i3 = this.lineBlackKing;
 			int i4 = 0;
 			if (i3 != 0) {
 				int i10 = i2 & paramInt2 >>> 4;
 				i4 = 0;
 				if (i10 != 0)
 					i4 = 0x0
-							| this.g
+							| this.lineBlackKing
 							& ((0xE0E0E0E0 & i10) >>> 5 | (i10 & 0x7070700) >>> 3);
 				int i11 = i2
 						& ((0xE0E0E0E0 & paramInt2) >>> 5 | (0x7070700 & paramInt2) >>> 3);
 				if (i11 != 0)
-					i4 |= this.g & i11 >>> 4;
+					i4 |= this.lineBlackKing & i11 >>> 4;
 			}
 			int i5 = i2 & paramInt2 << 4;
 			if (i5 != 0)
@@ -788,7 +792,7 @@ public class CheckersController extends Thread {
 				int i7 = Integer.numberOfTrailingZeros(i4);
 				int i8 = 1 << i7;
 				int i9 = i4 ^ i8;
-				if ((i8 & this.g) == 0) {
+				if ((i8 & this.lineBlackKing) == 0) {
 					if (((i2 & D[i7]) != 0) && ((paramInt2 & E[i7]) != 0))
 						a(paramInt1, paramInt2, i2, i7 - 9, E[i7], i8 | D[i7],
 								1025, i8 | E[i7]);
@@ -818,28 +822,28 @@ public class CheckersController extends Thread {
 	}
 
 	private final int b(boolean paramBoolean) {
-		if ((this.d != 0) && (this.f != 0))
-			return b(paramBoolean, this.d, this.f);
-		if (this.f != 0)
-			return a(paramBoolean, this.e, this.f, false);
-		if (this.d != 0) {
+		if ((this.lWhitePiece != 0) && (this.lBlackPiece != 0))
+			return b(paramBoolean, this.lWhitePiece, this.lBlackPiece);
+		if (this.lBlackPiece != 0)
+			return a(paramBoolean, this.lWhiteKing, this.lBlackPiece, false);
+		if (this.lWhitePiece != 0) {
 			boolean bool = false;
 			if (paramBoolean)
 				;
 			while (true) {
-				return a(bool, this.g, this.d, true);
+				return a(bool, this.lineBlackKing, this.lWhitePiece, true);
 				// bool = true;
 			}
 		}
-		return a(paramBoolean, this.e, this.g);
+		return a(paramBoolean, this.lWhiteKing, this.lineBlackKing);
 	}
 
-	private final int b(boolean paramBoolean, int paramInt1, int paramInt2) {
+	private final int b(boolean paramBoolean, int lWhitePiece, int lBlackPiece) {
 		int i1 = 0;
 		if (paramBoolean)
-			i1 = Integer.numberOfTrailingZeros(paramInt1);
-		for (int i2 = Integer.numberOfTrailingZeros(paramInt2);; i2 = 31 - Integer
-				.numberOfTrailingZeros(paramInt1)) {
+			i1 = Integer.numberOfTrailingZeros(lWhitePiece);
+		for (int i2 = Integer.numberOfTrailingZeros(lBlackPiece);; i2 = 31 - Integer
+				.numberOfTrailingZeros(lWhitePiece)) {
 			int i3 = i2 - 4;
 			return EndGameTableBase.d[(i1 + i3 * 28)];
 			// i1 = 31 - Integer.numberOfTrailingZeros(paramInt2);
@@ -898,10 +902,10 @@ public class CheckersController extends Thread {
 	}
 
 	private final void b(int paramInt) {
-		int i1 = this.d;
-		int i2 = this.e;
-		int i3 = this.f;
-		int i4 = this.g;
+		int i1 = this.lWhitePiece;
+		int i2 = this.lWhiteKing;
+		int i3 = this.lBlackPiece;
+		int i4 = this.lineBlackKing;
 		int i5 = 0xFF & this.p[paramInt];
 		int i6 = 0xF00 & this.p[paramInt];
 		int i7 = this.o[paramInt];
@@ -917,16 +921,16 @@ public class CheckersController extends Thread {
 		case 2048:
 		default:
 			i8 = this.x ^ M['?'];
-			i9 = i1 ^ this.d;
+			i9 = i1 ^ this.lWhitePiece;
 			if (i9 == 0) {
-				i10 = i2 ^ this.e;
+				i10 = i2 ^ this.lWhiteKing;
 				if (i10 != 0)
 					break;
-				i11 = i3 ^ this.f;
+				i11 = i3 ^ this.lBlackPiece;
 				if (i11 != 0)
 					break;
 			}
-			i12 = i4 ^ this.g;
+			i12 = i4 ^ this.lineBlackKing;
 			break;
 		}
 		while (true) {
@@ -934,41 +938,45 @@ public class CheckersController extends Thread {
 				this.x = i8;
 				// return;
 				if ((0xF0000000 & i7) != 0) {
-					this.d &= (0xFFFFFFFF ^ this.a[paramInt]);
-					this.e = (i7 | this.e);
+					this.lWhitePiece &= (0xFFFFFFFF ^ this.a[paramInt]);
+					this.lWhiteKing = (i7 | this.lWhiteKing);
 				}
 				while (i5 != 0) {
-					this.f &= (0xFFFFFFFF ^ this.a[paramInt]);
-					this.g &= (0xFFFFFFFF ^ this.a[paramInt]);
+					this.lBlackPiece &= (0xFFFFFFFF ^ this.a[paramInt]);
+					this.lineBlackKing &= (0xFFFFFFFF ^ this.a[paramInt]);
 					this.w -= i5;
 					// break;
-					this.d = (i7 | this.d & (0xFFFFFFFF ^ this.a[paramInt]));
+					this.lWhitePiece = (i7 | this.lWhitePiece
+							& (0xFFFFFFFF ^ this.a[paramInt]));
 					break; // Willy Zou
 				}
-				this.e = (i7 | this.e & (0xFFFFFFFF ^ this.a[paramInt]));
+				this.lWhiteKing = (i7 | this.lWhiteKing
+						& (0xFFFFFFFF ^ this.a[paramInt]));
 				if (i5 == 0)
 					break;
-				this.f &= (0xFFFFFFFF ^ this.a[paramInt]);
-				this.g &= (0xFFFFFFFF ^ this.a[paramInt]);
+				this.lBlackPiece &= (0xFFFFFFFF ^ this.a[paramInt]);
+				this.lineBlackKing &= (0xFFFFFFFF ^ this.a[paramInt]);
 				this.w -= i5;
 				// break;
 				if ((i7 & 0xF) != 0) {
-					this.f &= (0xFFFFFFFF ^ this.a[paramInt]);
-					this.g = (i7 | this.g);
+					this.lBlackPiece &= (0xFFFFFFFF ^ this.a[paramInt]);
+					this.lineBlackKing = (i7 | this.lineBlackKing);
 				}
 				while (i5 != 0) {
-					this.d &= (0xFFFFFFFF ^ this.a[paramInt]);
-					this.e &= (0xFFFFFFFF ^ this.a[paramInt]);
+					this.lWhitePiece &= (0xFFFFFFFF ^ this.a[paramInt]);
+					this.lWhiteKing &= (0xFFFFFFFF ^ this.a[paramInt]);
 					this.v -= i5;
 					// break;
-					this.f = (i7 | this.f & (0xFFFFFFFF ^ this.a[paramInt]));
+					this.lBlackPiece = (i7 | this.lBlackPiece
+							& (0xFFFFFFFF ^ this.a[paramInt]));
 					break; // Willy Zou
 				}
-				this.g = (i7 | this.g & (0xFFFFFFFF ^ this.a[paramInt]));
+				this.lineBlackKing = (i7 | this.lineBlackKing
+						& (0xFFFFFFFF ^ this.a[paramInt]));
 				if (i5 == 0)
 					break;
-				this.d &= (0xFFFFFFFF ^ this.a[paramInt]);
-				this.e &= (0xFFFFFFFF ^ this.a[paramInt]);
+				this.lWhitePiece &= (0xFFFFFFFF ^ this.a[paramInt]);
+				this.lWhiteKing &= (0xFFFFFFFF ^ this.a[paramInt]);
 				this.v -= i5;
 				// break;
 				i8 ^= M[(0 + 4 * Integer.numberOfTrailingZeros(i9))];
@@ -1049,8 +1057,8 @@ public class CheckersController extends Thread {
 	private final boolean b(int paramInt1, boolean paramBoolean, int paramInt2) {
 		int i5;
 		if (paramBoolean)
-			if (this.e == 0) {
-				i5 = this.d
+			if (this.lWhiteKing == 0) {
+				i5 = this.lWhitePiece
 						& (paramInt2 >>> 4 | (paramInt2 & 0xE0E0E0E0) >>> 5 | (0x7070700 & paramInt2) >>> 3);
 				if (i5 != 0)
 					;// break;
@@ -1059,15 +1067,15 @@ public class CheckersController extends Thread {
 			if (this.c == 0)
 				// break;
 				return true;
-			i5 = (this.e | this.d)
+			i5 = (this.lWhiteKing | this.lWhitePiece)
 					& (paramInt2 >>> 4 | (paramInt2 & 0xE0E0E0E0) >>> 5 | (0x7070700 & paramInt2) >>> 3)
-					| this.e
+					| this.lWhiteKing
 					& (paramInt2 << 4 | (0x7070707 & paramInt2) << 5 | (paramInt2 & 0xE0E0E0) << 3);
 			// break;
 			int i6 = Integer.numberOfTrailingZeros(i5);
 			int i7 = 1 << i6;
 			int i8 = i5 ^ i7;
-			if ((i7 & this.e) == 0) {
+			if ((i7 & this.lWhiteKing) == 0) {
 				if ((paramInt2 & H[i6]) != 0)
 					a(paramInt1, H[i6], i7, 256, i7 | H[i6]);
 				if ((paramInt2 & J[i6]) == 0)
@@ -1087,24 +1095,24 @@ public class CheckersController extends Thread {
 			i5 = i8;
 			// break;
 			int i1 = 0;
-			if (this.g == 0)
-				i1 = this.f
+			if (this.lineBlackKing == 0)
+				i1 = this.lBlackPiece
 						& (paramInt2 << 4 | (0x7070707 & paramInt2) << 5 | (paramInt2 & 0xE0E0E0) << 3);
 			while (i1 != 0) {
 				int i2 = Integer.numberOfTrailingZeros(i1);
 				int i3 = 1 << i2;
 				int i4 = i1 ^ i3;
-				if ((i3 & this.g) == 0) {
+				if ((i3 & this.lineBlackKing) == 0) {
 					if ((paramInt2 & D[i2]) != 0)
 						a(paramInt1, D[i2], i3, 1024, i3 | D[i2]);
 					if ((paramInt2 & F[i2]) != 0) {
 						a(paramInt1, F[i2], i3, 1024, i3 | F[i2]);
 						i1 = i4;
 						// continue;
-						i1 = (this.g | this.f)
+						i1 = (this.lineBlackKing | this.lBlackPiece)
 								& (paramInt2 << 4
 										| (0x7070707 & paramInt2) << 5 | (paramInt2 & 0xE0E0E0) << 3)
-								| this.g
+								| this.lineBlackKing
 								& (paramInt2 >>> 4
 										| (0xE0E0E0E0 & paramInt2) >>> 5 | (0x7070700 & paramInt2) >>> 3);
 						continue; // Willy Zou
@@ -1127,62 +1135,68 @@ public class CheckersController extends Thread {
 
 	private final int c(boolean paramBoolean) {
 		if (this.v == 1) {
-			if (this.d != 0) {
-				if (this.g == 0) {
+			if (this.lWhitePiece != 0) {
+				if (this.lineBlackKing == 0) {
 					if (paramBoolean)
 						;
 					for (boolean bool6 = false;; bool6 = true)
-						return d(bool6, this.f, this.d, true);
+						return d(bool6, this.lBlackPiece, this.lWhitePiece,
+								true);
 				}
-				if (this.f != 0) {
+				if (this.lBlackPiece != 0) {
 					if (paramBoolean)
 						;
 					for (boolean bool5 = false;; bool5 = true)
-						return b(bool5, this.f, this.g, this.d, true);
+						return b(bool5, this.lBlackPiece, this.lineBlackKing,
+								this.lWhitePiece, true);
 				}
 				boolean bool4 = false;
 				if (paramBoolean)
 					;
 				while (true) {
-					return b(bool4, this.g, this.d, true);
+					return b(bool4, this.lineBlackKing, this.lWhitePiece, true);
 					// bool4 = true;
 				}
 			}
-			if (this.g == 0) {
+			if (this.lineBlackKing == 0) {
 				boolean bool1 = false;
 				if (paramBoolean)
 					;
 				while (true) {
-					return c(bool1, this.f, this.e, true);
+					return c(bool1, this.lBlackPiece, this.lWhiteKing, true);
 					// bool1 = true;
 				}
 			}
-			if (this.f != 0) {
+			if (this.lBlackPiece != 0) {
 				if (paramBoolean)
 					;
 				for (boolean bool3 = false;; bool3 = true)
-					return a(bool3, this.f, this.g, this.e, true);
+					return a(bool3, this.lBlackPiece, this.lineBlackKing,
+							this.lWhiteKing, true);
 			}
 			boolean bool2 = false;
 			if (paramBoolean)
 				;
 			while (true) {
-				return c(bool2, this.g, this.e);
+				return c(bool2, this.lineBlackKing, this.lWhiteKing);
 				// bool2 = true;
 			}
 		}
-		if (this.f != 0) {
-			if (this.e == 0)
-				return d(paramBoolean, this.d, this.f, false);
-			if (this.d != 0)
-				return b(paramBoolean, this.d, this.e, this.f, false);
-			return b(paramBoolean, this.e, this.f, false);
+		if (this.lBlackPiece != 0) {
+			if (this.lWhiteKing == 0)
+				return d(paramBoolean, this.lWhitePiece, this.lBlackPiece,
+						false);
+			if (this.lWhitePiece != 0)
+				return b(paramBoolean, this.lWhitePiece, this.lWhiteKing,
+						this.lBlackPiece, false);
+			return b(paramBoolean, this.lWhiteKing, this.lBlackPiece, false);
 		}
-		if (this.e == 0)
-			return c(paramBoolean, this.d, this.g, false);
-		if (this.d != 0)
-			return a(paramBoolean, this.d, this.e, this.g, false);
-		return c(paramBoolean, this.e, this.g);
+		if (this.lWhiteKing == 0)
+			return c(paramBoolean, this.lWhitePiece, this.lineBlackKing, false);
+		if (this.lWhitePiece != 0)
+			return a(paramBoolean, this.lWhitePiece, this.lWhiteKing,
+					this.lineBlackKing, false);
+		return c(paramBoolean, this.lWhiteKing, this.lineBlackKing);
 	}
 
 	private final int c(boolean paramBoolean, int paramInt1, int paramInt2) {
@@ -1370,10 +1384,10 @@ public class CheckersController extends Thread {
 	}
 
 	public final void a() {
-		this.d = 4095;
-		this.e = 0;
-		this.f = -1048576;
-		this.g = 0;
+		this.lWhitePiece = 4095;
+		this.lWhiteKing = 0;
+		this.lBlackPiece = -1048576;
+		this.lineBlackKing = 0;
 		this.v = 12;
 		this.w = 12;
 		this.x = a(false);
@@ -1388,12 +1402,12 @@ public class CheckersController extends Thread {
 
 	public final void a(int paramInt1, int paramInt2, int paramInt3,
 			int paramInt4, boolean paramBoolean) {
-		this.d = paramInt1;
-		this.e = paramInt2;
-		this.f = paramInt3;
-		this.g = paramInt4;
-		this.v = Integer.bitCount(this.d | this.e);
-		this.w = Integer.bitCount(this.f | this.g);
+		this.lWhitePiece = paramInt1;
+		this.lWhiteKing = paramInt2;
+		this.lBlackPiece = paramInt3;
+		this.lineBlackKing = paramInt4;
+		this.v = Integer.bitCount(this.lWhitePiece | this.lWhiteKing);
+		this.w = Integer.bitCount(this.lBlackPiece | this.lineBlackKing);
 		this.x = a(paramBoolean);
 	}
 
@@ -1424,7 +1438,7 @@ public class CheckersController extends Thread {
 				this.j.a(i38, 0, 0, 1);
 			}
 		}
-		if (this.d == 4095) {
+		if (this.lWhitePiece == 4095) {
 			sleep();
 			Random localRandom = this.i;
 			int i35 = this.c;
@@ -1460,10 +1474,10 @@ public class CheckersController extends Thread {
 			i3 = 0;
 			i4 = 0;
 			this.C = 1;
-			i5 = this.d;
-			i6 = this.e;
-			i7 = this.f;
-			i8 = this.g;
+			i5 = this.lWhitePiece;
+			i6 = this.lWhiteKing;
+			i7 = this.lBlackPiece;
+			i8 = this.lineBlackKing;
 			i9 = this.v;
 			i10 = this.w;
 			i11 = this.x;
@@ -1503,10 +1517,10 @@ public class CheckersController extends Thread {
 			bool2 = false;
 			i17 = -a(i15, i16, 1, i12, 0, bool2);
 			this.q[i14] = i17;
-			this.d = i5;
-			this.e = i6;
-			this.f = i7;
-			this.g = i8;
+			this.lWhitePiece = i5;
+			this.lWhiteKing = i6;
+			this.lBlackPiece = i7;
+			this.lineBlackKing = i8;
 			this.v = i9;
 			this.w = i10;
 			this.x = i11;
