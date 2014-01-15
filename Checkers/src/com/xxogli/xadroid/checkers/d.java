@@ -6,7 +6,7 @@ import android.content.DialogInterface.OnClickListener;
 class d
   implements DialogInterface.OnClickListener
 {
-  d(ChekersView paramb)
+  d(CheckersView paramb)
   {
   }
 
