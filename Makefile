@@ -33,7 +33,7 @@ $(OUT):
 
 
 # make build lance la recompilation
-build: $(OUT) $(APK)
+build: $(OUT)
 	@echo "===== Compiling ====="
 	apktool b $(OUT) $(EVIL)
 

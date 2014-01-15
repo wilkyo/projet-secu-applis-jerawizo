@@ -26,8 +26,8 @@ public class CheckersView extends View {
 	private int[] lWhiteKing;
 	private int[] lBlackPiece;
 	private int[] lBlackKing;
-	private int L;
-	private int M;
+	private int lp;
+	private int lc;
 	private int N;
 	private String text1;
 	private float P;
@@ -146,9 +146,9 @@ public class CheckersView extends View {
 			this.startScreen = true;
 			this.animation = true;
 			this.boardColor = 0;
-			this.L = 0;
-			this.M = 0;
-			this.N = this.controller.c;
+			this.lp = 0;
+			this.lc = 0;
+			this.N = this.controller.depth;
 		}
 	}
 
@@ -302,8 +302,8 @@ public class CheckersView extends View {
 						this.lBlackPiece);
 				getValueFromPreferences(paramSharedPreferences, "lbk",
 						this.lBlackKing);
-				this.L = paramSharedPreferences.getInt("lp", 0);
-				this.M = paramSharedPreferences.getInt("lc", 0);
+				this.lp = paramSharedPreferences.getInt("lp", 0);
+				this.lc = paramSharedPreferences.getInt("lc", 0);
 				setLevel(this.level);
 				boolean bool2 = true;
 				if ((this.state != 3) && (this.state != 4) && (this.state != 6))
@@ -312,7 +312,7 @@ public class CheckersView extends View {
 					this.controller
 							.a(this.wp, this.wk, this.bp, this.bk, bool2);
 					this.controller.a(0, bool2, this.onJoueLesNoirs);
-					this.N = this.controller.c;
+					this.N = this.controller.depth;
 					if ((this.state == 4) || (this.state == 2))
 						this.controller.a(bool2, this.onJoueLesNoirs);
 					bool1 = true;
@@ -394,7 +394,7 @@ public class CheckersView extends View {
 						} else if (paramInt1 == i1) {
 							if ((this.state == 2) || (this.state == 4)) {
 								this.R = 1;
-								this.controller.h = 1;
+								this.controller.level = 1;
 								this.text1 = "stopping....";
 								i2 = 1;
 							} else {
@@ -409,9 +409,9 @@ public class CheckersView extends View {
 								this.l2 = 0;
 								this.lm = 0;
 								this.capturePriority = false;
-								this.L = 0;
-								this.M = 0;
-								this.N = this.controller.c;
+								this.lp = 0;
+								this.lc = 0;
+								this.N = this.controller.depth;
 								this.text1 = null;
 								i2 = 1;
 							}
@@ -421,7 +421,7 @@ public class CheckersView extends View {
 							this.lm = 0;
 							if ((this.state == 2) || (this.state == 4)) {
 								this.R = 2;
-								this.controller.h = 1;
+								this.controller.level = 1;
 								this.text1 = "stopping....";
 								i2 = 1;
 							} else {
@@ -446,7 +446,7 @@ public class CheckersView extends View {
 										if (i4 == 1)
 											bool2 = true;
 										this.capturePriority = bool2;
-										this.N = this.controller.c;
+										this.N = this.controller.depth;
 										this.text1 = "undid half-move";
 										i2 = 1;
 										break;
@@ -495,7 +495,7 @@ public class CheckersView extends View {
 		} while (i10 != 3);
 		this.l2 = 0;
 		this.lm = 0;
-		int i6 = this.controller.c;
+		int i6 = this.controller.depth;
 		int[] arrayOfInt = this.controller.b;
 		int i7 = 0;
 		int i8 = 0;
@@ -533,10 +533,10 @@ public class CheckersView extends View {
 		return false; // willy zou
 	}
 
-	private final int b(float paramFloat1, float paramFloat2) {
+	private final int b(float leP, float leQ) {
 		int i1 = 1;
 		while (true) {
-			int i4 = 0;
+			int widthDivedBy8 = 0;
 			int i5 = 0;
 			int i7, i8, i9, i10, i11;
 			try {
@@ -544,10 +544,10 @@ public class CheckersView extends View {
 				int height = getHeight();
 				int i6 = 0;
 				if (width < height) {
-					i4 = width >>> 3;
+					widthDivedBy8 = width >>> 3;
 					if (this.state != i1) {
-						int i12 = this.state;
-						if (i12 != 3)
+						int localState = this.state;
+						if (localState != 3)
 							;
 					} else {
 						i5 = 0;
@@ -569,18 +569,18 @@ public class CheckersView extends View {
 					continue;
 				}
 				if (this.viewFromWhite) {
-					i9 = i4 * (7 - i7);
-					i10 = i4 * (7 - i5);
-					if ((i9 > paramFloat1) || (paramFloat1 >= i9 + i4)
-							|| (i10 > paramFloat2) || (paramFloat2 >= i10 + i4))
+					i9 = widthDivedBy8 * (7 - i7);
+					i10 = widthDivedBy8 * (7 - i5);
+					if ((i9 > leP) || (leP >= i9 + widthDivedBy8)
+							|| (i10 > leQ) || (leQ >= i10 + widthDivedBy8))
 						break;
 					this.l1 = (i8 | this.l1);
 					continue;
 				}
 			} finally {
 			}
-			i9 = i4 * i7;
-			i10 = i4 * i5;
+			i9 = widthDivedBy8 * i7;
+			i10 = widthDivedBy8 * i5;
 			// continue;
 			i11 = i8 << 1;
 			i7 += 2;
@@ -723,7 +723,7 @@ public class CheckersView extends View {
 			break; // Willy Zou
 		}
 		this.capturePriority = true;
-		this.N = this.controller.c;
+		this.N = this.controller.depth;
 		if (this.state == 1) {
 			if (this.level == 0) {
 				this.state = 3;
@@ -752,16 +752,16 @@ public class CheckersView extends View {
 	}
 
 	private final void d() {
-		int i1 = this.L;
+		int i1 = this.lp;
 		this.lWhitePiece[i1] = this.controller.lWhitePiece;
 		this.lWhiteKing[i1] = this.controller.lWhiteKing;
 		this.lBlackPiece[i1] = this.controller.lBlackPiece;
 		this.lBlackKing[i1] = this.controller.lineBlackKing;
-		if (this.L < 7)
+		if (this.lp < 7)
 			;
-		for (this.L = (1 + this.L);; this.L = 0) {
-			if (this.M < 8)
-				this.M = (1 + this.M);
+		for (this.lp = (1 + this.lp);; this.lp = 0) {
+			if (this.lc < 8)
+				this.lc = (1 + this.lc);
 			return;
 		}
 	}
@@ -771,21 +771,25 @@ public class CheckersView extends View {
 	}
 
 	private final void alertDialog() {
-		new AlertDialog.Builder(this.context).setMessage("Start a new game?")
-				.setCancelable(false).setPositiveButton("Yes", new c(this))
-				.setNegativeButton("No", new d(this)).show();
+		new AlertDialog.Builder(this.context)
+				.setMessage("Start a new game?")
+				.setCancelable(false)
+				.setPositiveButton("Yes",
+						new NewGameAlertDialogYesButtonListener(this))
+				.setNegativeButton("No",
+						new NewGameAlertDialogNoButtonListener(this)).show();
 	}
 
 	private final void g() {
 	}
 
 	private final boolean g(boolean paramBoolean) {
-		if (this.M > 0) {
-			this.M = (-1 + this.M);
-			if (this.L > 0)
+		if (this.lc > 0) {
+			this.lc = (-1 + this.lc);
+			if (this.lp > 0)
 				;
-			for (this.L = (-1 + this.L);; this.L = 7) {
-				int i1 = this.L;
+			for (this.lp = (-1 + this.lp);; this.lp = 7) {
+				int i1 = this.lp;
 				this.controller
 						.a(this.lWhitePiece[i1], this.lWhiteKing[i1],
 								this.lBlackPiece[i1], this.lBlackKing[i1],
@@ -796,31 +800,33 @@ public class CheckersView extends View {
 		return false;
 	}
 
-	public final void a() {
+	public final void showBoardColorSelector() {
 		CharSequence[] arrayOfCharSequence = { "Wood", "Light Aquamarine",
 				"Dark Aquamarine", "Blue", "Brown", "Grey", "Light Grey" };
-		new AlertDialog.Builder(this.context).setTitle("Board Color")
-				.setItems(arrayOfCharSequence, new g(this)).show();
+		new AlertDialog.Builder(this.context)
+				.setTitle("Board Color")
+				.setItems(arrayOfCharSequence,
+						new BoardColorAlertDialogListener(this)).show();
 	}
 
-	public final void a(float paramFloat1, float paramFloat2) {
-		int i1 = getWidth();
-		int i2 = getHeight();
+	public final void a(float touchedX, float touchedY) {
+		int width = getWidth();
+		int height = getHeight();
 		int i3 = 0;
-		int i4 = 0;
-		if (i1 < i2) {
-			i3 = i1;
-			i4 = i3 >>> 3;
-			int i5 = i4 << 3;
-			if ((0.0F > this.P) || (this.P >= i5) || (0.0F > this.Q)
-					|| (this.Q >= i5))
+		int widthDivedBy8 = 0;
+		if (width < height) {
+			i3 = width;
+			widthDivedBy8 = i3 >>> 3;
+			int roundedWidth = widthDivedBy8 << 3;
+			if ((0.0F > this.P) || (this.P >= roundedWidth) || (0.0F > this.Q)
+					|| (this.Q >= roundedWidth))
 				// break;
 				;
 		}
 		while (true) {
 			try {
-				this.P += paramFloat1 * i4;
-				this.Q += paramFloat2 * i4;
+				this.P += touchedX * widthDivedBy8;
+				this.Q += touchedY * widthDivedBy8;
 				if (this.P < 0.0F) {
 					this.P = 0.0F;
 					if (this.Q >= 0.0F)
@@ -828,19 +834,19 @@ public class CheckersView extends View {
 					this.Q = 0.0F;
 					postInvalidate();
 					// return;
-					i3 = i2;
+					i3 = height;
 					// break;
-					i4 = 16;
+					widthDivedBy8 = 16;
 					break;
 				}
-				if (this.P < i1)
+				if (this.P < width)
 					continue;
-				this.P = (i1 - 1);
+				this.P = (width - 1);
 				// continue;
 			} finally {
 			}
-			if (this.Q >= i2)
-				this.Q = (i2 - 1);
+			if (this.Q >= height)
+				this.Q = (height - 1);
 		}
 	}
 
@@ -875,8 +881,8 @@ public class CheckersView extends View {
 			setPreferenceEditor(paramEditor, "lwk", this.lWhiteKing);
 			setPreferenceEditor(paramEditor, "lbp", this.lBlackPiece);
 			setPreferenceEditor(paramEditor, "lbk", this.lBlackKing);
-			paramEditor.putInt("lp", this.L);
-			paramEditor.putInt("lc", this.M);
+			paramEditor.putInt("lp", this.lp);
+			paramEditor.putInt("lc", this.lc);
 			return;
 		} finally {
 			// localObject = finally;
@@ -942,7 +948,7 @@ public class CheckersView extends View {
 			}
 			while (true) {
 				this.capturePriority = true; // this.y = i1;
-				this.N = this.controller.c;
+				this.N = this.controller.depth;
 				postInvalidate();
 				boolean bool1 = this.onJoueLesNoirs;
 				// return bool1;
@@ -1070,7 +1076,7 @@ public class CheckersView extends View {
 				default:
 					if ((this.moveCoach)
 							&& ((this.state == 1) || (this.state == 3))) {
-						i29 = this.controller.c;
+						i29 = this.controller.depth;
 						arrayOfInt1 = this.controller.b;
 						arrayOfInt2 = this.controller.a;
 						i30 = 0;
@@ -1392,11 +1398,11 @@ public class CheckersView extends View {
 		return super.onTouchEvent(paramMotionEvent);
 	}
 
-	public final void setLevel(int paramInt) {
+	public final void setLevel(int level) {
 		int i1 = 1000;
-		switch (paramInt) {
+		switch (level) {
 		default:
-			paramInt = 3;
+			level = 3;
 		case 3:
 		case 0:
 		case 1:
@@ -1409,8 +1415,8 @@ public class CheckersView extends View {
 		}
 		try {
 			while (true) {
-				this.controller.h = i1;
-				this.level = paramInt;
+				this.controller.level = i1;
+				this.level = level;
 				// return;
 				i1 = -1;
 				// continue;

@@ -191,7 +191,7 @@ public class Checkers extends Activity {
 					return true;
 				}
 			} while (i != 6);
-			this.view.a();
+			this.view.showBoardColorSelector();
 			return true;
 		case 2:
 		}
