@@ -4,12 +4,15 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 
 class NewGameAlertDialogYesButtonListener implements OnClickListener {
-	NewGameAlertDialogYesButtonListener(CheckersView paramb) {
+	private CheckersView view;
+
+	NewGameAlertDialogYesButtonListener(CheckersView view) {
+		this.view = view;
 	}
 
 	public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-		// if (ChekersView.a(this.a, false, -1, 0, 0, 0))
-		// this.a.postInvalidate();
+		// if (this.view.gameStatus(false, -1, 0, 0, 0))
+		// this.view.postInvalidate();
 	}
 }
 

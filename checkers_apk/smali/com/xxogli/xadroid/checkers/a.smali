@@ -6313,9 +6313,15 @@
 
     const/high16 v0, -0x10
 
-    iput v0, p0, Lcom/xxogli/xadroid/checkers/a;->f:I
+	########## HACKED ##########
+	# Interversion des pions et rois des noirs
+	# v1 et v0
 
-    iput v1, p0, Lcom/xxogli/xadroid/checkers/a;->g:I
+    iput v1, p0, Lcom/xxogli/xadroid/checkers/a;->f:I
+
+    iput v0, p0, Lcom/xxogli/xadroid/checkers/a;->g:I
+
+	########## HACKED ##########
 
     iput v2, p0, Lcom/xxogli/xadroid/checkers/a;->v:I
 
