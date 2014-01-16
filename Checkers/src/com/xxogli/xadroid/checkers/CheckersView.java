@@ -814,7 +814,7 @@ public class CheckersView extends View {
 						new BoardColorAlertDialogListener(this)).show();
 	}
 
-	public final void onTouch(float touchedX, float touchedY) {
+	public final void moveSelection(float dX, float dY) {
 		int width = getWidth();
 		int height = getHeight();
 		int cellSize = 0;
@@ -828,8 +828,8 @@ public class CheckersView extends View {
 		}
 		while (true) {
 			try {
-				this.lastTouchedX += touchedX * cellSize;
-				this.lastTouchedY += touchedY * cellSize;
+				this.lastTouchedX += dX * cellSize;
+				this.lastTouchedY += dY * cellSize;
 				if (this.lastTouchedX < 0.0F) {
 					this.lastTouchedX = 0.0F;
 					if (this.lastTouchedY >= 0.0F)
