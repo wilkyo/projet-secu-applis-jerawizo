@@ -335,7 +335,7 @@ public class CheckersView extends View {
 		}
 	}
 
-	private final boolean gameStatus(boolean paramBoolean, int action,
+	private final boolean gameStatus(boolean paramBoolean, int move,
 			int paramInt2, int paramInt3, int paramInt4) {
 		int i1 = -1;
 		if (paramBoolean)
@@ -351,7 +351,7 @@ public class CheckersView extends View {
 					try {
 						if (this.R > 0) {
 							if (this.R == 2) {
-								action = -2;
+								move = -2;
 								if (this.state != 2)
 									continue;
 								i11 = 1;
@@ -363,7 +363,7 @@ public class CheckersView extends View {
 						} else {
 							if (!paramBoolean)
 								break;
-							c(action);
+							c(move);
 							if ((this.state != 5) && (this.state != 6)) {
 								if (paramInt3 != 0)
 									continue;
@@ -373,7 +373,7 @@ public class CheckersView extends View {
 							// return i2;
 							return i2 == 1;
 						}
-						action = i1;
+						move = i1;
 						// continue;
 						i11 = 3;
 						// continue;
@@ -393,10 +393,10 @@ public class CheckersView extends View {
 						this.text1 = ("v=" + paramInt2 + " d=" + paramInt3
 								+ " n=" + paramInt4);
 						// continue;
-						if (action == -3) {
+						if (move == -3) {
 							alertDialog();
 							i2 = 1;
-						} else if (action == i1) {
+						} else if (move == i1) {
 							if ((this.state == 2) || (this.state == 4)) {
 								this.R = 1;
 								this.controller.level = 1;
@@ -420,7 +420,7 @@ public class CheckersView extends View {
 								this.text1 = null;
 								i2 = 1;
 							}
-						} else if (action == -2) {
+						} else if (move == -2) {
 							this.l1 = 0;
 							this.l2 = 0;
 							this.lm = 0;
@@ -461,7 +461,7 @@ public class CheckersView extends View {
 								i2 = 1;
 							}
 						} else {
-							if (action != -4)
+							if (move != -4)
 								break;
 							if (this.state == 1) {
 								this.state = 2;
@@ -492,7 +492,7 @@ public class CheckersView extends View {
 					}
 				}
 				i2 = 0;
-			} while (action != 1);
+			} while (move != 1);
 			if (this.state == 1)
 				break;
 			i10 = this.state;
@@ -855,9 +855,16 @@ public class CheckersView extends View {
 		}
 	}
 
-	public final void a(int paramInt1, int paramInt2, int paramInt3,
+	/**
+	 * a()
+	 * @param move Index du mouvement choisi
+	 * @param paramInt2
+	 * @param paramInt3
+	 * @param paramInt4
+	 */
+	public final void a(int move, int paramInt2, int paramInt3,
 			int paramInt4) {
-		if (gameStatus(true, paramInt1, paramInt2, paramInt3, paramInt4))
+		if (gameStatus(true, move, paramInt2, paramInt3, paramInt4))
 			postInvalidate();
 	}
 
