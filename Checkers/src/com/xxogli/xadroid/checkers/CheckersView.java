@@ -242,7 +242,7 @@ public class CheckersView extends View {
 		paramCanvas.drawCircle(cx, cy, radius - 4, paramPaint2);
 		paramCanvas.drawCircle(cx, cy, radius - 7, paramPaint1);
 		paramCanvas.drawCircle(cx, cy, radius - 9, paramPaint2);
-		if (paramBoolean) {
+		if (isKing) {
 			int halfRadius = radius / 2;
 			int c2X = cx - halfRadius;
 			int c2Y = cy - halfRadius;
@@ -313,7 +313,7 @@ public class CheckersView extends View {
 				if ((this.state != 3) && (this.state != 4) && (this.state != 6))
 					bool2 = false;
 				synchronized (this.controller) {
-					this.controller.a(this.whitePiecePlacement,
+					this.controller.setPlateau(this.whitePiecePlacement,
 							this.whiteKingPlacement, this.blackPiecePlacement,
 							this.blackKingPlacement, bool2);
 					this.controller.a(0, bool2, this.onJoueLesNoirs);
@@ -434,7 +434,7 @@ public class CheckersView extends View {
 								if ((this.state == 1) || (this.state == 5))
 									break;
 								bool1 = false;
-								if (g(bool1)) {
+								if (undo(bool1)) {
 									if (bool1)
 										;
 									for (this.state = 3;; this.state = 1) {
@@ -787,14 +787,14 @@ public class CheckersView extends View {
 	private final void g() {
 	}
 
-	private final boolean g(boolean paramBoolean) {
+	private final boolean undo(boolean paramBoolean) {
 		if (this.lc > 0) {
 			this.lc = (-1 + this.lc);
 			if (this.lp > 0)
 				;
 			for (this.lp = (-1 + this.lp);; this.lp = 7) {
 				int i1 = this.lp;
-				this.controller.a(this.lastWhitePiecePlacement[i1],
+				this.controller.setPlateau(this.lastWhitePiecePlacement[i1],
 						this.lastWhiteKingPlacement[i1],
 						this.lastBlackPiecePlacement[i1],
 						this.lastBlackKingPlacement[i1], paramBoolean);
@@ -818,9 +818,11 @@ public class CheckersView extends View {
 		int height = getHeight();
 		int cellSize = 0;
 		if (width < height) {
-			cellSize = width / 8f;
+			cellSize = width / 8;
 			int roundedWidth = cellSize * 8;
-			if ((0.0F > this.lastTouchedX) || (this.lastTouchedX >= roundedWidth) || (0.0F > this.lastTouchedY)
+			if ((0.0F > this.lastTouchedX)
+					|| (this.lastTouchedX >= roundedWidth)
+					|| (0.0F > this.lastTouchedY)
 					|| (this.lastTouchedY >= roundedWidth))
 				// break;
 				;
@@ -836,7 +838,7 @@ public class CheckersView extends View {
 					this.lastTouchedY = 0.0F;
 					postInvalidate();
 					// return;
-					i3 = height;
+					cellSize = height;
 					// break;
 					cellSize = 16;
 					break;
@@ -854,13 +856,14 @@ public class CheckersView extends View {
 
 	/**
 	 * a()
-	 * @param move Index du mouvement choisi
+	 * 
+	 * @param move
+	 *            Index du mouvement choisi
 	 * @param paramInt2
 	 * @param paramInt3
 	 * @param paramInt4
 	 */
-	public final void a(int move, int paramInt2, int paramInt3,
-			int paramInt4) {
+	public final void a(int move, int paramInt2, int paramInt3, int paramInt4) {
 		if (gameStatus(true, move, paramInt2, paramInt3, paramInt4))
 			postInvalidate();
 	}
@@ -1093,19 +1096,26 @@ public class CheckersView extends View {
 						paramCanvas.drawText(this.text1, i11, i10 + i7 * 2,
 								this.greenCase);
 					int selectedCell = 0;
-					if (!(0.0F < this.lastTouchedX1) && (this.lastTouchedX < roundedWidth) && !(0.0F < this.lastTouchedY) && (this.lastTouchedY < roundedWidth)) {
+					if (!(0.0F < this.lastTouchedX)
+							&& (this.lastTouchedX < roundedWidth)
+							&& !(0.0F < this.lastTouchedY)
+							&& (this.lastTouchedY < roundedWidth)) {
 						int cellX = (int) this.lastTouchedX / cellSize;
 						int cellY = (int) this.lastTouchedY / cellSize;
-						if(cellX >= 0 && cellX < 8 && cellY >= 0 && cellY < 8) {
+						if (cellX >= 0 && cellX < 8 && cellY >= 0 && cellY < 8) {
 							int selectedX = cellSize * cellX;
 							int selectedY = cellSize * cellY;
-							paramCanvas.drawRect(selectedX, selectedY, selectedX + cellSize, selectedY + cellSize, this.paint9);
+							paramCanvas.drawRect(selectedX, selectedY,
+									selectedX + cellSize, selectedY + cellSize,
+									this.paint9);
 							selectedCell = 1;
 						}
 					}
 					if (selectedCell == 0) {
-						paramCanvas.drawCircle(this.lastTouchedX, this.lastTouchedY, 5.0F, this.paint2);
-						paramCanvas.drawCircle(this.lastTouchedX, this.lastTouchedY, 3.0F, this.paint1);
+						paramCanvas.drawCircle(this.lastTouchedX,
+								this.lastTouchedY, 5.0F, this.paint2);
+						paramCanvas.drawCircle(this.lastTouchedX,
+								this.lastTouchedY, 3.0F, this.paint1);
 					}
 					if (this.l > 0.0F) {
 						this.l = ((float) (this.l - 0.05D));
@@ -1117,7 +1127,7 @@ public class CheckersView extends View {
 						postInvalidateDelayed(50L);
 					}
 					// return;
-					i3 = i2;
+					i3 = height;
 					// continue;
 					int i9 = roundedWidth + 2;
 					i10 = roundedWidth - i7 * 2 - letterOffset;

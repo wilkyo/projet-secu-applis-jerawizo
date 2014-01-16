@@ -2791,8 +2791,6 @@
     .locals 10
 
     const/4 v6, 0x0
-    
-   
 
     invoke-virtual {p0}, Lcom/xxogli/xadroid/checkers/b;->getWidth()I
 
