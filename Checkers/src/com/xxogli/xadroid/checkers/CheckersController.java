@@ -592,41 +592,41 @@ public class CheckersController extends Thread {
 		int i1;
 		int i3 = 0;
 		int i4 = 0;
-		int i5 = 0;
-		int i6 = 0;
-		int i7 = 0;
+		int localLWKP = 0;
+		int localLBPP = 0;
+		int localLBKP = 0;
 		if (paramBoolean) {
 			i1 = 0;
-			int i2 = this.lastWhitePiecePlacement;
+			int localLWPP = this.lastWhitePiecePlacement;
 			i3 = i1;
-			i4 = i2;
+			i4 = localLWPP;
 			if (i4 != 0)
 				;// break;
-			i5 = this.lastWhiteKingPlacement;
-			if (i5 != 0)
+			localLWKP = this.lastWhiteKingPlacement;
+			if (localLWKP != 0)
 				;// break;
-			i6 = this.lastBlackPiecePlacement;
-			if (i6 != 0)
+			localLBPP = this.lastBlackPiecePlacement;
+			if (localLBPP != 0)
 				;// break;
-			i7 = this.lastBlackKingPlacement;
+			localLBKP = this.lastBlackKingPlacement;
 		}
 		while (true) {
-			if (i7 == 0) {
+			if (localLBKP == 0) {
 				// return i3;
-				i1 = M['?'];
+				i1 = M[0];
 				// break;
 				i3 ^= M[(0 + 4 * Integer.numberOfTrailingZeros(i4))];
 				i4 &= i4 - 1;
 				// break;
-				i3 ^= M[(1 + 4 * Integer.numberOfTrailingZeros(i5))];
-				i5 &= i5 - 1;
+				i3 ^= M[(1 + 4 * Integer.numberOfTrailingZeros(localLWKP))];
+				localLWKP &= localLWKP - 1;
 				// break;
-				i3 ^= M[(2 + 4 * Integer.numberOfTrailingZeros(i6))];
-				i6 &= i6 - 1;
+				i3 ^= M[(2 + 4 * Integer.numberOfTrailingZeros(localLBPP))];
+				localLBPP &= localLBPP - 1;
 				break;
 			}
-			i3 ^= M[(3 + 4 * Integer.numberOfTrailingZeros(i7))];
-			i7 &= i7 - 1;
+			i3 ^= M[(3 + 4 * Integer.numberOfTrailingZeros(localLBKP))];
+			localLBKP &= localLBKP - 1;
 		}
 		return i3;// Willy Zou
 	}
@@ -1445,9 +1445,9 @@ public class CheckersController extends Thread {
 	 * @param blackKingPlacement
 	 * @param paramBoolean
 	 */
-	public final void a(int whitePiecePlacement, int whiteKingPlacement,
-			int blackPiecePlacement, int blackKingPlacement,
-			boolean paramBoolean) {
+	public final void setPlateau(int whitePiecePlacement,
+			int whiteKingPlacement, int blackPiecePlacement,
+			int blackKingPlacement, boolean paramBoolean) {
 		this.lastWhitePiecePlacement = whitePiecePlacement;
 		this.lastWhiteKingPlacement = whiteKingPlacement;
 		this.lastBlackPiecePlacement = blackPiecePlacement;

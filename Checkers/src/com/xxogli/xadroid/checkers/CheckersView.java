@@ -313,7 +313,7 @@ public class CheckersView extends View {
 				if ((this.state != 3) && (this.state != 4) && (this.state != 6))
 					bool2 = false;
 				synchronized (this.controller) {
-					this.controller.a(this.whitePiecePlacement,
+					this.controller.setPlateau(this.whitePiecePlacement,
 							this.whiteKingPlacement, this.blackPiecePlacement,
 							this.blackKingPlacement, bool2);
 					this.controller.a(0, bool2, this.onJoueLesNoirs);
@@ -434,7 +434,7 @@ public class CheckersView extends View {
 								if ((this.state == 1) || (this.state == 5))
 									break;
 								bool1 = false;
-								if (g(bool1)) {
+								if (undo(bool1)) {
 									if (bool1)
 										;
 									for (this.state = 3;; this.state = 1) {
@@ -788,14 +788,14 @@ public class CheckersView extends View {
 	private final void g() {
 	}
 
-	private final boolean g(boolean paramBoolean) {
+	private final boolean undo(boolean paramBoolean) {
 		if (this.lc > 0) {
 			this.lc = (-1 + this.lc);
 			if (this.lp > 0)
 				;
 			for (this.lp = (-1 + this.lp);; this.lp = 7) {
 				int i1 = this.lp;
-				this.controller.a(this.lastWhitePiecePlacement[i1],
+				this.controller.setPlateau(this.lastWhitePiecePlacement[i1],
 						this.lastWhiteKingPlacement[i1],
 						this.lastBlackPiecePlacement[i1],
 						this.lastBlackKingPlacement[i1], paramBoolean);
