@@ -130,10 +130,10 @@ public class CheckersView extends View {
 				g();
 			// return;
 			this.state = 1;
-			this.whitePiecePlacement = this.controller.lastWhitePiecePlacement;
-			this.blackPiecePlacement = this.controller.lastBlackPiecePlacement;
-			this.whiteKingPlacement = this.controller.lastWhiteKingPlacement;
-			this.blackKingPlacement = this.controller.lastBlackKingPlacement;
+			this.whitePiecePlacement = this.controller.lastWhitePiecesPlacement;
+			this.blackPiecePlacement = this.controller.lastBlackPiecesPlacement;
+			this.whiteKingPlacement = this.controller.lastWhiteKingsPlacement;
+			this.blackKingPlacement = this.controller.lastBlackKingsPlacement;
 			this.l1 = 0;
 			this.l2 = 0;
 			this.lm = 0;
@@ -405,10 +405,10 @@ public class CheckersView extends View {
 								this.R = 0;
 								this.controller.initPlateau();
 								this.state = 1;
-								this.whitePiecePlacement = this.controller.lastWhitePiecePlacement;
-								this.blackPiecePlacement = this.controller.lastBlackPiecePlacement;
-								this.whiteKingPlacement = this.controller.lastWhiteKingPlacement;
-								this.blackKingPlacement = this.controller.lastBlackKingPlacement;
+								this.whitePiecePlacement = this.controller.lastWhitePiecesPlacement;
+								this.blackPiecePlacement = this.controller.lastBlackPiecesPlacement;
+								this.whiteKingPlacement = this.controller.lastWhiteKingsPlacement;
+								this.blackKingPlacement = this.controller.lastBlackKingsPlacement;
 								this.l1 = 0;
 								this.l2 = 0;
 								this.lm = 0;
@@ -437,10 +437,10 @@ public class CheckersView extends View {
 									if (bool1)
 										;
 									for (this.state = 3;; this.state = 1) {
-										this.whitePiecePlacement = this.controller.lastWhitePiecePlacement;
-										this.blackPiecePlacement = this.controller.lastBlackPiecePlacement;
-										this.whiteKingPlacement = this.controller.lastWhiteKingPlacement;
-										this.blackKingPlacement = this.controller.lastBlackKingPlacement;
+										this.whitePiecePlacement = this.controller.lastWhitePiecesPlacement;
+										this.blackPiecePlacement = this.controller.lastBlackPiecesPlacement;
+										this.whiteKingPlacement = this.controller.lastWhiteKingsPlacement;
+										this.blackKingPlacement = this.controller.lastBlackKingsPlacement;
 										this.l1 = 0;
 										this.l2 = 0;
 										this.lm = 0;
@@ -700,10 +700,10 @@ public class CheckersView extends View {
 		}
 		for (this.n = 0;; this.n = (this.controller.a[paramInt] & (this.blackPiecePlacement | this.blackKingPlacement))) {
 			this.controller.a(paramInt);
-			this.whitePiecePlacement = this.controller.lastWhitePiecePlacement;
-			this.blackPiecePlacement = this.controller.lastBlackPiecePlacement;
-			this.whiteKingPlacement = this.controller.lastWhiteKingPlacement;
-			this.blackKingPlacement = this.controller.lastBlackKingPlacement;
+			this.whitePiecePlacement = this.controller.lastWhitePiecesPlacement;
+			this.blackPiecePlacement = this.controller.lastBlackPiecesPlacement;
+			this.whiteKingPlacement = this.controller.lastWhiteKingsPlacement;
+			this.blackKingPlacement = this.controller.lastBlackKingsPlacement;
 			this.capturePriority = false;
 			this.text1 = null;
 			switch (this.controller.a(0, bool, this.onJoueLesNoirs)) {
@@ -757,10 +757,10 @@ public class CheckersView extends View {
 
 	private final void d() {
 		int i1 = this.lp;
-		this.lastWhitePiecePlacement[i1] = this.controller.lastWhitePiecePlacement;
-		this.lastWhiteKingPlacement[i1] = this.controller.lastWhiteKingPlacement;
-		this.lastBlackPiecePlacement[i1] = this.controller.lastBlackPiecePlacement;
-		this.lastBlackKingPlacement[i1] = this.controller.lastBlackKingPlacement;
+		this.lastWhitePiecePlacement[i1] = this.controller.lastWhitePiecesPlacement;
+		this.lastWhiteKingPlacement[i1] = this.controller.lastWhiteKingsPlacement;
+		this.lastBlackPiecePlacement[i1] = this.controller.lastBlackPiecesPlacement;
+		this.lastBlackKingPlacement[i1] = this.controller.lastBlackKingsPlacement;
 		if (this.lp < 7)
 			;
 		for (this.lp = (1 + this.lp);; this.lp = 0) {

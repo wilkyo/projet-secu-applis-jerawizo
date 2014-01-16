@@ -43,11 +43,26 @@ public class CheckersController extends Thread {
 	private int leFameuxN;
 	public int[] a;
 	public int[] b;
+	/**
+	 * c
+	 */
 	public int nbPossibleMoves;
-	public int lastWhitePiecePlacement;
-	public int lastWhiteKingPlacement;
-	public int lastBlackPiecePlacement;
-	public int lastBlackKingPlacement;
+	/**
+	 * d
+	 */
+	public int lastWhitePiecesPlacement;
+	/**
+	 * e
+	 */
+	public int lastWhiteKingsPlacement;
+	/**
+	 * f
+	 */
+	public int lastBlackPiecesPlacement;
+	/**
+	 * g
+	 */
+	public int lastBlackKingsPlacement;
 	public volatile int level = 1000;
 	private Random random = new Random();
 	private CheckersView view;
@@ -379,10 +394,10 @@ public class CheckersController extends Thread {
 				default:
 					localNbMoves = this.nbPossibleMoves;
 					i21 = this.r;
-					localWPPlacement = this.lastWhitePiecePlacement;
-					localWKPlacement = this.lastWhiteKingPlacement;
-					localBPPlacement = this.lastBlackPiecePlacement;
-					localBKPlacement = this.lastBlackKingPlacement;
+					localWPPlacement = this.lastWhitePiecesPlacement;
+					localWKPlacement = this.lastWhiteKingsPlacement;
+					localBPPlacement = this.lastBlackPiecesPlacement;
+					localBKPlacement = this.lastBlackKingsPlacement;
 					i26 = this.nbWhiteAlive;
 					i27 = this.nbBlackAlive;
 					i28 = this.x;
@@ -411,12 +426,12 @@ public class CheckersController extends Thread {
 					// return a(c(paramBoolean), paramInt3);
 					a(c(paramBoolean), paramInt3); // Willy Zou
 					if ((this.nbWhiteAlive != 2) || (this.nbBlackAlive != 2)
-							|| (this.lastWhitePiecePlacement != 0)
-							|| (this.lastBlackPiecePlacement != 0))
+							|| (this.lastWhitePiecesPlacement != 0)
+							|| (this.lastBlackPiecesPlacement != 0))
 						break;
 					// return a(d(paramBoolean, this.e, this.g), paramInt3);
-					a(d(paramBoolean, this.lastWhiteKingPlacement,
-							this.lastBlackKingPlacement), paramInt3); // Willy
+					a(d(paramBoolean, this.lastWhiteKingsPlacement,
+							this.lastBlackKingsPlacement), paramInt3); // Willy
 																		// Zou
 					// return paramInt3 - 32500;
 					if ((i2 - paramInt3 > 1) || (i2 >= 64))
@@ -437,10 +452,10 @@ public class CheckersController extends Thread {
 					;
 				for (boolean bool = false;; bool = true) {
 					i1 = -a(i33, i34, i35, i2, i29, bool);
-					this.lastWhitePiecePlacement = localWPPlacement;
-					this.lastWhiteKingPlacement = localWKPlacement;
-					this.lastBlackPiecePlacement = localBPPlacement;
-					this.lastBlackKingPlacement = localBKPlacement;
+					this.lastWhitePiecesPlacement = localWPPlacement;
+					this.lastWhiteKingsPlacement = localWKPlacement;
+					this.lastBlackPiecesPlacement = localBPPlacement;
+					this.lastBlackKingsPlacement = localBKPlacement;
 					this.nbWhiteAlive = i26;
 					this.nbBlackAlive = i27;
 					this.x = i28;
@@ -474,7 +489,7 @@ public class CheckersController extends Thread {
 					}
 				}
 				int i4 = 0;
-				int localLWhitePiece = this.lastWhitePiecePlacement;
+				int localLWhitePiece = this.lastWhitePiecesPlacement;
 				int i6 = 0;
 				int i7 = 0;
 				int i9 = 0;
@@ -483,15 +498,15 @@ public class CheckersController extends Thread {
 				int i12;
 				int i16 = 0;
 				if (localLWhitePiece == 0) {
-					i6 = this.lastWhiteKingPlacement;
+					i6 = this.lastWhiteKingsPlacement;
 					i7 = i4;
 					if (i6 != 0)
 						break;
 					i9 = 0;
-					i10 = this.lastBlackPiecePlacement;
+					i10 = this.lastBlackPiecesPlacement;
 					if (i10 != 0)
 						break;
-					i11 = this.lastBlackKingPlacement;
+					i11 = this.lastBlackKingsPlacement;
 					if (i11 != 0)
 						break;
 					if (i7 != i9)
@@ -499,29 +514,29 @@ public class CheckersController extends Thread {
 					i12 = 0;
 					if (i7 >= i9)
 						break;
-					int i19 = 0x88000011 & this.lastWhiteKingPlacement;
+					int i19 = 0x88000011 & this.lastWhiteKingsPlacement;
 					if (i19 != 0)
 						i12 += (Integer.bitCount(i19) << 3);
-					int unionLWhitePetK = this.lastWhitePiecePlacement
-							| this.lastWhiteKingPlacement;
-					int unionLBlackPetK = this.lastBlackPiecePlacement
-							| this.lastBlackKingPlacement;
-					if ((this.lastBlackPiecePlacement != 0)
+					int unionLWhitePetK = this.lastWhitePiecesPlacement
+							| this.lastWhiteKingsPlacement;
+					int unionLBlackPetK = this.lastBlackPiecesPlacement
+							| this.lastBlackKingsPlacement;
+					if ((this.lastBlackPiecesPlacement != 0)
 							&& ((unionLWhitePetK & 0x5) == 5))
 						i12 += 12;
-					if ((this.lastWhitePiecePlacement != 0)
+					if ((this.lastWhitePiecesPlacement != 0)
 							&& ((0xA0000000 & unionLBlackPetK) == -1610612736))
 						i12 -= 12;
 					i16 = i12
 							+ (Integer.bitCount(unionLWhitePetK & 0x666600) - Integer
 									.bitCount(unionLBlackPetK & 0x666600))
 							- (Integer
-									.bitCount(0x18181818 & this.lastWhitePiecePlacement) - Integer
-									.bitCount(0x18181818 & this.lastBlackPiecePlacement));
-					int i17 = 0x10000008 & this.lastWhiteKingPlacement;
+									.bitCount(0x18181818 & this.lastWhitePiecesPlacement) - Integer
+									.bitCount(0x18181818 & this.lastBlackPiecesPlacement));
+					int i17 = 0x10000008 & this.lastWhiteKingsPlacement;
 					if (i17 != 0)
 						i16 -= (Integer.bitCount(i17) << 5);
-					int i18 = 0x10000008 & this.lastBlackKingPlacement;
+					int i18 = 0x10000008 & this.lastBlackKingsPlacement;
 					if (i18 != 0)
 						i16 += (Integer.bitCount(i18) << 5);
 					if (!paramBoolean)
@@ -546,7 +561,7 @@ public class CheckersController extends Thread {
 					// break;
 					if (i7 <= i9)
 						break;
-					int i13 = 0x88000011 & this.lastBlackKingPlacement;
+					int i13 = 0x88000011 & this.lastBlackKingsPlacement;
 					if (i13 == 0)
 						break;
 					i12 -= (Integer.bitCount(i13) << 3);
@@ -563,8 +578,8 @@ public class CheckersController extends Thread {
 	private final int a(int paramInt, boolean paramBoolean) {
 		this.nbPossibleMoves = 0;
 		this.r = (paramInt * 64);
-		int casesVides = 0xFFFFFFFF ^ (this.lastWhitePiecePlacement
-				| this.lastWhiteKingPlacement | this.lastBlackPiecePlacement | this.lastBlackKingPlacement);
+		int casesVides = 0xFFFFFFFF ^ (this.lastWhitePiecesPlacement
+				| this.lastWhiteKingsPlacement | this.lastBlackPiecesPlacement | this.lastBlackKingsPlacement);
 		int i2;
 		if (this.onJoueLesNoirs) {
 			boolean bool2 = a(paramInt, paramBoolean, casesVides);
@@ -597,18 +612,18 @@ public class CheckersController extends Thread {
 		int localLBKP = 0;
 		if (paramBoolean) {
 			i1 = 0;
-			int localLWPP = this.lastWhitePiecePlacement;
+			int localLWPP = this.lastWhitePiecesPlacement;
 			i3 = i1;
 			i4 = localLWPP;
 			if (i4 != 0)
 				;// break;
-			localLWKP = this.lastWhiteKingPlacement;
+			localLWKP = this.lastWhiteKingsPlacement;
 			if (localLWKP != 0)
 				;// break;
-			localLBPP = this.lastBlackPiecePlacement;
+			localLBPP = this.lastBlackPiecesPlacement;
 			if (localLBPP != 0)
 				;// break;
-			localLBKP = this.lastBlackKingPlacement;
+			localLBKP = this.lastBlackKingsPlacement;
 		}
 		while (true) {
 			if (localLBKP == 0) {
@@ -631,19 +646,30 @@ public class CheckersController extends Thread {
 		return i3;// Willy Zou
 	}
 
-	private final int a(boolean paramBoolean, int paramInt1, int paramInt2) {
-		int i1 = 0;
-		if (paramBoolean)
-			i1 = Integer.numberOfTrailingZeros(paramInt1);
-		for (int i2 = Integer.numberOfTrailingZeros(paramInt2);; i2 = Integer
-				.numberOfTrailingZeros(paramInt1)) {
-			if (i1 >= 16) {
-				i1 = 31 - i1;
-				i2 = 31 - i2;
-			}
-			return EndGameTableBase.a[(i1 + i2 * 16)];
-			// i1 = Integer.numberOfTrailingZeros(paramInt2);
+	/**
+	 * a(ZII) TFS
+	 * 
+	 * @param paramBoolean
+	 * @param whiteKingsPlacement
+	 * @param blackKingsPlacement
+	 * @return
+	 */
+	private final int a(boolean paramBoolean, int whiteKingsPlacement,
+			int blackKingsPlacement) {
+		int v0;
+		int v1;
+		if (paramBoolean) {
+			v1 = Integer.numberOfTrailingZeros(blackKingsPlacement);
+			v0 = Integer.numberOfTrailingZeros(whiteKingsPlacement);
+		} else {
+			v1 = Integer.numberOfTrailingZeros(whiteKingsPlacement);
+			v0 = Integer.numberOfTrailingZeros(blackKingsPlacement);
 		}
+		if (v1 >= 16) {
+			v1 = 31 - v1;
+			v0 = 31 - v0;
+		}
+		return EndGameTableBase.a[(v1 + v0 * 16)];
 	}
 
 	private final int a(boolean paramBoolean1, int paramInt1, int paramInt2,
@@ -661,18 +687,28 @@ public class CheckersController extends Thread {
 		return EndGameTableBase.j[(i3 + (i1 * 1024 + i2 * 32))];
 	}
 
-	private final int a(boolean paramBoolean1, int paramInt1, int paramInt2,
-			boolean paramBoolean2) {
-		int i1 = Integer.numberOfTrailingZeros(paramInt1);
-		int i2 = Integer.numberOfTrailingZeros(paramInt2);
-		if (paramBoolean2) {
-			i1 = 31 - i1;
-			i2 = 31 - i2;
+	/**
+	 * a(ZIIZ) TFS
+	 * 
+	 * @param paramBoolean1
+	 * @param kingsPlacement
+	 * @param piecesPlacement
+	 * @param blackKings
+	 *            0 pions noirs = F; 0 pions blancs = T
+	 * @return
+	 */
+	private final int a(boolean paramBoolean1, int kingsPlacement,
+			int piecesPlacement, boolean blackKings) {
+		int v1 = Integer.numberOfTrailingZeros(kingsPlacement);
+		int v0 = Integer.numberOfTrailingZeros(piecesPlacement);
+		if (blackKings) {
+			v1 = 31 - v1;
+			v0 = 31 - v0;
 		}
-		int i3 = i2 - 4;
+		v0 = v0 - 4;
 		if (paramBoolean1)
-			return EndGameTableBase.b[(i1 + i3 * 32)];
-		return EndGameTableBase.c[(i1 + i3 * 32)];
+			return EndGameTableBase.b[(v1 + v0 * 32)];
+		return EndGameTableBase.c[(v1 + v0 * 32)];
 	}
 
 	private final void a(int paramInt1, int paramInt2, int paramInt3,
@@ -718,9 +754,9 @@ public class CheckersController extends Thread {
 		int i13 = 0;
 		int i15 = 0;
 		if (paramBoolean) {
-			int i12 = this.lastWhiteKingPlacement
-					| this.lastWhitePiecePlacement;
-			i13 = this.lastBlackKingPlacement | this.lastBlackPiecePlacement;
+			int i12 = this.lastWhiteKingsPlacement
+					| this.lastWhitePiecesPlacement;
+			i13 = this.lastBlackKingsPlacement | this.lastBlackPiecesPlacement;
 			int i14 = i13 & casesVides >>> 4;
 			i15 = 0;
 			if (i14 != 0)
@@ -730,15 +766,15 @@ public class CheckersController extends Thread {
 					& ((0xE0E0E0E0 & casesVides) >>> 5 | (0x7070700 & casesVides) >>> 3);
 			if (i16 != 0)
 				i15 |= i12 & i16 >>> 4;
-			if (this.lastWhiteKingPlacement != 0) {
+			if (this.lastWhiteKingsPlacement != 0) {
 				int i20 = i13 & casesVides << 4;
 				if (i20 != 0)
-					i15 |= this.lastWhiteKingPlacement
+					i15 |= this.lastWhiteKingsPlacement
 							& ((0x7070707 & i20) << 5 | (i20 & 0xE0E0E0) << 3);
 				int i21 = i13
 						& ((0x7070707 & casesVides) << 5 | (0xE0E0E0 & casesVides) << 3);
 				if (i21 != 0)
-					i15 |= this.lastWhiteKingPlacement & i21 << 4;
+					i15 |= this.lastWhiteKingsPlacement & i21 << 4;
 			}
 			if (i15 != 0)
 				;
@@ -750,7 +786,7 @@ public class CheckersController extends Thread {
 			int i17 = Integer.numberOfTrailingZeros(i15);
 			int i18 = 1 << i17;
 			int i19 = i15 ^ i18;
-			if ((i18 & this.lastWhiteKingPlacement) == 0) {
+			if ((i18 & this.lastWhiteKingsPlacement) == 0) {
 				if (((i13 & H[i17]) != 0) && ((casesVides & I[i17]) != 0))
 					b(paramInt1, casesVides, i13, i17 + 7, I[i17],
 							i18 | H[i17], 257, i18 | I[i17]);
@@ -775,21 +811,23 @@ public class CheckersController extends Thread {
 						i18 | J[i17], 513, i18 | K[i17]);
 			i15 = i19;
 			// break;
-			int i1 = this.lastBlackKingPlacement | this.lastBlackPiecePlacement;
-			int i2 = this.lastWhiteKingPlacement | this.lastWhitePiecePlacement;
-			int i3 = this.lastBlackKingPlacement;
+			int i1 = this.lastBlackKingsPlacement
+					| this.lastBlackPiecesPlacement;
+			int i2 = this.lastWhiteKingsPlacement
+					| this.lastWhitePiecesPlacement;
+			int i3 = this.lastBlackKingsPlacement;
 			int i4 = 0;
 			if (i3 != 0) {
 				int i10 = i2 & casesVides >>> 4;
 				i4 = 0;
 				if (i10 != 0)
 					i4 = 0x0
-							| this.lastBlackKingPlacement
+							| this.lastBlackKingsPlacement
 							& ((0xE0E0E0E0 & i10) >>> 5 | (i10 & 0x7070700) >>> 3);
 				int i11 = i2
 						& ((0xE0E0E0E0 & casesVides) >>> 5 | (0x7070700 & casesVides) >>> 3);
 				if (i11 != 0)
-					i4 |= this.lastBlackKingPlacement & i11 >>> 4;
+					i4 |= this.lastBlackKingsPlacement & i11 >>> 4;
 			}
 			int i5 = i2 & casesVides << 4;
 			if (i5 != 0)
@@ -802,7 +840,7 @@ public class CheckersController extends Thread {
 				int i7 = Integer.numberOfTrailingZeros(i4);
 				int i8 = 1 << i7;
 				int i9 = i4 ^ i8;
-				if ((i8 & this.lastBlackKingPlacement) == 0) {
+				if ((i8 & this.lastBlackKingsPlacement) == 0) {
 					if (((i2 & D[i7]) != 0) && ((casesVides & E[i7]) != 0))
 						a(paramInt1, casesVides, i2, i7 - 9, E[i7], i8 | D[i7],
 								1025, i8 | E[i7]);
@@ -831,38 +869,46 @@ public class CheckersController extends Thread {
 		return false;
 	}
 
+	/**
+	 * b(Z) TFS
+	 * 
+	 * @param paramBoolean
+	 * @return
+	 */
 	private final int b(boolean paramBoolean) {
-		if ((this.lastWhitePiecePlacement != 0)
-				&& (this.lastBlackPiecePlacement != 0))
-			return b(paramBoolean, this.lastWhitePiecePlacement,
-					this.lastBlackPiecePlacement);
-		if (this.lastBlackPiecePlacement != 0)
-			return a(paramBoolean, this.lastWhiteKingPlacement,
-					this.lastBlackPiecePlacement, false);
-		if (this.lastWhitePiecePlacement != 0) {
-			boolean bool = false;
-			if (paramBoolean)
-				;
-			while (true) {
-				return a(bool, this.lastBlackKingPlacement,
-						this.lastWhitePiecePlacement, true);
-				// bool = true;
-			}
-		}
-		return a(paramBoolean, this.lastWhiteKingPlacement,
-				this.lastBlackKingPlacement);
+		if ((this.lastWhitePiecesPlacement != 0)
+				&& (this.lastBlackPiecesPlacement != 0))
+			return b(paramBoolean, this.lastWhitePiecesPlacement,
+					this.lastBlackPiecesPlacement);
+		if (this.lastBlackPiecesPlacement != 0) // 0 pions noirs
+			return a(paramBoolean, this.lastWhiteKingsPlacement,
+					this.lastBlackPiecesPlacement, false);
+		if (this.lastWhitePiecesPlacement != 0) // 0 pions blancs
+			return a(!paramBoolean, this.lastBlackKingsPlacement,
+					this.lastWhitePiecesPlacement, true);
+		return a(paramBoolean, this.lastWhiteKingsPlacement,
+				this.lastBlackKingsPlacement);
 	}
 
-	private final int b(boolean paramBoolean, int lWhitePiece, int lBlackPiece) {
-		int i1 = 0;
-		if (paramBoolean)
-			i1 = Integer.numberOfTrailingZeros(lWhitePiece);
-		for (int i2 = Integer.numberOfTrailingZeros(lBlackPiece);; i2 = 31 - Integer
-				.numberOfTrailingZeros(lWhitePiece)) {
-			int i3 = i2 - 4;
-			return EndGameTableBase.d[(i1 + i3 * 28)];
-			// i1 = 31 - Integer.numberOfTrailingZeros(paramInt2);
+	/**
+	 * b(ZII) TFS
+	 * 
+	 * @param paramBoolean
+	 * @param whitePieces
+	 * @param blackPieces
+	 * @return
+	 */
+	private final int b(boolean paramBoolean, int whitePieces, int blackPieces) {
+		int v0, v1;
+		if (paramBoolean) {
+			v1 = Integer.numberOfTrailingZeros(whitePieces);
+			v0 = Integer.numberOfTrailingZeros(blackPieces);
+		} else {
+			v1 = 31 - Integer.numberOfTrailingZeros(blackPieces);
+			v0 = 31 - Integer.numberOfTrailingZeros(whitePieces);
 		}
+		v0 = v0 - 4;
+		return EndGameTableBase.d[(v1 + v0 * 28)];
 	}
 
 	private final int b(boolean paramBoolean1, int paramInt1, int paramInt2,
@@ -917,10 +963,10 @@ public class CheckersController extends Thread {
 	}
 
 	private final void b(int paramInt) {
-		int i1 = this.lastWhitePiecePlacement;
-		int i2 = this.lastWhiteKingPlacement;
-		int i3 = this.lastBlackPiecePlacement;
-		int i4 = this.lastBlackKingPlacement;
+		int i1 = this.lastWhitePiecesPlacement;
+		int i2 = this.lastWhiteKingsPlacement;
+		int i3 = this.lastBlackPiecesPlacement;
+		int i4 = this.lastBlackKingsPlacement;
 		int i5 = 0xFF & this.p[paramInt];
 		int i6 = 0xF00 & this.p[paramInt];
 		int i7 = this.o[paramInt];
@@ -936,16 +982,16 @@ public class CheckersController extends Thread {
 		case 2048:
 		default:
 			i8 = this.x ^ M['?'];
-			i9 = i1 ^ this.lastWhitePiecePlacement;
+			i9 = i1 ^ this.lastWhitePiecesPlacement;
 			if (i9 == 0) {
-				i10 = i2 ^ this.lastWhiteKingPlacement;
+				i10 = i2 ^ this.lastWhiteKingsPlacement;
 				if (i10 != 0)
 					break;
-				i11 = i3 ^ this.lastBlackPiecePlacement;
+				i11 = i3 ^ this.lastBlackPiecesPlacement;
 				if (i11 != 0)
 					break;
 			}
-			i12 = i4 ^ this.lastBlackKingPlacement;
+			i12 = i4 ^ this.lastBlackKingsPlacement;
 			break;
 		}
 		while (true) {
@@ -953,45 +999,45 @@ public class CheckersController extends Thread {
 				this.x = i8;
 				// return;
 				if ((0xF0000000 & i7) != 0) {
-					this.lastWhitePiecePlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
-					this.lastWhiteKingPlacement = (i7 | this.lastWhiteKingPlacement);
+					this.lastWhitePiecesPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
+					this.lastWhiteKingsPlacement = (i7 | this.lastWhiteKingsPlacement);
 				}
 				while (i5 != 0) {
-					this.lastBlackPiecePlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
-					this.lastBlackKingPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
+					this.lastBlackPiecesPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
+					this.lastBlackKingsPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
 					this.nbBlackAlive -= i5;
 					// break;
-					this.lastWhitePiecePlacement = (i7 | this.lastWhitePiecePlacement
+					this.lastWhitePiecesPlacement = (i7 | this.lastWhitePiecesPlacement
 							& (0xFFFFFFFF ^ this.a[paramInt]));
 					break; // Willy Zou
 				}
-				this.lastWhiteKingPlacement = (i7 | this.lastWhiteKingPlacement
+				this.lastWhiteKingsPlacement = (i7 | this.lastWhiteKingsPlacement
 						& (0xFFFFFFFF ^ this.a[paramInt]));
 				if (i5 == 0)
 					break;
-				this.lastBlackPiecePlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
-				this.lastBlackKingPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
+				this.lastBlackPiecesPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
+				this.lastBlackKingsPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
 				this.nbBlackAlive -= i5;
 				// break;
 				if ((i7 & 0xF) != 0) {
-					this.lastBlackPiecePlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
-					this.lastBlackKingPlacement = (i7 | this.lastBlackKingPlacement);
+					this.lastBlackPiecesPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
+					this.lastBlackKingsPlacement = (i7 | this.lastBlackKingsPlacement);
 				}
 				while (i5 != 0) {
-					this.lastWhitePiecePlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
-					this.lastWhiteKingPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
+					this.lastWhitePiecesPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
+					this.lastWhiteKingsPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
 					this.nbWhiteAlive -= i5;
 					// break;
-					this.lastBlackPiecePlacement = (i7 | this.lastBlackPiecePlacement
+					this.lastBlackPiecesPlacement = (i7 | this.lastBlackPiecesPlacement
 							& (0xFFFFFFFF ^ this.a[paramInt]));
 					break; // Willy Zou
 				}
-				this.lastBlackKingPlacement = (i7 | this.lastBlackKingPlacement
+				this.lastBlackKingsPlacement = (i7 | this.lastBlackKingsPlacement
 						& (0xFFFFFFFF ^ this.a[paramInt]));
 				if (i5 == 0)
 					break;
-				this.lastWhitePiecePlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
-				this.lastWhiteKingPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
+				this.lastWhitePiecesPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
+				this.lastWhiteKingsPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
 				this.nbWhiteAlive -= i5;
 				// break;
 				i8 ^= M[(0 + 4 * Integer.numberOfTrailingZeros(i9))];
@@ -1072,8 +1118,8 @@ public class CheckersController extends Thread {
 	private final boolean b(int paramInt1, boolean paramBoolean, int casesVides) {
 		int i5;
 		if (paramBoolean)
-			if (this.lastWhiteKingPlacement == 0) {
-				i5 = this.lastWhitePiecePlacement
+			if (this.lastWhiteKingsPlacement == 0) {
+				i5 = this.lastWhitePiecesPlacement
 						& (casesVides >>> 4 | (casesVides & 0xE0E0E0E0) >>> 5 | (0x7070700 & casesVides) >>> 3);
 				if (i5 != 0)
 					;// break;
@@ -1082,15 +1128,15 @@ public class CheckersController extends Thread {
 			if (this.nbPossibleMoves == 0)
 				// break;
 				return true;
-			i5 = (this.lastWhiteKingPlacement | this.lastWhitePiecePlacement)
+			i5 = (this.lastWhiteKingsPlacement | this.lastWhitePiecesPlacement)
 					& (casesVides >>> 4 | (casesVides & 0xE0E0E0E0) >>> 5 | (0x7070700 & casesVides) >>> 3)
-					| this.lastWhiteKingPlacement
+					| this.lastWhiteKingsPlacement
 					& (casesVides << 4 | (0x7070707 & casesVides) << 5 | (casesVides & 0xE0E0E0) << 3);
 			// break;
 			int i6 = Integer.numberOfTrailingZeros(i5);
 			int i7 = 1 << i6;
 			int i8 = i5 ^ i7;
-			if ((i7 & this.lastWhiteKingPlacement) == 0) {
+			if ((i7 & this.lastWhiteKingsPlacement) == 0) {
 				if ((casesVides & H[i6]) != 0)
 					a(paramInt1, H[i6], i7, 256, i7 | H[i6]);
 				if ((casesVides & J[i6]) == 0)
@@ -1110,24 +1156,24 @@ public class CheckersController extends Thread {
 			i5 = i8;
 			// break;
 			int i1 = 0;
-			if (this.lastBlackKingPlacement == 0)
-				i1 = this.lastBlackPiecePlacement
+			if (this.lastBlackKingsPlacement == 0)
+				i1 = this.lastBlackPiecesPlacement
 						& (casesVides << 4 | (0x7070707 & casesVides) << 5 | (casesVides & 0xE0E0E0) << 3);
 			while (i1 != 0) {
 				int i2 = Integer.numberOfTrailingZeros(i1);
 				int i3 = 1 << i2;
 				int i4 = i1 ^ i3;
-				if ((i3 & this.lastBlackKingPlacement) == 0) {
+				if ((i3 & this.lastBlackKingsPlacement) == 0) {
 					if ((casesVides & D[i2]) != 0)
 						a(paramInt1, D[i2], i3, 1024, i3 | D[i2]);
 					if ((casesVides & F[i2]) != 0) {
 						a(paramInt1, F[i2], i3, 1024, i3 | F[i2]);
 						i1 = i4;
 						// continue;
-						i1 = (this.lastBlackKingPlacement | this.lastBlackPiecePlacement)
+						i1 = (this.lastBlackKingsPlacement | this.lastBlackPiecesPlacement)
 								& (casesVides << 4
 										| (0x7070707 & casesVides) << 5 | (casesVides & 0xE0E0E0) << 3)
-								| this.lastBlackKingPlacement
+								| this.lastBlackKingsPlacement
 								& (casesVides >>> 4
 										| (0xE0E0E0E0 & casesVides) >>> 5 | (0x7070700 & casesVides) >>> 3);
 						continue; // Willy Zou
@@ -1150,78 +1196,78 @@ public class CheckersController extends Thread {
 
 	private final int c(boolean paramBoolean) {
 		if (this.nbWhiteAlive == 1) {
-			if (this.lastWhitePiecePlacement != 0) {
-				if (this.lastBlackKingPlacement == 0) {
+			if (this.lastWhitePiecesPlacement != 0) {
+				if (this.lastBlackKingsPlacement == 0) {
 					if (paramBoolean)
 						;
 					for (boolean bool6 = false;; bool6 = true)
-						return d(bool6, this.lastBlackPiecePlacement,
-								this.lastWhitePiecePlacement, true);
+						return d(bool6, this.lastBlackPiecesPlacement,
+								this.lastWhitePiecesPlacement, true);
 				}
-				if (this.lastBlackPiecePlacement != 0) {
+				if (this.lastBlackPiecesPlacement != 0) {
 					if (paramBoolean)
 						;
 					for (boolean bool5 = false;; bool5 = true)
-						return b(bool5, this.lastBlackPiecePlacement,
-								this.lastBlackKingPlacement,
-								this.lastWhitePiecePlacement, true);
+						return b(bool5, this.lastBlackPiecesPlacement,
+								this.lastBlackKingsPlacement,
+								this.lastWhitePiecesPlacement, true);
 				}
 				boolean bool4 = false;
 				if (paramBoolean)
 					;
 				while (true) {
-					return b(bool4, this.lastBlackKingPlacement,
-							this.lastWhitePiecePlacement, true);
+					return b(bool4, this.lastBlackKingsPlacement,
+							this.lastWhitePiecesPlacement, true);
 					// bool4 = true;
 				}
 			}
-			if (this.lastBlackKingPlacement == 0) {
+			if (this.lastBlackKingsPlacement == 0) {
 				boolean bool1 = false;
 				if (paramBoolean)
 					;
 				while (true) {
-					return c(bool1, this.lastBlackPiecePlacement,
-							this.lastWhiteKingPlacement, true);
+					return c(bool1, this.lastBlackPiecesPlacement,
+							this.lastWhiteKingsPlacement, true);
 					// bool1 = true;
 				}
 			}
-			if (this.lastBlackPiecePlacement != 0) {
+			if (this.lastBlackPiecesPlacement != 0) {
 				if (paramBoolean)
 					;
 				for (boolean bool3 = false;; bool3 = true)
-					return a(bool3, this.lastBlackPiecePlacement,
-							this.lastBlackKingPlacement,
-							this.lastWhiteKingPlacement, true);
+					return a(bool3, this.lastBlackPiecesPlacement,
+							this.lastBlackKingsPlacement,
+							this.lastWhiteKingsPlacement, true);
 			}
 			boolean bool2 = false;
 			if (paramBoolean)
 				;
 			while (true) {
-				return c(bool2, this.lastBlackKingPlacement,
-						this.lastWhiteKingPlacement);
+				return c(bool2, this.lastBlackKingsPlacement,
+						this.lastWhiteKingsPlacement);
 				// bool2 = true;
 			}
 		}
-		if (this.lastBlackPiecePlacement != 0) {
-			if (this.lastWhiteKingPlacement == 0)
-				return d(paramBoolean, this.lastWhitePiecePlacement,
-						this.lastBlackPiecePlacement, false);
-			if (this.lastWhitePiecePlacement != 0)
-				return b(paramBoolean, this.lastWhitePiecePlacement,
-						this.lastWhiteKingPlacement,
-						this.lastBlackPiecePlacement, false);
-			return b(paramBoolean, this.lastWhiteKingPlacement,
-					this.lastBlackPiecePlacement, false);
+		if (this.lastBlackPiecesPlacement != 0) {
+			if (this.lastWhiteKingsPlacement == 0)
+				return d(paramBoolean, this.lastWhitePiecesPlacement,
+						this.lastBlackPiecesPlacement, false);
+			if (this.lastWhitePiecesPlacement != 0)
+				return b(paramBoolean, this.lastWhitePiecesPlacement,
+						this.lastWhiteKingsPlacement,
+						this.lastBlackPiecesPlacement, false);
+			return b(paramBoolean, this.lastWhiteKingsPlacement,
+					this.lastBlackPiecesPlacement, false);
 		}
-		if (this.lastWhiteKingPlacement == 0)
-			return c(paramBoolean, this.lastWhitePiecePlacement,
-					this.lastBlackKingPlacement, false);
-		if (this.lastWhitePiecePlacement != 0)
-			return a(paramBoolean, this.lastWhitePiecePlacement,
-					this.lastWhiteKingPlacement, this.lastBlackKingPlacement,
+		if (this.lastWhiteKingsPlacement == 0)
+			return c(paramBoolean, this.lastWhitePiecesPlacement,
+					this.lastBlackKingsPlacement, false);
+		if (this.lastWhitePiecesPlacement != 0)
+			return a(paramBoolean, this.lastWhitePiecesPlacement,
+					this.lastWhiteKingsPlacement, this.lastBlackKingsPlacement,
 					false);
-		return c(paramBoolean, this.lastWhiteKingPlacement,
-				this.lastBlackKingPlacement);
+		return c(paramBoolean, this.lastWhiteKingsPlacement,
+				this.lastBlackKingsPlacement);
 	}
 
 	private final int c(boolean paramBoolean, int lKing1, int lKing2) {
@@ -1420,10 +1466,10 @@ public class CheckersController extends Thread {
 	 * a() Initialise le plateau d'une nouvelle partie
 	 */
 	public final void initPlateau() {
-		this.lastWhitePiecePlacement = 4095; // Suite de 12 '1'
-		this.lastWhiteKingPlacement = 0;
-		this.lastBlackPiecePlacement = -1048576; // Suite de 12 '1' et 20 '0'
-		this.lastBlackKingPlacement = 0;
+		this.lastWhitePiecesPlacement = 4095; // Suite de 12 '1'
+		this.lastWhiteKingsPlacement = 0;
+		this.lastBlackPiecesPlacement = -1048576; // Suite de 12 '1' et 20 '0'
+		this.lastBlackKingsPlacement = 0;
 		this.nbWhiteAlive = 12;
 		this.nbBlackAlive = 12;
 		this.x = a(false);
@@ -1448,14 +1494,14 @@ public class CheckersController extends Thread {
 	public final void setPlateau(int whitePiecePlacement,
 			int whiteKingPlacement, int blackPiecePlacement,
 			int blackKingPlacement, boolean paramBoolean) {
-		this.lastWhitePiecePlacement = whitePiecePlacement;
-		this.lastWhiteKingPlacement = whiteKingPlacement;
-		this.lastBlackPiecePlacement = blackPiecePlacement;
-		this.lastBlackKingPlacement = blackKingPlacement;
-		this.nbWhiteAlive = Integer.bitCount(this.lastWhitePiecePlacement
-				| this.lastWhiteKingPlacement);
-		this.nbBlackAlive = Integer.bitCount(this.lastBlackPiecePlacement
-				| this.lastBlackKingPlacement);
+		this.lastWhitePiecesPlacement = whitePiecePlacement;
+		this.lastWhiteKingsPlacement = whiteKingPlacement;
+		this.lastBlackPiecesPlacement = blackPiecePlacement;
+		this.lastBlackKingsPlacement = blackKingPlacement;
+		this.nbWhiteAlive = Integer.bitCount(this.lastWhitePiecesPlacement
+				| this.lastWhiteKingsPlacement);
+		this.nbBlackAlive = Integer.bitCount(this.lastBlackPiecesPlacement
+				| this.lastBlackKingsPlacement);
 		this.x = a(paramBoolean);
 	}
 
@@ -1486,7 +1532,7 @@ public class CheckersController extends Thread {
 				this.view.move(moveIndex, 0, 0, 1);
 			}
 		}
-		if (this.lastWhitePiecePlacement == 4095) { // suite de 12 '1'
+		if (this.lastWhitePiecesPlacement == 4095) { // suite de 12 '1'
 			sleep();
 			Random localRandom = this.random;
 			int i35 = this.nbPossibleMoves;
@@ -1522,10 +1568,10 @@ public class CheckersController extends Thread {
 			i3 = 0;
 			i4 = 0;
 			this.leFameuxN = 1;
-			localLWPP = this.lastWhitePiecePlacement;
-			localLWKP = this.lastWhiteKingPlacement;
-			localLBPP = this.lastBlackPiecePlacement;
-			localLBKP = this.lastBlackKingPlacement;
+			localLWPP = this.lastWhitePiecesPlacement;
+			localLWKP = this.lastWhiteKingsPlacement;
+			localLBPP = this.lastBlackPiecesPlacement;
+			localLBKP = this.lastBlackKingsPlacement;
 			localNbWhiteAlive = this.nbWhiteAlive;
 			localNbBlackAlive = this.nbBlackAlive;
 			i11 = this.x;
@@ -1565,10 +1611,10 @@ public class CheckersController extends Thread {
 			bool2 = false;
 			i17 = -a(i15, i16, 1, i12, 0, bool2);
 			this.q[i14] = i17;
-			this.lastWhitePiecePlacement = localLWPP;
-			this.lastWhiteKingPlacement = localLWKP;
-			this.lastBlackPiecePlacement = localLBPP;
-			this.lastBlackKingPlacement = localLBKP;
+			this.lastWhitePiecesPlacement = localLWPP;
+			this.lastWhiteKingsPlacement = localLWKP;
+			this.lastBlackPiecesPlacement = localLBPP;
+			this.lastBlackKingsPlacement = localLBKP;
 			this.nbWhiteAlive = localNbWhiteAlive;
 			this.nbBlackAlive = localNbBlackAlive;
 			this.x = i11;
