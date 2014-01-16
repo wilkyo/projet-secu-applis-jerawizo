@@ -40,7 +40,7 @@ public class CheckersController extends Thread {
 			-403123714, -897917683, -433779406, 699725162, 572002306 };
 	private byte[] byteArray;
 	private boolean bool4;
-	private int C;
+	private int leFameuxN;
 	public int[] a;
 	public int[] b;
 	public int nbPossibleMoves;
@@ -337,7 +337,7 @@ public class CheckersController extends Thread {
 
 	private final int a(int paramInt1, int paramInt2, int paramInt3,
 			int paramInt4, int paramInt5, boolean paramBoolean) {
-		this.C = (1 + this.C);
+		this.leFameuxN = (1 + this.leFameuxN);
 		int i1 = 0;
 		if ((this.nbWhiteAlive == 0) || (this.nbBlackAlive == 0)) {
 			i1 = paramInt3 - 32500;
@@ -367,10 +367,10 @@ public class CheckersController extends Thread {
 				}
 				int localNbMoves = 0;
 				int i21 = 0;
-				int localLWhitePiece = 0;
-				int i23 = 0;
-				int i24 = 0;
-				int i25 = 0;
+				int localWPPlacement = 0;
+				int localWKPlacement = 0;
+				int localBPPlacement = 0;
+				int localBKPlacement = 0;
 				int i26 = 0;
 				int i27 = 0;
 				int i28 = 0;
@@ -379,10 +379,10 @@ public class CheckersController extends Thread {
 				default:
 					localNbMoves = this.nbPossibleMoves;
 					i21 = this.r;
-					localLWhitePiece = this.lastWhitePiecePlacement;
-					i23 = this.lastWhiteKingPlacement;
-					i24 = this.lastBlackPiecePlacement;
-					i25 = this.lastBlackKingPlacement;
+					localWPPlacement = this.lastWhitePiecePlacement;
+					localWKPlacement = this.lastWhiteKingPlacement;
+					localBPPlacement = this.lastBlackPiecePlacement;
+					localBKPlacement = this.lastBlackKingPlacement;
 					i26 = this.nbWhiteAlive;
 					i27 = this.nbBlackAlive;
 					i28 = this.x;
@@ -437,10 +437,10 @@ public class CheckersController extends Thread {
 					;
 				for (boolean bool = false;; bool = true) {
 					i1 = -a(i33, i34, i35, i2, i29, bool);
-					this.lastWhitePiecePlacement = localLWhitePiece;
-					this.lastWhiteKingPlacement = i23;
-					this.lastBlackPiecePlacement = i24;
-					this.lastBlackKingPlacement = i25;
+					this.lastWhitePiecePlacement = localWPPlacement;
+					this.lastWhiteKingPlacement = localWKPlacement;
+					this.lastBlackPiecePlacement = localBPPlacement;
+					this.lastBlackKingPlacement = localBKPlacement;
 					this.nbWhiteAlive = i26;
 					this.nbBlackAlive = i27;
 					this.x = i28;
@@ -1477,13 +1477,13 @@ public class CheckersController extends Thread {
 			b();
 			if (this.nbPossibleMoves == 1) {
 				sleep();
-				this.view.a(0, 0, -1, 1);
+				this.view.move(0, 0, -1, 1);
 			} else {
 				if (this.level != 0)
 					break;
 				sleep();
 				int moveIndex = this.random.nextInt(this.nbPossibleMoves);
-				this.view.a(moveIndex, 0, 0, 1);
+				this.view.move(moveIndex, 0, 0, 1);
 			}
 		}
 		if (this.lastWhitePiecePlacement == 4095) { // suite de 12 '1'
@@ -1494,7 +1494,7 @@ public class CheckersController extends Thread {
 				;
 			for (int i36 = 1;; i36 = 0) {
 				int i37 = localRandom.nextInt(i35 - i36);
-				this.view.a(i37, 0, -2, 1);
+				this.view.move(i37, 0, -2, 1);
 				break;
 			}
 		}
@@ -1521,7 +1521,7 @@ public class CheckersController extends Thread {
 			i2 = 0;
 			i3 = 0;
 			i4 = 0;
-			this.C = 1;
+			this.leFameuxN = 1;
 			localLWPP = this.lastWhitePiecePlacement;
 			localLWKP = this.lastWhiteKingPlacement;
 			localLBPP = this.lastBlackPiecePlacement;
@@ -1541,7 +1541,7 @@ public class CheckersController extends Thread {
 		int i17 = 0;
 		do {
 			do {
-				this.view.a(i2, i3, i4, this.C);
+				this.view.move(i2, i3, i4, this.leFameuxN);
 				// break;
 				bool1 = false;
 				// break;

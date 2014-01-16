@@ -148,15 +148,15 @@ public class Checkers extends Activity {
 				do {
 					// return super.onOptionsItemSelected(paramMenuItem);
 					if (i == 0) {
-						this.view.a(-3);
+						this.view.resetGame(-3);
 						return true;
 					}
 					if (i == 1) {
-						this.view.a(-2);
+						this.view.resetGame(-2);
 						return true;
 					}
 					if (i == 2) {
-						this.view.a(-4);
+						this.view.resetGame(-4);
 						return true;
 					}
 				} while (i != 5);

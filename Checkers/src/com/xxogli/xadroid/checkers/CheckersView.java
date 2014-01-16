@@ -335,8 +335,8 @@ public class CheckersView extends View {
 		}
 	}
 
-	private final boolean gameStatus(boolean paramBoolean, int move,
-			int paramInt2, int paramInt3, int paramInt4) {
+	private final boolean gameStatus(boolean paramBoolean, int moveIndex,
+			int v, int d, int n) {
 		int i1 = -1;
 		if (paramBoolean)
 			;
@@ -351,7 +351,7 @@ public class CheckersView extends View {
 					try {
 						if (this.R > 0) {
 							if (this.R == 2) {
-								move = -2;
+								moveIndex = -2;
 								if (this.state != 2)
 									continue;
 								i11 = 1;
@@ -363,9 +363,9 @@ public class CheckersView extends View {
 						} else {
 							if (!paramBoolean)
 								break;
-							c(move);
+							c(moveIndex);
 							if ((this.state != 5) && (this.state != 6)) {
-								if (paramInt3 != 0)
+								if (d != 0)
 									continue;
 								this.text1 = "random play";
 							}
@@ -373,30 +373,29 @@ public class CheckersView extends View {
 							// return i2;
 							return i2 == 1;
 						}
-						move = i1;
+						moveIndex = i1;
 						// continue;
 						i11 = 3;
 						// continue;
-						if (paramInt3 == i1) {
+						if (d == i1) {
 							this.text1 = "only reply";
 							continue;
 						}
 					} finally {
 					}
-					if (paramInt3 == -2) {
+					if (d == -2) {
 						this.text1 = "opening";
-					} else if (paramInt2 <= -32000) {
-						this.text1 = ("loss in #" + (paramInt2 + 32500) / 2);
-					} else if (paramInt2 >= 32000) {
-						this.text1 = ("win in #" + (32500 - paramInt2) / 2);
+					} else if (v <= -32000) {
+						this.text1 = ("loss in #" + (v + 32500) / 2);
+					} else if (v >= 32000) {
+						this.text1 = ("win in #" + (32500 - v) / 2);
 					} else {
-						this.text1 = ("v=" + paramInt2 + " d=" + paramInt3
-								+ " n=" + paramInt4);
+						this.text1 = ("v=" + v + " d=" + d + " n=" + n);
 						// continue;
-						if (move == -3) {
+						if (moveIndex == -3) {
 							alertDialog();
 							i2 = 1;
-						} else if (move == i1) {
+						} else if (moveIndex == i1) {
 							if ((this.state == 2) || (this.state == 4)) {
 								this.R = 1;
 								this.controller.level = 1;
@@ -420,7 +419,7 @@ public class CheckersView extends View {
 								this.text1 = null;
 								i2 = 1;
 							}
-						} else if (move == -2) {
+						} else if (moveIndex == -2) {
 							this.l1 = 0;
 							this.l2 = 0;
 							this.lm = 0;
@@ -461,7 +460,7 @@ public class CheckersView extends View {
 								i2 = 1;
 							}
 						} else {
-							if (move != -4)
+							if (moveIndex != -4)
 								break;
 							if (this.state == 1) {
 								this.state = 2;
@@ -492,7 +491,7 @@ public class CheckersView extends View {
 					}
 				}
 				i2 = 0;
-			} while (move != 1);
+			} while (moveIndex != 1);
 			if (this.state == 1)
 				break;
 			i10 = this.state;
@@ -576,7 +575,8 @@ public class CheckersView extends View {
 				if (this.viewFromWhite) {
 					cellX = cellSize * (7 - column);
 					cellY = cellSize * (7 - line);
-					if ((cellX > touchX) || (touchX >= cellX + cellSize) || (cellY > touchY) || (touchY >= cellY + cellSize))
+					if ((cellX > touchX) || (touchX >= cellX + cellSize)
+							|| (cellY > touchY) || (touchY >= cellY + cellSize))
 						break;
 					this.l1 = (i8 | this.l1);
 					continue;
@@ -857,14 +857,14 @@ public class CheckersView extends View {
 	/**
 	 * a()
 	 * 
-	 * @param move
+	 * @param moveIndex
 	 *            Index du mouvement choisi
-	 * @param paramInt2
-	 * @param paramInt3
-	 * @param paramInt4
+	 * @param v
+	 * @param d
+	 * @param n
 	 */
-	public final void a(int move, int paramInt2, int paramInt3, int paramInt4) {
-		if (gameStatus(true, move, paramInt2, paramInt3, paramInt4))
+	public final void move(int moveIndex, int v, int d, int n) {
+		if (gameStatus(true, moveIndex, v, d, n))
 			postInvalidate();
 	}
 
@@ -904,8 +904,15 @@ public class CheckersView extends View {
 		}
 	}
 
-	public final boolean a(int paramInt) {
-		boolean bool1 = gameStatus(false, paramInt, 0, 0, 0);
+	/**
+	 * Remet le jeu dans un autre état.
+	 * 
+	 * @param state
+	 *            -3: new, -2: undo, -4: switch-color
+	 * @return
+	 */
+	public final boolean resetGame(int state) {
+		boolean bool1 = gameStatus(false, state, 0, 0, 0);
 		boolean bool2 = false;
 		if (bool1) {
 			postInvalidate();
@@ -933,7 +940,7 @@ public class CheckersView extends View {
 	public final void touch() {
 		try {
 			int isHandled = onTouch(this.lastTouchedX, this.lastTouchedY);
-			if ((isHandled != 0) && (gameStatus(false, i1, 0, 0, 0)))
+			if ((isHandled != 0) && (gameStatus(false, isHandled, 0, 0, 0)))
 				postInvalidate();
 			return;
 		} finally {
@@ -1076,16 +1083,20 @@ public class CheckersView extends View {
 						break;
 					if (!e())
 						break;
-					paramCanvas.drawText("Checkers for Android", i13, i12, this.paint2);
+					paramCanvas.drawText("Checkers for Android", i13, i12,
+							this.paint2);
 					paramCanvas.drawText("", i13, i12 + i7, this.paint2);
 					if (!EndGameTableBase.loaded)
-						paramCanvas.drawText("no endgame TBs", i13, i12 + i7 * 2, this.paint2);
+						paramCanvas.drawText("no endgame TBs", i13, i12 + i7
+								* 2, this.paint2);
 					if (this.capturePriority)
-						paramCanvas.drawText("MUST CAPTURE", i11, i10, this.redCase);
+						paramCanvas.drawText("MUST CAPTURE", i11, i10,
+								this.redCase);
 				}
 				switch (this.state) {
 				default:
-					if ((this.moveCoach) && ((this.state == 1) || (this.state == 3))) {
+					if ((this.moveCoach)
+							&& ((this.state == 1) || (this.state == 3))) {
 						i29 = this.controller.nbPossibleMoves;
 						arrayOfInt1 = this.controller.b;
 						arrayOfInt2 = this.controller.a;
@@ -1136,7 +1147,8 @@ public class CheckersView extends View {
 					i13 = i9;
 					// continue;
 					Paint localPaint = this.paint2;
-					paramCanvas.drawRect(0.0F, 0.0F, roundedWidth, roundedWidth, this.paint4);
+					paramCanvas.drawRect(0.0F, 0.0F, roundedWidth,
+							roundedWidth, this.paint4);
 					localObject2 = localPaint;
 					// break;
 					int y = cellSize * line;
@@ -1152,12 +1164,13 @@ public class CheckersView extends View {
 					drawX = pieceRadius + i35;
 					drawY = pieceRadius + i34;
 					if ((cellToDraw & this.l1) != 0) {
-						paramCanvas.drawRect(i35 + 1, i34 + 1, -1 + (i35 + cellSize),
-								-1 + (i34 + cellSize), this.redCase);
+						paramCanvas.drawRect(i35 + 1, i34 + 1, -1
+								+ (i35 + cellSize), -1 + (i34 + cellSize),
+								this.redCase);
 						if ((cellToDraw & this.whitePiecePlacement) == 0)
 							break;
-						drawCercle(paramCanvas, drawX, drawY, pieceRadius, letterOffset, this.paint1,
-								this.paint2, false);
+						drawCercle(paramCanvas, drawX, drawY, pieceRadius,
+								letterOffset, this.paint1, this.paint2, false);
 						int i44 = localNbWhitePieces + 1;
 						i39 = localNbBlackPieces;
 						i40 = localNbWhiteKings;
@@ -1166,8 +1179,9 @@ public class CheckersView extends View {
 						break;
 					}
 					if ((cellToDraw & this.l2) != 0) {
-						paramCanvas.drawRect(i35 + 1, i34 + 1, -1 + (i35 + cellSize),
-								-1 + (i34 + cellSize), this.paint6);
+						paramCanvas.drawRect(i35 + 1, i34 + 1, -1
+								+ (i35 + cellSize), -1 + (i34 + cellSize),
+								this.paint6);
 						continue;
 					}
 					break;
@@ -1181,10 +1195,12 @@ public class CheckersView extends View {
 			} finally {
 			}
 			if ((this.moveCoach) && ((cellToDraw & this.lm) != 0)) {
-				paramCanvas.drawRect(i35 + 1, i34 + 1, -1 + (i35 + cellSize), -1 + (i34 + cellSize), this.greenCase);
+				paramCanvas.drawRect(i35 + 1, i34 + 1, -1 + (i35 + cellSize),
+						-1 + (i34 + cellSize), this.greenCase);
 				// continue;
 				if ((cellToDraw & this.blackPiecePlacement) != 0) {
-					drawCercle(paramCanvas, drawX, drawY, pieceRadius, letterOffset, this.paint2, this.paint1, false);
+					drawCercle(paramCanvas, drawX, drawY, pieceRadius,
+							letterOffset, this.paint2, this.paint1, false);
 					i39 = localNbBlackPieces + 1;
 					i40 = localNbWhiteKings;
 					i41 = localNbWhitePieces;
@@ -1192,7 +1208,8 @@ public class CheckersView extends View {
 					break;
 				}
 				if ((cellToDraw & this.whiteKingPlacement) != 0) {
-					drawCercle(paramCanvas, drawX, drawY, pieceRadius, letterOffset, this.paint1, this.paint2, true);
+					drawCercle(paramCanvas, drawX, drawY, pieceRadius,
+							letterOffset, this.paint1, this.paint2, true);
 					int i43 = localNbWhiteKings + 1;
 					i39 = localNbBlackPieces;
 					i40 = i43;
@@ -1201,7 +1218,8 @@ public class CheckersView extends View {
 					break;
 				}
 				if ((cellToDraw & this.blackKingPlacement) != 0) {
-					drawCercle(paramCanvas, drawX, drawY, pieceRadius, letterOffset, this.paint2, this.paint1, true);
+					drawCercle(paramCanvas, drawX, drawY, pieceRadius,
+							letterOffset, this.paint2, this.paint1, true);
 					i38 = localNbBlackKings + 1;
 					i39 = localNbBlackPieces;
 					i40 = localNbWhiteKings;
@@ -1209,8 +1227,10 @@ public class CheckersView extends View {
 					break;
 				}
 				if ((cellToDraw & this.n) != 0) {
-					paramCanvas.drawCircle(drawX, drawY, (pieceRadius - 2) * this.l, this.paint2);
-					paramCanvas.drawCircle(drawX, drawY, (pieceRadius - 4) * this.l, this.paint1);
+					paramCanvas.drawCircle(drawX, drawY, (pieceRadius - 2)
+							* this.l, this.paint2);
+					paramCanvas.drawCircle(drawX, drawY, (pieceRadius - 4)
+							* this.l, this.paint1);
 					i38 = localNbBlackKings;
 					i39 = localNbBlackPieces;
 					i40 = localNbWhiteKings;
@@ -1219,8 +1239,10 @@ public class CheckersView extends View {
 				}
 				if ((cellToDraw & this.m) == 0)
 					break;
-				paramCanvas.drawCircle(drawX, drawY, (pieceRadius - 2) * this.l, this.paint1);
-				paramCanvas.drawCircle(drawX, drawY, (pieceRadius - 4) * this.l, this.paint2);
+				paramCanvas.drawCircle(drawX, drawY,
+						(pieceRadius - 2) * this.l, this.paint1);
+				paramCanvas.drawCircle(drawX, drawY,
+						(pieceRadius - 4) * this.l, this.paint2);
 				// break;
 				paramCanvas.drawText("White", i13, i12, this.paint2);
 				paramCanvas.drawText("Black", i13, i12 + i7, this.paint2);
@@ -1246,7 +1268,8 @@ public class CheckersView extends View {
 				// continue;
 				paramCanvas.drawText("BLACK WINS", i11, i10 + i7, this.paint2);
 				// continue;
-				b(paramCanvas, arrayOfInt1[i30], arrayOfInt2[i30], cellSize, pieceRadius);
+				b(paramCanvas, arrayOfInt1[i30], arrayOfInt2[i30], cellSize,
+						pieceRadius);
 				i30++;
 				for (int column = 0;; column++) {
 					if (column >= 8) {
@@ -1263,7 +1286,8 @@ public class CheckersView extends View {
 
 					}
 					x = cellSize * column;
-					line = column & 0x1; // Si colonne impaire alors ligne 1, sinon 0.
+					line = column & 0x1; // Si colonne impaire alors ligne 1,
+											// sinon 0.
 					if (line < 8)
 						// break;
 						;
@@ -1339,7 +1363,8 @@ public class CheckersView extends View {
 		}
 	}
 
-	protected void onSizeChanged(int width, int height, int oldWidth, int oldHeight) {
+	protected void onSizeChanged(int width, int height, int oldWidth,
+			int oldHeight) {
 		int newWidth = 0;
 		float f2;
 		if (width < height)
