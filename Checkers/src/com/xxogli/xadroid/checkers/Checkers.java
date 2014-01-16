@@ -121,7 +121,7 @@ public class Checkers extends Activity {
 		default:
 			return super.onKeyDown(paramInt, paramKeyEvent);
 		case 23:
-			this.view.b();
+			this.view.touch();
 			return true;
 		case 21:
 			this.view.onTouch(-1.0F, 0.0F);
@@ -218,7 +218,7 @@ public class Checkers extends Activity {
 		default:
 			return super.onTrackballEvent(paramMotionEvent);
 		case 0:
-			this.view.b();
+			this.view.touch();
 			return true;
 		case 2:
 		}
