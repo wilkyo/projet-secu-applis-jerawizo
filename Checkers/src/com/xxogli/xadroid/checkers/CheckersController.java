@@ -50,7 +50,7 @@ public class CheckersController extends Thread {
 	public int lastBlackKingPlacement;
 	public volatile int level = 1000;
 	private Random random = new Random();
-	private CheckersView j;
+	private CheckersView view;
 	private boolean k;
 	private long currentTimeMillis;
 	private boolean m;
@@ -289,8 +289,8 @@ public class CheckersController extends Thread {
 		L = arrayOfInt9;
 	}
 
-	public CheckersController(CheckersView paramb) {
-		this.j = paramb;
+	public CheckersController(CheckersView view) {
+		this.view = view;
 		this.k = false;
 		this.o = new int[4096];
 		this.a = new int[4096];
@@ -1477,13 +1477,13 @@ public class CheckersController extends Thread {
 			b();
 			if (this.nbPossibleMoves == 1) {
 				sleep();
-				this.j.a(0, 0, -1, 1);
+				this.view.a(0, 0, -1, 1);
 			} else {
 				if (this.level != 0)
 					break;
 				sleep();
-				int i38 = this.random.nextInt(this.nbPossibleMoves);
-				this.j.a(i38, 0, 0, 1);
+				int moveIndex = this.random.nextInt(this.nbPossibleMoves);
+				this.view.a(moveIndex, 0, 0, 1);
 			}
 		}
 		if (this.lastWhitePiecePlacement == 4095) { // suite de 12 '1'
@@ -1494,7 +1494,7 @@ public class CheckersController extends Thread {
 				;
 			for (int i36 = 1;; i36 = 0) {
 				int i37 = localRandom.nextInt(i35 - i36);
-				this.j.a(i37, 0, -2, 1);
+				this.view.a(i37, 0, -2, 1);
 				break;
 			}
 		}
@@ -1541,7 +1541,7 @@ public class CheckersController extends Thread {
 		int i17 = 0;
 		do {
 			do {
-				this.j.a(i2, i3, i4, this.C);
+				this.view.a(i2, i3, i4, this.C);
 				// break;
 				bool1 = false;
 				// break;
