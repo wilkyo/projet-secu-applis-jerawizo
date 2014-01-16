@@ -365,7 +365,7 @@ public class CheckersController extends Thread {
 					if (i1 != 999999)
 						break;
 				}
-				int i20 = 0;
+				int localNbMoves = 0;
 				int i21 = 0;
 				int localLWhitePiece = 0;
 				int i23 = 0;
@@ -377,7 +377,7 @@ public class CheckersController extends Thread {
 				int i29 = 0;
 				switch (a(paramInt3, paramBoolean)) {
 				default:
-					i20 = this.nbPossibleMoves;
+					localNbMoves = this.nbPossibleMoves;
 					i21 = this.r;
 					localLWhitePiece = this.lastWhitePiecePlacement;
 					i23 = this.lastWhiteKingPlacement;
@@ -386,7 +386,7 @@ public class CheckersController extends Thread {
 					i26 = this.nbWhiteAlive;
 					i27 = this.nbBlackAlive;
 					i28 = this.x;
-					switch (i20) {
+					switch (localNbMoves) {
 					default:
 						i29 = 0;
 					case 1:
@@ -401,7 +401,7 @@ public class CheckersController extends Thread {
 					i30 = 64;
 					i31 = 0;
 					i32 = paramInt1;
-					if (i31 < i20)
+					if (i31 < localNbMoves)
 						break;
 					if (this.bool4)
 						b(paramInt3, i2, i30, i32);
@@ -1437,8 +1437,8 @@ public class CheckersController extends Thread {
 	}
 
 	/**
-	 * a()
-	 * Compte le nombre de pions de chacun et...
+	 * a() Compte le nombre de pions de chacun et...
+	 * 
 	 * @param whitePiecePlacement
 	 * @param whiteKingPlacement
 	 * @param blackPiecePlacement
