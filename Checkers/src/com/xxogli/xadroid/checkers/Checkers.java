@@ -124,17 +124,17 @@ public class Checkers extends Activity {
 			this.view.b();
 			return true;
 		case 21:
-			this.view.a(-1.0F, 0.0F);
+			this.view.onTouch(-1.0F, 0.0F);
 			return true;
 		case 22:
-			this.view.a(1.0F, 0.0F);
+			this.view.onTouch(1.0F, 0.0F);
 			return true;
 		case 19:
-			this.view.a(0.0F, -1.0F);
+			this.view.onTouch(0.0F, -1.0F);
 			return true;
 		case 20:
 		}
-		this.view.a(0.0F, 1.0F);
+		this.view.onTouch(0.0F, 1.0F);
 		return true;
 	}
 
@@ -222,7 +222,7 @@ public class Checkers extends Activity {
 			return true;
 		case 2:
 		}
-		this.view.a(paramMotionEvent.getX(), paramMotionEvent.getY());
+		this.view.onTouch(paramMotionEvent.getX(), paramMotionEvent.getY());
 		return true;
 	}
 }
