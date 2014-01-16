@@ -595,6 +595,8 @@
 
 .method private final a(Landroid/graphics/Canvas;IIIILandroid/graphics/Paint;Landroid/graphics/Paint;Z)V
     .locals 5
+    
+    const/4 v5, 0x0
 
     int-to-float v0, p2
 
@@ -1615,6 +1617,8 @@
 
     invoke-virtual {v0, v1, v2}, Lcom/xxogli/xadroid/checkers/a;->a(ZZ)V
 
+	######### Get this Context #########
+	
     iget-object v1, p0, Lcom/xxogli/xadroid/checkers/b;->a:Landroid/content/Context;
 
     iget-boolean v0, p0, Lcom/xxogli/xadroid/checkers/b;->C:Z
@@ -2781,10 +2785,14 @@
     return-void
 .end method
 
+
+# a(TouchedX,TouchedY)
 .method public final a(FF)V
-    .locals 7
+    .locals 10
 
     const/4 v6, 0x0
+    
+   
 
     invoke-virtual {p0}, Lcom/xxogli/xadroid/checkers/b;->getWidth()I
 
@@ -2795,6 +2803,23 @@
     move-result v2
 
     if-ge v1, v2, :cond_2
+    
+    #### TOAST ######
+    const/4 v7, 0x1
+	
+	const/4 v9, 0x0
+	
+	const-string v8, "Moveeee!"
+	
+	iget-object v7, p0, Lcom/xxogli/xadroid/checkers/b;->a:Landroid/content/Context;
+	
+	invoke-static {v7, v8, v9}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+
+    move-result-object v7
+
+    invoke-virtual {v7}, Landroid/widget/Toast;->show()V
+	
+	###### TOAST ######
 
     move v0, v1
 
@@ -2944,6 +2969,7 @@
 
     goto :goto_3
 .end method
+
 
 .method public final a(IIII)V
     .locals 6
@@ -5086,7 +5112,7 @@
     .locals 6
 
     const/4 v1, 0x0
-
+    
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getAction()I
 
     move-result v0

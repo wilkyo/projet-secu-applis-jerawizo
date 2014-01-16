@@ -421,7 +421,7 @@
 .end method
 
 .method public onKeyDown(ILandroid/view/KeyEvent;)Z
-    .locals 5
+    .locals 8
 
     const/high16 v4, 0x3f80
 
@@ -430,17 +430,52 @@
     const/4 v2, 0x0
 
     const/4 v0, 0x1
+    
+    const/4 v6, 0x1
 
     packed-switch p1, :pswitch_data_0
+    
+    ########### TOAST 1 #############
+ 
+    invoke-virtual {p0}, Lcom/xxogli/xadroid/checkers/Checkers;->getApplicationContext()Landroid/content/Context;
+
+    move-result-object v6
+    
+    const-string v5, "Hacked 1!"
+
+    invoke-static {v6, v5, v2}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+
+    move-result-object v6
+
+    invoke-virtual {v6}, Landroid/widget/Toast;->show()V
+	
+	########### TOAST 1 ###############
 
     invoke-super {p0, p1, p2}, Landroid/app/Activity;->onKeyDown(ILandroid/view/KeyEvent;)Z
 
     move-result v0
-
+	
     :goto_0
     return v0
 
     :pswitch_0
+    
+    ########### TOAST 2 #############
+ 
+    invoke-virtual {p0}, Lcom/xxogli/xadroid/checkers/Checkers;->getApplicationContext()Landroid/content/Context;
+
+    move-result-object v6
+    
+    const-string v5, "Hacked 2!"
+
+    invoke-static {v6, v5, v2}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+
+    move-result-object v6
+
+    invoke-virtual {v6}, Landroid/widget/Toast;->show()V
+	
+	########### TOAST 2 ###############
+    
     iget-object v1, p0, Lcom/xxogli/xadroid/checkers/Checkers;->a:Lcom/xxogli/xadroid/checkers/b;
 
     invoke-virtual {v1}, Lcom/xxogli/xadroid/checkers/b;->b()V
@@ -448,6 +483,7 @@
     goto :goto_0
 
     :pswitch_1
+    
     iget-object v1, p0, Lcom/xxogli/xadroid/checkers/Checkers;->a:Lcom/xxogli/xadroid/checkers/b;
 
     invoke-virtual {v1, v3, v2}, Lcom/xxogli/xadroid/checkers/b;->a(FF)V
@@ -735,7 +771,7 @@
 .method public onTrackballEvent(Landroid/view/MotionEvent;)Z
     .locals 4
 
-    const/4 v0, 0x1
+    const/4 v0, 0x1 
 
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getAction()I
 
@@ -752,6 +788,8 @@
     return v0
 
     :pswitch_1
+    
+    
     iget-object v1, p0, Lcom/xxogli/xadroid/checkers/Checkers;->a:Lcom/xxogli/xadroid/checkers/b;
 
     invoke-virtual {v1}, Lcom/xxogli/xadroid/checkers/b;->b()V
@@ -770,6 +808,7 @@
     move-result v3
 
     invoke-virtual {v1, v2, v3}, Lcom/xxogli/xadroid/checkers/b;->a(FF)V
+    
 
     goto :goto_0
 
