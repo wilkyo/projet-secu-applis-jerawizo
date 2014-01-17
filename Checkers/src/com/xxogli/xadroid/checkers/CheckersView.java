@@ -26,8 +26,17 @@ public class CheckersView extends View {
 	private int[] lastWhiteKingPlacement;
 	private int[] lastBlackPiecePlacement;
 	private int[] lastBlackKingPlacement;
-	private int lp;
-	private int lc;
+	/**
+	 * L
+	 */
+	private int undoArrayPosition;
+	/**
+	 * M
+	 */
+	private int undoCpt;
+	/**
+	 * N
+	 */
 	private int nbPossibleMoves;
 	private String text1;
 	private float lastTouchedX;
@@ -47,12 +56,33 @@ public class CheckersView extends View {
 	private float l;
 	private int m;
 	private int n;
+	/**
+	 * o
+	 */
 	private Drawable drawable;
+	/**
+	 * p
+	 */
 	private CheckersController controller;
+	/**
+	 * q
+	 */
 	private int state;
+	/**
+	 * r
+	 */
 	private int whitePiecePlacement;
+	/**
+	 * s
+	 */
 	private int blackPiecePlacement;
+	/**
+	 * t
+	 */
 	private int whiteKingPlacement;
+	/**
+	 * u
+	 */
 	private int blackKingPlacement;
 	private int l1;
 	private int l2;
@@ -146,8 +176,8 @@ public class CheckersView extends View {
 			this.startScreen = true;
 			this.animation = true;
 			this.boardColor = 0;
-			this.lp = 0;
-			this.lc = 0;
+			this.undoArrayPosition = 0;
+			this.undoCpt = 0;
 			this.nbPossibleMoves = this.controller.nbPossibleMoves;
 		}
 	}
@@ -306,8 +336,8 @@ public class CheckersView extends View {
 						this.lastBlackPiecePlacement);
 				getValueFromPreferences(paramSharedPreferences, "lbk",
 						this.lastBlackKingPlacement);
-				this.lp = paramSharedPreferences.getInt("lp", 0);
-				this.lc = paramSharedPreferences.getInt("lc", 0);
+				this.undoArrayPosition = paramSharedPreferences.getInt("lp", 0);
+				this.undoCpt = paramSharedPreferences.getInt("lc", 0);
 				setLevel(this.level);
 				boolean bool2 = true;
 				if ((this.state != 3) && (this.state != 4) && (this.state != 6))
@@ -335,6 +365,17 @@ public class CheckersView extends View {
 		}
 	}
 
+	/**
+	 * a(ZIIII) TODO TFS
+	 * 
+	 * @param paramBoolean
+	 * @param moveIndex
+	 *            Si négatif, contient l'action à entreprendre
+	 * @param v
+	 * @param d
+	 * @param n
+	 * @return
+	 */
 	private final boolean gameStatus(boolean paramBoolean, int moveIndex,
 			int v, int d, int n) {
 		int i1 = -1;
@@ -413,8 +454,8 @@ public class CheckersView extends View {
 								this.l2 = 0;
 								this.lm = 0;
 								this.capturePriority = false;
-								this.lp = 0;
-								this.lc = 0;
+								this.undoArrayPosition = 0;
+								this.undoCpt = 0;
 								this.nbPossibleMoves = this.controller.nbPossibleMoves;
 								this.text1 = null;
 								i2 = 1;
@@ -537,6 +578,13 @@ public class CheckersView extends View {
 		return false; // willy zou
 	}
 
+	/**
+	 * b(FF) TODO TFS
+	 * 
+	 * @param touchX
+	 * @param touchY
+	 * @return
+	 */
 	private final int onTouch(float touchX, float touchY) {
 		int move = 1;
 		while (true) {
@@ -682,24 +730,29 @@ public class CheckersView extends View {
 		this.paint4.setARGB(255, 204, 204, 204);
 	}
 
-	private final void c(int paramInt) {
+	/**
+	 * c(I) TODO TFS
+	 * 
+	 * @param moveIndex
+	 */
+	private final void c(int moveIndex) {
 		d();
 		boolean bool = true;
 		if ((this.state != 1) && (this.state != 2)) {
 			bool = false;
 			this.l1 = 0;
 			this.l2 = 0;
-			this.lm = this.controller.b[paramInt];
+			this.lm = this.controller.b[moveIndex];
 			if (this.animation) {
 				this.l = 0.9F;
 				if (!bool)
 					// break;
 					;
-				this.m = (this.controller.a[paramInt] & (this.whitePiecePlacement | this.whiteKingPlacement));
+				this.m = (this.controller.a[moveIndex] & (this.whitePiecePlacement | this.whiteKingPlacement));
 			}
 		}
-		for (this.n = 0;; this.n = (this.controller.a[paramInt] & (this.blackPiecePlacement | this.blackKingPlacement))) {
-			this.controller.a(paramInt);
+		for (this.n = 0;; this.n = (this.controller.a[moveIndex] & (this.blackPiecePlacement | this.blackKingPlacement))) {
+			this.controller.a(moveIndex);
 			this.whitePiecePlacement = this.controller.lastWhitePiecesPlacement;
 			this.blackPiecePlacement = this.controller.lastBlackPiecesPlacement;
 			this.whiteKingPlacement = this.controller.lastWhiteKingsPlacement;
@@ -756,16 +809,16 @@ public class CheckersView extends View {
 	}
 
 	private final void d() {
-		int i1 = this.lp;
+		int i1 = this.undoArrayPosition;
 		this.lastWhitePiecePlacement[i1] = this.controller.lastWhitePiecesPlacement;
 		this.lastWhiteKingPlacement[i1] = this.controller.lastWhiteKingsPlacement;
 		this.lastBlackPiecePlacement[i1] = this.controller.lastBlackPiecesPlacement;
 		this.lastBlackKingPlacement[i1] = this.controller.lastBlackKingsPlacement;
-		if (this.lp < 7)
+		if (this.undoArrayPosition < 7)
 			;
-		for (this.lp = (1 + this.lp);; this.lp = 0) {
-			if (this.lc < 8)
-				this.lc = (1 + this.lc);
+		for (this.undoArrayPosition = (1 + this.undoArrayPosition);; this.undoArrayPosition = 0) {
+			if (this.undoCpt < 8)
+				this.undoCpt = (1 + this.undoCpt);
 			return;
 		}
 	}
@@ -787,13 +840,19 @@ public class CheckersView extends View {
 	private final void g() {
 	}
 
+	/**
+	 * g(Z) TODO TFS
+	 * 
+	 * @param paramBoolean
+	 * @return
+	 */
 	private final boolean undo(boolean paramBoolean) {
-		if (this.lc > 0) {
-			this.lc = (-1 + this.lc);
-			if (this.lp > 0)
+		if (this.undoCpt > 0) {
+			this.undoCpt = (-1 + this.undoCpt);
+			if (this.undoArrayPosition > 0)
 				;
-			for (this.lp = (-1 + this.lp);; this.lp = 7) {
-				int i1 = this.lp;
+			for (this.undoArrayPosition = (-1 + this.undoArrayPosition);; this.undoArrayPosition = 7) {
+				int i1 = this.undoArrayPosition;
 				this.controller.setPlateau(this.lastWhitePiecePlacement[i1],
 						this.lastWhiteKingPlacement[i1],
 						this.lastBlackPiecePlacement[i1],
@@ -868,6 +927,11 @@ public class CheckersView extends View {
 			postInvalidate();
 	}
 
+	/**
+	 * a(Landroid/content/SharedPreferences$Editor;) TODO TFS
+	 * 
+	 * @param paramEditor
+	 */
 	public final void a(SharedPreferences.Editor paramEditor) {
 		try {
 			paramEditor.clear();
@@ -895,8 +959,8 @@ public class CheckersView extends View {
 			setPreferenceEditor(paramEditor, "lbp",
 					this.lastBlackPiecePlacement);
 			setPreferenceEditor(paramEditor, "lbk", this.lastBlackKingPlacement);
-			paramEditor.putInt("lp", this.lp);
-			paramEditor.putInt("lc", this.lc);
+			paramEditor.putInt("lp", this.undoArrayPosition);
+			paramEditor.putInt("lc", this.undoCpt);
 			return;
 		} finally {
 			// localObject = finally;
@@ -907,12 +971,12 @@ public class CheckersView extends View {
 	/**
 	 * Remet le jeu dans un autre état.
 	 * 
-	 * @param state
+	 * @param action
 	 *            -3: new, -2: undo, -4: switch-color
 	 * @return
 	 */
-	public final boolean resetGame(int state) {
-		boolean bool1 = gameStatus(false, state, 0, 0, 0);
+	public final boolean resetGame(int action) {
+		boolean bool1 = gameStatus(false, action, 0, 0, 0);
 		boolean bool2 = false;
 		if (bool1) {
 			postInvalidate();
@@ -947,6 +1011,12 @@ public class CheckersView extends View {
 		}
 	}
 
+	/**
+	 * b(Z) TODO TFS
+	 * 
+	 * @param paramBoolean
+	 * @return
+	 */
 	public final boolean b(boolean paramBoolean) {
 		int i2, i1 = 1;
 		if (paramBoolean)

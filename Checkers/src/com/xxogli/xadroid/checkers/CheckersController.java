@@ -43,6 +43,9 @@ public class CheckersController extends Thread {
 	 * B
 	 */
 	private boolean bool4;
+	/**
+	 * C
+	 */
 	private int leFameuxN;
 	public int[] a;
 	public int[] b;
@@ -956,30 +959,33 @@ public class CheckersController extends Thread {
 		return EndGameTableBase.h[(i5 + i4 * 496)];
 	}
 
+	/**
+	 * b() TFS Attends que k soit vrai
+	 */
 	private final void b() {
-		try {
-			while (true) {
-				if (this.k) {
-					this.k = false;
-					return;
-				}
-				try {
-					wait();
-				} catch (InterruptedException localInterruptedException) {
-				}
+		// :goto_0
+		while (!this.k) { // :cond_0
+			try { // :try_start_1
+				wait();
+			} catch (InterruptedException e) {
 			}
-		} finally {
 		}
+		this.k = false;
 	}
 
-	private final void b(int paramInt) {
+	/**
+	 * TODO TFS
+	 * 
+	 * @param moveIndex
+	 */
+	private final void b(int moveIndex) {
 		int i1 = this.lastWhitePiecesPlacement;
 		int i2 = this.lastWhiteKingsPlacement;
 		int i3 = this.lastBlackPiecesPlacement;
 		int i4 = this.lastBlackKingsPlacement;
-		int i5 = 0xFF & this.p[paramInt];
-		int i6 = 0xF00 & this.p[paramInt];
-		int i7 = this.o[paramInt];
+		int i5 = 0xFF & this.p[moveIndex];
+		int i6 = 0xF00 & this.p[moveIndex];
+		int i7 = this.o[moveIndex];
 		int i8;
 		int i9;
 		int i10 = 0;
@@ -991,7 +997,7 @@ public class CheckersController extends Thread {
 		case 1024:
 		case 2048:
 		default:
-			i8 = this.x ^ M['?'];
+			i8 = this.x ^ M[0];
 			i9 = i1 ^ this.lastWhitePiecesPlacement;
 			if (i9 == 0) {
 				i10 = i2 ^ this.lastWhiteKingsPlacement;
@@ -1009,45 +1015,45 @@ public class CheckersController extends Thread {
 				this.x = i8;
 				// return;
 				if ((0xF0000000 & i7) != 0) {
-					this.lastWhitePiecesPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
+					this.lastWhitePiecesPlacement &= (0xFFFFFFFF ^ this.a[moveIndex]);
 					this.lastWhiteKingsPlacement = (i7 | this.lastWhiteKingsPlacement);
 				}
 				while (i5 != 0) {
-					this.lastBlackPiecesPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
-					this.lastBlackKingsPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
+					this.lastBlackPiecesPlacement &= (0xFFFFFFFF ^ this.a[moveIndex]);
+					this.lastBlackKingsPlacement &= (0xFFFFFFFF ^ this.a[moveIndex]);
 					this.nbBlackAlive -= i5;
 					// break;
 					this.lastWhitePiecesPlacement = (i7 | this.lastWhitePiecesPlacement
-							& (0xFFFFFFFF ^ this.a[paramInt]));
+							& (0xFFFFFFFF ^ this.a[moveIndex]));
 					break; // Willy Zou
 				}
 				this.lastWhiteKingsPlacement = (i7 | this.lastWhiteKingsPlacement
-						& (0xFFFFFFFF ^ this.a[paramInt]));
+						& (0xFFFFFFFF ^ this.a[moveIndex]));
 				if (i5 == 0)
 					break;
-				this.lastBlackPiecesPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
-				this.lastBlackKingsPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
+				this.lastBlackPiecesPlacement &= (0xFFFFFFFF ^ this.a[moveIndex]);
+				this.lastBlackKingsPlacement &= (0xFFFFFFFF ^ this.a[moveIndex]);
 				this.nbBlackAlive -= i5;
 				// break;
 				if ((i7 & 0xF) != 0) {
-					this.lastBlackPiecesPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
+					this.lastBlackPiecesPlacement &= (0xFFFFFFFF ^ this.a[moveIndex]);
 					this.lastBlackKingsPlacement = (i7 | this.lastBlackKingsPlacement);
 				}
 				while (i5 != 0) {
-					this.lastWhitePiecesPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
-					this.lastWhiteKingsPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
+					this.lastWhitePiecesPlacement &= (0xFFFFFFFF ^ this.a[moveIndex]);
+					this.lastWhiteKingsPlacement &= (0xFFFFFFFF ^ this.a[moveIndex]);
 					this.nbWhiteAlive -= i5;
 					// break;
 					this.lastBlackPiecesPlacement = (i7 | this.lastBlackPiecesPlacement
-							& (0xFFFFFFFF ^ this.a[paramInt]));
+							& (0xFFFFFFFF ^ this.a[moveIndex]));
 					break; // Willy Zou
 				}
 				this.lastBlackKingsPlacement = (i7 | this.lastBlackKingsPlacement
-						& (0xFFFFFFFF ^ this.a[paramInt]));
+						& (0xFFFFFFFF ^ this.a[moveIndex]));
 				if (i5 == 0)
 					break;
-				this.lastWhitePiecesPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
-				this.lastWhiteKingsPlacement &= (0xFFFFFFFF ^ this.a[paramInt]);
+				this.lastWhitePiecesPlacement &= (0xFFFFFFFF ^ this.a[moveIndex]);
+				this.lastWhiteKingsPlacement &= (0xFFFFFFFF ^ this.a[moveIndex]);
 				this.nbWhiteAlive -= i5;
 				// break;
 				i8 ^= M[(0 + 4 * Integer.numberOfTrailingZeros(i9))];
@@ -1056,7 +1062,7 @@ public class CheckersController extends Thread {
 				i8 ^= M[(1 + 4 * Integer.numberOfTrailingZeros(i10))];
 				i10 &= i10 - 1;
 				// break;
-				label606: i8 ^= M[(2 + 4 * Integer.numberOfTrailingZeros(i11))];
+				i8 ^= M[(2 + 4 * Integer.numberOfTrailingZeros(i11))];
 				i11 &= i11 - 1;
 				break;
 			}
@@ -1065,6 +1071,14 @@ public class CheckersController extends Thread {
 		}
 	}
 
+	/**
+	 * TODO TFS
+	 * 
+	 * @param paramInt1
+	 * @param paramInt2
+	 * @param paramInt3
+	 * @param paramInt4
+	 */
 	private final void b(int paramInt1, int paramInt2, int paramInt3,
 			int paramInt4) {
 		if (paramInt4 <= -32000) {
@@ -1280,6 +1294,14 @@ public class CheckersController extends Thread {
 				this.lastBlackKingsPlacement);
 	}
 
+	/**
+	 * c(ZII) TODO TFS
+	 * 
+	 * @param paramBoolean
+	 * @param lKing1
+	 * @param lKing2
+	 * @return
+	 */
 	private final int c(boolean paramBoolean, int lKing1, int lKing2) {
 		int i1 = Integer.numberOfTrailingZeros(lKing1);
 		int i2 = Integer.numberOfTrailingZeros(lKing1 & lKing1 - 1);
@@ -1303,6 +1325,15 @@ public class CheckersController extends Thread {
 		}
 	}
 
+	/**
+	 * c(ZIIZ) TODO TFS
+	 * 
+	 * @param paramBoolean1
+	 * @param lPiece
+	 * @param lKing
+	 * @param paramBoolean2
+	 * @return
+	 */
 	private final int c(boolean paramBoolean1, int lPiece, int lKing,
 			boolean paramBoolean2) {
 		int i1 = Integer.numberOfTrailingZeros(lPiece);
@@ -1327,10 +1358,12 @@ public class CheckersController extends Thread {
 		}
 	}
 
+	/**
+	 * c() TFS Fais une pause de 500 ms.
+	 */
 	private final void sleep() {
 		try {
 			Thread.sleep(500L);
-			return;
 		} catch (InterruptedException localInterruptedException) {
 		}
 	}
@@ -1371,6 +1404,14 @@ public class CheckersController extends Thread {
 			a(paramInt1, paramInt5, paramInt6, paramInt7, paramInt8);
 	}
 
+	/**
+	 * d(ZII) TODO TFS
+	 * 
+	 * @param paramBoolean
+	 * @param lKing1
+	 * @param lKing2
+	 * @return
+	 */
 	private final int d(boolean paramBoolean, int lKing1, int lKing2) {
 		int i5;
 		int i6 = 0;
@@ -1409,6 +1450,15 @@ public class CheckersController extends Thread {
 		}
 	}
 
+	/**
+	 * d(ZIIZ) TODO TFS
+	 * 
+	 * @param paramBoolean1
+	 * @param lPiece1
+	 * @param lPiece2
+	 * @param paramBoolean2
+	 * @return
+	 */
 	private final int d(boolean paramBoolean1, int lPiece1, int lPiece2,
 			boolean paramBoolean2) {
 		int i1 = Integer.numberOfTrailingZeros(lPiece1);
@@ -1429,7 +1479,7 @@ public class CheckersController extends Thread {
 	}
 
 	/**
-	 * d()
+	 * d() TODO TFS
 	 * 
 	 */
 	private final void initSomething() {
@@ -1456,7 +1506,7 @@ public class CheckersController extends Thread {
 	}
 
 	/**
-	 * e()
+	 * e() TODO TFS
 	 */
 	private final void clearTheIntArray() {
 		for (int i1 = 0;; i1++) {
@@ -1496,12 +1546,17 @@ public class CheckersController extends Thread {
 			clearTheIntArray();
 	}
 
-	public final void a(int paramInt) {
-		b(paramInt);
+	/**
+	 * a(I) TFS
+	 * 
+	 * @param moveIndex
+	 */
+	public final void a(int moveIndex) {
+		b(moveIndex);
 	}
 
 	/**
-	 * a() Compte le nombre de pions de chacun et...
+	 * a(IIIIZ) TODO TFS Compte le nombre de pions de chacun et...
 	 * 
 	 * @param whitePiecePlacement
 	 * @param whiteKingPlacement
@@ -1523,19 +1578,22 @@ public class CheckersController extends Thread {
 		this.x = a(paramBoolean);
 	}
 
+	/**
+	 * a(ZZ) TFS
+	 * 
+	 * @param paramBoolean1
+	 * @param onJoueLesNoirs
+	 */
 	public final void a(boolean paramBoolean1, boolean onJoueLesNoirs) {
-		try {
-			this.t = paramBoolean1;
-			this.onJoueLesNoirs = onJoueLesNoirs;
-			this.k = true;
-			notify();
-			return;
-		} finally {
-			// localObject = finally;
-			// throw localObject;
-		}
+		this.t = paramBoolean1;
+		this.onJoueLesNoirs = onJoueLesNoirs;
+		this.k = true;
+		notify();
 	}
 
+	/**
+	 * run() TODO TFS
+	 */
 	public void run() {
 		while (true) {
 			b();
