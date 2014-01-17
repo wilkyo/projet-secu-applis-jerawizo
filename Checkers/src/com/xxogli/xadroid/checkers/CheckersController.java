@@ -39,6 +39,9 @@ public class CheckersController extends Thread {
 			1254589825, 782828606, 1428105291, -1660332465, -1731350017,
 			-403123714, -897917683, -433779406, 699725162, 572002306 };
 	private byte[] byteArray;
+	/**
+	 * B
+	 */
 	private boolean bool4;
 	private int leFameuxN;
 	public int[] a;
@@ -74,10 +77,19 @@ public class CheckersController extends Thread {
 	private int[] p;
 	private int[] q;
 	private int r;
+	/**
+	 * s
+	 */
 	private boolean onJoueLesNoirs;
 	private boolean t;
 	private boolean u;
+	/**
+	 * v
+	 */
 	private int nbWhiteAlive;
+	/**
+	 * w
+	 */
 	private int nbBlackAlive;
 	private int x;
 	private int[] intArray;
@@ -575,75 +587,73 @@ public class CheckersController extends Thread {
 		return 0; // Willy Zou
 	}
 
+	/**
+	 * a(IZ) TFS
+	 * 
+	 * @param paramInt
+	 * @param paramBoolean
+	 * @return
+	 */
 	private final int a(int paramInt, boolean paramBoolean) {
 		this.nbPossibleMoves = 0;
 		this.r = (paramInt * 64);
 		int casesVides = 0xFFFFFFFF ^ (this.lastWhitePiecesPlacement
 				| this.lastWhiteKingsPlacement | this.lastBlackPiecesPlacement | this.lastBlackKingsPlacement);
-		int i2;
 		if (this.onJoueLesNoirs) {
-			boolean bool2 = a(paramInt, paramBoolean, casesVides);
-			boolean bool3 = b(paramInt, paramBoolean, casesVides);
-			if (!bool2) {
-				i2 = 0;
-				if (!bool3)
-					;
-			} else {
-				i2 = 2;
-			}
+			if (a(paramInt, paramBoolean, casesVides)) {
+				if (b(paramInt, paramBoolean, casesVides))
+					return 2;
+				else
+					return 0;
+			} else
+				return 0;
 		}
-		boolean bool1;
-		do {
-			// return i2;
-			if (a(paramInt, paramBoolean, casesVides))
-				return 1;
-			bool1 = b(paramInt, paramBoolean, casesVides);
-			i2 = 0;
-		} while (!bool1);
-		return 2;
+		if (a(paramInt, paramBoolean, casesVides))
+			return 1;
+		if (b(paramInt, paramBoolean, casesVides))
+			return 2;
+		return 0;
 	}
 
+	/**
+	 * a(Z) TFS
+	 * 
+	 * @param paramBoolean
+	 * @return Un placement, mais lequel ?
+	 */
 	private final int a(boolean paramBoolean) {
-		int i1;
-		int i3 = 0;
-		int i4 = 0;
-		int localLWKP = 0;
-		int localLBPP = 0;
-		int localLBKP = 0;
-		if (paramBoolean) {
-			i1 = 0;
-			int localLWPP = this.lastWhitePiecesPlacement;
-			i3 = i1;
-			i4 = localLWPP;
-			if (i4 != 0)
-				;// break;
-			localLWKP = this.lastWhiteKingsPlacement;
-			if (localLWKP != 0)
-				;// break;
-			localLBPP = this.lastBlackPiecesPlacement;
-			if (localLBPP != 0)
-				;// break;
-			localLBKP = this.lastBlackKingsPlacement;
+		int v0 = 0;
+		int v1;
+		if (!paramBoolean) { // :cond_0
+			v0 = M[128]; // récupère le dernier élément
 		}
-		while (true) {
-			if (localLBKP == 0) {
-				// return i3;
-				i1 = M[0];
-				// break;
-				i3 ^= M[(0 + 4 * Integer.numberOfTrailingZeros(i4))];
-				i4 &= i4 - 1;
-				// break;
-				i3 ^= M[(1 + 4 * Integer.numberOfTrailingZeros(localLWKP))];
-				localLWKP &= localLWKP - 1;
-				// break;
-				i3 ^= M[(2 + 4 * Integer.numberOfTrailingZeros(localLBPP))];
-				localLBPP &= localLBPP - 1;
-				break;
-			}
-			i3 ^= M[(3 + 4 * Integer.numberOfTrailingZeros(localLBKP))];
-			localLBKP &= localLBKP - 1;
+		// :goto_0
+		v1 = v0;
+		v0 = this.lastWhitePiecesPlacement;
+		// :goto_1
+		while (v0 != 0) { // :cond_1
+			v1 ^= M[(0 + 4 * Integer.numberOfTrailingZeros(v0))];
+			v0 &= v0 - 1;
 		}
-		return i3;// Willy Zou
+		v0 = this.lastWhiteKingsPlacement;
+		// :goto_2
+		while (v0 != 0) { // :cond_2
+			v1 ^= M[(1 + 4 * Integer.numberOfTrailingZeros(v0))];
+			v0 &= v0 - 1;
+		}
+		v0 = this.lastBlackPiecesPlacement;
+		// :goto_3
+		while (v0 != 0) { // :cond_3
+			v1 ^= M[(2 + 4 * Integer.numberOfTrailingZeros(v0))];
+			v0 &= v0 - 1;
+		}
+		v0 = this.lastBlackKingsPlacement;
+		// :goto_4
+		while (v0 != 0) { // :cond_4
+			v1 ^= M[(3 + 4 * Integer.numberOfTrailingZeros(v0))];
+			v0 &= v0 - 1;
+		}
+		return v1;
 	}
 
 	/**
@@ -1456,6 +1466,14 @@ public class CheckersController extends Thread {
 		}
 	}
 
+	/**
+	 * a(IZZ) TFS
+	 * 
+	 * @param paramInt
+	 * @param paramBoolean1
+	 * @param onJoueLesNoirs
+	 * @return
+	 */
 	public final int a(int paramInt, boolean paramBoolean1,
 			boolean onJoueLesNoirs) {
 		this.onJoueLesNoirs = onJoueLesNoirs;
@@ -1463,7 +1481,7 @@ public class CheckersController extends Thread {
 	}
 
 	/**
-	 * a() Initialise le plateau d'une nouvelle partie
+	 * a() TFS Initialise le plateau d'une nouvelle partie
 	 */
 	public final void initPlateau() {
 		this.lastWhitePiecesPlacement = 4095; // Suite de 12 '1'
