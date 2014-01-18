@@ -7,6 +7,7 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{float}
+\usepackage[ruled,vlined]{algorithm2e}
 \usepackage[backend=bibtex,style=verbose-trad2,natbib=true]{biblatex}
 
 
@@ -39,7 +40,7 @@
 \end{flushright}
 \vspace{20mm}
 \begin{center}
-\textbf{\huge{Sécurité des Applications Nomades}\\ ~\\ Modification d'un projet existant par rétro-engeneering}\\
+\textbf{\huge{Documentation Technique}}\\
 \vspace{20mm}
 \begin{large}
 	\textit{Zo RABARIJAONA}\\
@@ -60,23 +61,19 @@
 \newpage
 
 \tableofcontents
+
 \newpage
 
-\section{Introduction}
+\section{Analyse}
 
-\input{introduction}
+\input{natif}
+\input{checkers}
 
-\section{Répartition du travail (ou pas)}
+\section{Modifications apportées à l'Application}
 
-\input{repartitionTaches}
-
-\section{Difficultés rencontrées}
-
-\input{difficultesRencontrees}
-
-\section{Conclusion}
-
-\input{conclusion}
+\input{exit}
+\input{dames}
+\input{pub}
 
 \appendix
 \end{document}

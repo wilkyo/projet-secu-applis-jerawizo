@@ -1,10 +1,13 @@
 package com.xxogli.xadroid.checkers;
 
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 
-class e implements DialogInterface.OnClickListener {
-	e(CheckersView paramb) {
+/**
+ * Unused and do nothing
+ */
+class UselessOnClickListener implements DialogInterface.OnClickListener {
+
+	UselessOnClickListener(CheckersView view) {
 	}
 
 	public void onClick(DialogInterface paramDialogInterface, int paramInt) {

@@ -6,7 +6,7 @@
 
 
 # Sources
-SRC=rapport
+SRC=documentTechnique
 
 ########################################################################
 # CIBLES                                                               #

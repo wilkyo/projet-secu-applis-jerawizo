@@ -8,4 +8,5 @@
 !images/*.pdf
 *.bbl
 *.blg
-
+*.bib
+*.run.xml

@@ -19,12 +19,33 @@ public class CheckersView extends View {
 	 */
 	private boolean viewFromWhite;
 	private boolean fullscreen;
+	/**
+	 * E
+	 */
 	private boolean startScreen;
+	/**
+	 * F
+	 */
 	private boolean animation;
+	/**
+	 * G
+	 */
 	private int boardColor;
+	/**
+	 * H
+	 */
 	private int[] lastWhitePiecePlacement;
+	/**
+	 * I
+	 */
 	private int[] lastWhiteKingPlacement;
+	/**
+	 * J
+	 */
 	private int[] lastBlackPiecePlacement;
+	/**
+	 * K
+	 */
 	private int[] lastBlackKingPlacement;
 	/**
 	 * L
@@ -183,37 +204,41 @@ public class CheckersView extends View {
 	}
 
 	/**
-	 * Set SharedPreferences.Editor's value
+	 * Juste pour supprimer un warning.
 	 * 
-	 * @param paramEditor
-	 * @param paramString
-	 * @param paramArrayOfInt
+	 * @param mContext
 	 */
-	private final void setPreferenceEditor(
-			SharedPreferences.Editor paramEditor, String paramString,
-			int[] paramArrayOfInt) {
-		for (int i1 = 0;; i1++) {
-			if (i1 >= 8)
-				return;
-			paramEditor.putInt(paramString + i1, paramArrayOfInt[i1]);
+	public CheckersView(Context mContext) {
+		this(mContext, null);
+	}
+
+	/**
+	 * a(Landroid/content/SharedPreferences$Editor;Ljava/lang/String;[I) TFS Set
+	 * SharedPreferences.Editor's value
+	 * 
+	 * @param editor
+	 * @param key
+	 * @param array
+	 */
+	private final void setPreferenceEditor(SharedPreferences.Editor editor,
+			String key, int[] array) {
+		for (int v0 = 0; v0 < 8; v0++) {
+			editor.putInt(key + v0, array[v0]);
 		}
 	}
 
 	/**
-	 * Get Value from SharedPreferences and put it in the array
+	 * a(Landroid/content/SharedPreferences;Ljava/lang/String;[I) TFS Get Values
+	 * from SharedPreferences and put it in the array
 	 * 
-	 * @param paramSharedPreferences
-	 * @param paramString
-	 * @param paramArrayOfInt
+	 * @param sharedPreference
+	 * @param key
+	 * @param array
 	 */
-	private final void getValueFromPreferences(
-			SharedPreferences paramSharedPreferences, String paramString,
-			int[] paramArrayOfInt) {
-		for (int i1 = 0;; i1++) {
-			if (i1 >= 8)
-				return;
-			paramArrayOfInt[i1] = paramSharedPreferences.getInt(paramString
-					+ i1, 0);
+	private final void getArrayValuesFromPreferences(
+			SharedPreferences sharedPreference, String key, int[] array) {
+		for (int v0 = 0; v0 < 8; v0++) {
+			array[v0] = sharedPreference.getInt(key + v0, 0);
 		}
 	}
 
@@ -285,59 +310,50 @@ public class CheckersView extends View {
 	}
 
 	/**
-	 * Get Data from SharedPreferences
+	 * a(Landroid/content/SharedPreferences;) Get Data from SharedPreferences
 	 * 
-	 * @param paramSharedPreferences
+	 * @param sharedPreferences
 	 * @return
 	 */
-	private final boolean getData(SharedPreferences paramSharedPreferences) {
+	private final boolean getData(SharedPreferences sharedPreferences) {
 		boolean bool1;
-		if (paramSharedPreferences != null)
+		if (sharedPreferences != null)
 			;
 		try {
-			int i1 = paramSharedPreferences.getInt("format", 0);
+			int i1 = sharedPreferences.getInt("format", 0);
 			if (i1 != 34)
 				bool1 = false;
 			while (true) {
 				// return bool1;
-				this.state = paramSharedPreferences.getInt("state", 1);
-				this.whitePiecePlacement = paramSharedPreferences.getInt("wp",
-						0);
-				this.blackPiecePlacement = paramSharedPreferences.getInt("bp",
-						0);
-				this.whiteKingPlacement = paramSharedPreferences
-						.getInt("wk", 0);
-				this.blackKingPlacement = paramSharedPreferences
-						.getInt("bk", 0);
-				this.l1 = paramSharedPreferences.getInt("l1", 0);
-				this.l2 = paramSharedPreferences.getInt("l2", 0);
-				this.lm = paramSharedPreferences.getInt("lm", 0);
-				this.capturePriority = paramSharedPreferences.getBoolean("cap",
-						true);
-				this.level = paramSharedPreferences.getInt("level", 3);
-				this.moveCoach = paramSharedPreferences
-						.getBoolean("show", true);
-				this.onJoueLesNoirs = paramSharedPreferences.getBoolean("free",
+				this.state = sharedPreferences.getInt("state", 1);
+				this.whitePiecePlacement = sharedPreferences.getInt("wp", 0);
+				this.blackPiecePlacement = sharedPreferences.getInt("bp", 0);
+				this.whiteKingPlacement = sharedPreferences.getInt("wk", 0);
+				this.blackKingPlacement = sharedPreferences.getInt("bk", 0);
+				this.l1 = sharedPreferences.getInt("l1", 0);
+				this.l2 = sharedPreferences.getInt("l2", 0);
+				this.lm = sharedPreferences.getInt("lm", 0);
+				this.capturePriority = sharedPreferences
+						.getBoolean("cap", true);
+				this.level = sharedPreferences.getInt("level", 3);
+				this.moveCoach = sharedPreferences.getBoolean("show", true);
+				this.onJoueLesNoirs = sharedPreferences.getBoolean("free",
 						false);
-				this.viewFromWhite = paramSharedPreferences.getBoolean("rot",
-						false);
-				this.fullscreen = paramSharedPreferences.getBoolean("full",
-						false);
-				this.startScreen = paramSharedPreferences.getBoolean("start",
-						true);
-				this.animation = paramSharedPreferences
-						.getBoolean("anim", true);
-				this.boardColor = paramSharedPreferences.getInt("color", 0);
-				getValueFromPreferences(paramSharedPreferences, "lwp",
+				this.viewFromWhite = sharedPreferences.getBoolean("rot", false);
+				this.fullscreen = sharedPreferences.getBoolean("full", false);
+				this.startScreen = sharedPreferences.getBoolean("start", true);
+				this.animation = sharedPreferences.getBoolean("anim", true);
+				this.boardColor = sharedPreferences.getInt("color", 0);
+				getArrayValuesFromPreferences(sharedPreferences, "lwp",
 						this.lastWhitePiecePlacement);
-				getValueFromPreferences(paramSharedPreferences, "lwk",
+				getArrayValuesFromPreferences(sharedPreferences, "lwk",
 						this.lastWhiteKingPlacement);
-				getValueFromPreferences(paramSharedPreferences, "lbp",
+				getArrayValuesFromPreferences(sharedPreferences, "lbp",
 						this.lastBlackPiecePlacement);
-				getValueFromPreferences(paramSharedPreferences, "lbk",
+				getArrayValuesFromPreferences(sharedPreferences, "lbk",
 						this.lastBlackKingPlacement);
-				this.undoArrayPosition = paramSharedPreferences.getInt("lp", 0);
-				this.undoCpt = paramSharedPreferences.getInt("lc", 0);
+				this.undoArrayPosition = sharedPreferences.getInt("lp", 0);
+				this.undoCpt = sharedPreferences.getInt("lc", 0);
 				setLevel(this.level);
 				boolean bool2 = true;
 				if ((this.state != 3) && (this.state != 4) && (this.state != 6))
@@ -932,7 +948,7 @@ public class CheckersView extends View {
 	 * 
 	 * @param paramEditor
 	 */
-	public final void a(SharedPreferences.Editor paramEditor) {
+	public final void saveData(SharedPreferences.Editor paramEditor) {
 		try {
 			paramEditor.clear();
 			paramEditor.putInt("format", 34);
@@ -1393,19 +1409,17 @@ public class CheckersView extends View {
 		}
 	}
 
-	public final boolean e(boolean paramBoolean) {
-		if (paramBoolean)
-			;
-		try {
-			if (this.startScreen)
-				;
-			for (boolean bool2 = false;; bool2 = true) {
-				this.startScreen = bool2;
-				boolean bool1 = this.startScreen;
-				return bool1;
-			}
-		} finally {
+	/**
+	 * e(Z) TFS
+	 * 
+	 * @param switchValue
+	 * @return
+	 */
+	public final boolean getStartScreen(boolean switchValue) {
+		if (switchValue) {
+			this.startScreen = !this.startScreen;
 		}
+		return this.startScreen;
 	}
 
 	public final boolean f(boolean paramBoolean) {

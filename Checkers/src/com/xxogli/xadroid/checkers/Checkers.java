@@ -97,7 +97,7 @@ public class Checkers extends Activity {
 		localSubMenu1.add(1, 3, 3, "Full Screen").setCheckable(true)
 				.setChecked(this.view.d(false));
 		localSubMenu1.add(1, 4, 4, "Start Screen").setCheckable(true)
-				.setChecked(this.view.e(false));
+				.setChecked(this.view.getStartScreen(false));
 		localSubMenu1.add(1, 5, 5, "Animation").setCheckable(true)
 				.setChecked(this.view.f(false));
 		localSubMenu1.add(1, 6, 6, "Board Color");
@@ -183,7 +183,7 @@ public class Checkers extends Activity {
 					return true;
 				}
 				if (i == 4) {
-					paramMenuItem.setChecked(this.view.e(true));
+					paramMenuItem.setChecked(this.view.getStartScreen(true));
 					return true;
 				}
 				if (i == 5) {
@@ -203,7 +203,7 @@ public class Checkers extends Activity {
 	public void onPause() {
 		super.onPause();
 		SharedPreferences.Editor localEditor = getPreferences(0).edit();
-		this.view.a(localEditor);
+		this.view.saveData(localEditor);
 		localEditor.commit();
 	}
 

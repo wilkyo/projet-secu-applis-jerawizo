@@ -3,12 +3,22 @@ package com.xxogli.xadroid.checkers;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 
-class f implements OnClickListener {
-	f(CheckersView paramb) {
+/**
+ * Unused
+ */
+class SwitchStartScreenListener implements OnClickListener {
+
+	/**
+	 * a
+	 */
+	private CheckersView view;
+
+	SwitchStartScreenListener(CheckersView view) {
+		this.view = view;
 	}
 
 	public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-		// this.a.e(true);
+		this.view.getStartScreen(true);
 	}
 }
 
