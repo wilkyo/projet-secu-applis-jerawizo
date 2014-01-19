@@ -170,15 +170,15 @@ public class CheckersView extends View {
 		this.controller = new CheckersController(this);
 		this.text1 = null;
 		if (getData(paramSharedPreferences))
-			if (!e())
+			if (!blackDidNotMoved())
 				this.text1 = "restored game";
 		while (true) {
 			changeColorTable();
 			this.lastTouchedX = -10.0F;
 			this.lastTouchedY = -10.0F;
 			this.R = 0;
-			if ((this.startScreen) && (e()))
-				g();
+			if ((this.startScreen) && (blackDidNotMoved()))
+				showStartDialog();
 			// return;
 			this.state = 1;
 			this.whitePiecePlacement = this.controller.lastWhitePiecesPlacement;
@@ -375,7 +375,7 @@ public class CheckersView extends View {
 				}
 
 			} catch (ClassCastException localClassCastException) {
-					bool1 = false;
+				bool1 = false;
 			}
 		}
 		return bool1;
@@ -839,7 +839,12 @@ public class CheckersView extends View {
 		}
 	}
 
-	private final boolean e() {
+	/**
+	 * e() TFS Checks if the black pieces are at their first position.
+	 * 
+	 * @return
+	 */
+	private final boolean blackDidNotMoved() {
 		return this.blackPiecePlacement == -1048576;
 	}
 
@@ -853,7 +858,26 @@ public class CheckersView extends View {
 						new NewGameAlertDialogNoButtonListener(this)).show();
 	}
 
-	private final void g() {
+	/**
+	 * g() TFS Affiche le Start Screen.
+	 */
+	private final void showStartDialog() {
+		// return; au début du smali :/
+		new AlertDialog.Builder(this.context)
+				.setMessage(
+						"Checkers for Android was written by Aart J.C. Bik."
+								+ "\n\nUse the touch screen or trackball to make a move."
+								+ " Press the MENU button for more options, such as making captures optional instead of mandatory."
+								+ "\n\nThe application complies with the official American checkers rules, where black moves first,"
+								+ " captures are mandatory, men only move and jump forward,"
+								+ " and kings move and jump forward and backward (but not over a distance)."
+								+ " Please note that many variants of checkers exist,"
+								+ " and this game may not use the rules you are most familiar with.\n")
+				.setCancelable(false)
+				.setPositiveButton("KEEP SHOWING",
+						new KeepShowingStartScreenOnClickListener(this))
+				.setNegativeButton("STOP SHOWING",
+						new StopShowingStartScreenOnClickListener(this)).show();
 	}
 
 	/**
@@ -969,14 +993,16 @@ public class CheckersView extends View {
 			paramEditor.putBoolean("start", this.startScreen);
 			paramEditor.putBoolean("anim", this.animation);
 			paramEditor.putInt("color", this.boardColor);
-			setPreferenceEditor(paramEditor, "lwp",this.lastWhitePiecePlacement);
+			setPreferenceEditor(paramEditor, "lwp",
+					this.lastWhitePiecePlacement);
 			setPreferenceEditor(paramEditor, "lwk", this.lastWhiteKingPlacement);
-			setPreferenceEditor(paramEditor, "lbp",this.lastBlackPiecePlacement);
+			setPreferenceEditor(paramEditor, "lbp",
+					this.lastBlackPiecePlacement);
 			setPreferenceEditor(paramEditor, "lbk", this.lastBlackKingPlacement);
 			paramEditor.putInt("lp", this.undoArrayPosition);
 			paramEditor.putInt("lc", this.undoCpt);
-		}finally{
-			
+		} finally {
+
 		}
 	}
 
@@ -1031,7 +1057,7 @@ public class CheckersView extends View {
 	 */
 	public final boolean getOptionalJumpStatus(boolean paramBoolean) {
 		int i1 = 1;
-		boolean bool1=false;
+		boolean bool1 = false;
 		if (paramBoolean) {
 			try {
 				if (this.onJoueLesNoirs) {
@@ -1044,13 +1070,13 @@ public class CheckersView extends View {
 						// break;
 					}
 				}
-					this.capturePriority = true; // this.y = i1;
-					this.nbPossibleMoves = this.controller.nbPossibleMoves;
-					postInvalidate();
-					bool1 = this.onJoueLesNoirs;
-					i1 = 0;
+				this.capturePriority = true; // this.y = i1;
+				this.nbPossibleMoves = this.controller.nbPossibleMoves;
+				postInvalidate();
+				bool1 = this.onJoueLesNoirs;
+				i1 = 0;
 			} finally {
-				
+
 			}
 		}
 		return bool1;
@@ -1154,7 +1180,7 @@ public class CheckersView extends View {
 					// break;
 					if (i23 < 8)
 						break;
-					if (!e())
+					if (!blackDidNotMoved())
 						break;
 					paramCanvas.drawText("Checkers for Android", i13, i12,
 							this.paint2);

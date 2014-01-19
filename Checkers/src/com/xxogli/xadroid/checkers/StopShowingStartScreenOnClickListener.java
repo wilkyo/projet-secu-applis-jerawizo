@@ -4,16 +4,16 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 
 /**
- * Unused
+ * f
  */
-class SwitchStartScreenListener implements OnClickListener {
+class StopShowingStartScreenOnClickListener implements OnClickListener {
 
 	/**
 	 * a
 	 */
 	private CheckersView view;
 
-	SwitchStartScreenListener(CheckersView view) {
+	StopShowingStartScreenOnClickListener(CheckersView view) {
 		this.view = view;
 	}
 

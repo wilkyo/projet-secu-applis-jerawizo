@@ -38,11 +38,14 @@ public class CheckersController extends Thread {
 			-380256699, 2068218367, -100447487, 284033282, -1923303838,
 			1254589825, 782828606, 1428105291, -1660332465, -1731350017,
 			-403123714, -897917683, -433779406, 699725162, 572002306 };
+	/**
+	 * A
+	 */
 	private byte[] byteArray;
 	/**
 	 * B
 	 */
-	private boolean bool4;
+	private boolean initialized;
 	/**
 	 * C
 	 */
@@ -94,8 +97,17 @@ public class CheckersController extends Thread {
 	 * w
 	 */
 	private int nbBlackAlive;
+	/**
+	 * x
+	 */
 	private int x;
+	/**
+	 * y
+	 */
 	private int[] intArray;
+	/**
+	 * z
+	 */
 	private short[] shortArray;
 
 	static {
@@ -390,7 +402,7 @@ public class CheckersController extends Thread {
 			int i32;
 			int i36 = 0;
 			if (paramInt3 < i2) {
-				if (this.bool4) {
+				if (this.initialized) {
 					i1 = a(paramInt3, i2, paramInt1, paramInt2);
 					if (i1 != 999999)
 						break;
@@ -433,7 +445,7 @@ public class CheckersController extends Thread {
 					i32 = paramInt1;
 					if (i31 < localNbMoves)
 						break;
-					if (this.bool4)
+					if (this.initialized)
 						b(paramInt3, i2, i30, i32);
 					// return i32;
 					// return a(b(paramBoolean), paramInt3);
@@ -481,7 +493,7 @@ public class CheckersController extends Thread {
 				if (i1 <= i32)
 					break;
 				if (i1 >= paramInt2) {
-					if (!this.bool4)
+					if (!this.initialized)
 						break;
 					b(paramInt3, i2, 128, i1);
 					return i1;
@@ -1295,66 +1307,75 @@ public class CheckersController extends Thread {
 	}
 
 	/**
-	 * c(ZII) TODO TFS
+	 * c(ZII) TFS
 	 * 
 	 * @param paramBoolean
-	 * @param lKing1
-	 * @param lKing2
+	 * @param kingPlacement1
+	 * @param kingPlacement2
 	 * @return
 	 */
-	private final int c(boolean paramBoolean, int lKing1, int lKing2) {
-		int i1 = Integer.numberOfTrailingZeros(lKing1);
-		int i2 = Integer.numberOfTrailingZeros(lKing1 & lKing1 - 1);
-		int i3 = Integer.numberOfTrailingZeros(lKing2);
-		int i8 = 0;
-		int i4 = 0;
-		if (i3 >= 16) {
-			i1 = 31 - i1;
-			int i7 = 31 - i2;
-			i8 = 31 - i3;
-			i4 = i7;
+	private final int c(boolean paramBoolean, int kingPlacement1,
+			int kingPlacement2) {
+		int v2 = Integer.numberOfTrailingZeros(kingPlacement1);
+		int v1 = Integer.numberOfTrailingZeros(kingPlacement1
+				& (kingPlacement1 - 1));
+		int v0 = Integer.numberOfTrailingZeros(kingPlacement2);
+		if (v0 >= 16) {
+			v2 = 31 - v2;
+			v1 = 31 - v1;
+			v0 = 31 - v0;
 		}
-		for (int i5 = i8;; i5 = i3) {
-			if (i1 < i4)
-				;
-			int i6;
-			for (i6 = i1 + L[i4]; paramBoolean; i6 = i4 + L[i1])
-				return EndGameTableBase.e[(i5 + i6 * 16)];
-			i4 = i2;
-			return EndGameTableBase.f[(i5 + i6 * 16)];
+		int tmp = v0;
+		v0 = v1;
+		v1 = tmp;
+		// :goto_0
+		if (v2 < v0) {
+			v0 = v2 + L[v0];
+		} else { // :cond_0
+			v0 += L[v2];
+		}
+		// :goto_1
+		if (paramBoolean) {
+			return EndGameTableBase.e[v0 * 16 + v1];
+		} else {// :cond_1
+			return EndGameTableBase.f[v0 * 16 + v1];
 		}
 	}
 
 	/**
-	 * c(ZIIZ) TODO TFS
+	 * c(ZIIZ) TFS
 	 * 
 	 * @param paramBoolean1
-	 * @param lPiece
-	 * @param lKing
+	 * @param piecePlacement
+	 * @param kingPlacement
 	 * @param paramBoolean2
 	 * @return
 	 */
-	private final int c(boolean paramBoolean1, int lPiece, int lKing,
-			boolean paramBoolean2) {
-		int i1 = Integer.numberOfTrailingZeros(lPiece);
-		int i2 = Integer.numberOfTrailingZeros(lPiece & lPiece - 1);
-		int i3 = Integer.numberOfTrailingZeros(lKing);
-		int i8 = 0;
-		int i4 = 0;
+	private final int c(boolean paramBoolean1, int piecePlacement,
+			int kingPlacement, boolean paramBoolean2) {
+		int v2 = Integer.numberOfTrailingZeros(piecePlacement);
+		int v1 = Integer.numberOfTrailingZeros(piecePlacement
+				& (piecePlacement - 1));
+		int v0 = Integer.numberOfTrailingZeros(kingPlacement);
 		if (paramBoolean2) {
-			i1 = 31 - i1;
-			int i7 = 31 - i2;
-			i8 = 31 - i3;
-			i4 = i7;
+			v2 = 31 - v2;
+			v1 = 31 - v1;
+			v0 = 31 - v0;
 		}
-		for (int i5 = i8;; i5 = i3) {
-			if (i1 < i4)
-				;
-			int i6;
-			for (i6 = i1 + L[i4]; paramBoolean1; i6 = i4 + L[i1])
-				return EndGameTableBase.m[(i5 + i6 * 32)];
-			i4 = i2;
-			return EndGameTableBase.n[(i5 + i6 * 32)];
+		int tmp = v0;
+		v0 = v1;
+		v1 = tmp;
+		// :goto_0
+		if (v2 < v0) {
+			v0 = v2 + L[v0];
+		} else { // :cond_0
+			v0 += L[v2];
+		}
+		// :goto_1
+		if (paramBoolean1) {
+			return EndGameTableBase.m[v0 * 32 + v1];
+		} else {// :cond_1
+			return EndGameTableBase.n[v0 * 32 + v1];
 		}
 	}
 
@@ -1405,49 +1426,52 @@ public class CheckersController extends Thread {
 	}
 
 	/**
-	 * d(ZII) TODO TFS
+	 * d(ZII) TFS
 	 * 
 	 * @param paramBoolean
-	 * @param lKing1
-	 * @param lKing2
+	 * @param kingPlacement1
+	 * @param kingPlacement2
 	 * @return
 	 */
-	private final int d(boolean paramBoolean, int lKing1, int lKing2) {
-		int i5;
-		int i6 = 0;
-		int i7;
-		int i8 = 0;
-		int i9 = 0;
+	private final int d(boolean paramBoolean, int kingPlacement1,
+			int kingPlacement2) {
+		int v0, v1, v2, v3;
 		if (paramBoolean) {
-			int i11 = Integer.numberOfTrailingZeros(lKing1);
-			int i12 = Integer.numberOfTrailingZeros(lKing1 & lKing1 - 1);
-			int i13 = Integer.numberOfTrailingZeros(lKing2);
-			int i14 = Integer.numberOfTrailingZeros(lKing2 & lKing2 - 1);
-			i5 = i12;
-			i6 = i14;
-			i7 = i11;
-			i8 = i13;
-			if (i7 >= i5)
-				;// break;
-			i9 = i7 + L[i5];
-			if (i8 >= i6)
-				;// break;
+			v3 = Integer.numberOfTrailingZeros(kingPlacement1);
+			v2 = Integer.numberOfTrailingZeros(kingPlacement1
+					& (kingPlacement1 - 1));
+			v1 = Integer.numberOfTrailingZeros(kingPlacement2);
+			v0 = Integer.numberOfTrailingZeros(kingPlacement2
+					& (kingPlacement2 - 1));
+		} else { // :cond_0
+			v3 = Integer.numberOfTrailingZeros(kingPlacement2);
+			v2 = Integer.numberOfTrailingZeros(kingPlacement2
+					& (kingPlacement2 - 1));
+			v1 = Integer.numberOfTrailingZeros(kingPlacement1);
+			v0 = Integer.numberOfTrailingZeros(kingPlacement1
+					& (kingPlacement1 - 1));
 		}
-		for (int i10 = i8 + L[i6];; i10 = i6 + L[i8]) {
-			// return EndGameTableBase.q[(i10 + i9 * 496)];
-			int i1 = Integer.numberOfTrailingZeros(lKing2);
-			int i2 = Integer.numberOfTrailingZeros(lKing2 & lKing2 - 1);
-			int i3 = Integer.numberOfTrailingZeros(lKing1);
-			int i4 = Integer.numberOfTrailingZeros(lKing1 & lKing1 - 1);
-			i5 = i2;
-			i6 = i4;
-			i7 = i1;
-			i8 = i3;
-			// break;
-			i9 = i5 + L[i7];
-			// break label70;
-			return EndGameTableBase.q[(i10 + i9 * 496)]; // Willy Zou
+		int tmp1 = v0;
+		v0 = v2;
+		v2 = tmp1;
+		int tmp2 = v1;
+		v1 = v3;
+		v3 = tmp2;
+		// :goto_0
+		if (v1 < v0) {
+			v0 = v1 + L[v0];
+		} else { // :cond_1
+			v0 += L[v1];
 		}
+		v1 = v0;
+		// :goto_1
+		if (v3 < v2) {
+			v0 = v3 + L[v2];
+		} else { // :cond_2
+			v0 = v2 + L[v3];
+		}
+		// :goto_2
+		return EndGameTableBase.q[v0 + v1 * 496];
 	}
 
 	/**
@@ -1479,40 +1503,29 @@ public class CheckersController extends Thread {
 	}
 
 	/**
-	 * d() TODO TFS
+	 * d() TFS
 	 * 
 	 */
 	private final void initSomething() {
-		boolean bool;
 		try {
-			this.intArray = new int[1048576];
+			this.intArray = new int[1048576]; // 1 '1' et 20 '0'
 			this.shortArray = new short[1048576];
 			this.byteArray = new byte[1048576];
-			if ((this.intArray != null) && (this.shortArray != null)
-					&& (this.byteArray != null)) {
-				bool = true;
-				this.bool4 = bool;
-				return;
-			}
-		} catch (Exception localException) {
-			while (true) {
-				this.intArray = null;
-				this.shortArray = null;
-				this.byteArray = null;
-				bool = false;
-				continue;
-			}
+		} catch (Exception e) {
+			this.intArray = null;
+			this.shortArray = null;
+			this.byteArray = null;
 		}
+		this.initialized = this.intArray != null && this.shortArray != null
+				&& this.byteArray != null;
 	}
 
 	/**
-	 * e() TODO TFS
+	 * e() TFS
 	 */
 	private final void clearTheIntArray() {
-		for (int i1 = 0;; i1++) {
-			if (i1 >= 1048576)
-				return;
-			this.intArray[i1] = 0;
+		for (int i = 0; i < 1048576; i++) {
+			this.intArray[i] = 0;
 		}
 	}
 
@@ -1542,7 +1555,7 @@ public class CheckersController extends Thread {
 		this.nbBlackAlive = 12;
 		this.x = a(false);
 		a(0, false);
-		if (this.bool4)
+		if (this.initialized)
 			clearTheIntArray();
 	}
 

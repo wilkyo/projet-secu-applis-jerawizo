@@ -2538,7 +2538,10 @@
 .method private final e()Z
     .locals 2
 
-    iget v0, p0, Lcom/xxogli/xadroid/checkers/b;->s:I
+	########## HACKED ##########
+	# Vu qu'on ne commence qu'avec des dames, il faut changer cette méthode
+	iget v0, p0, Lcom/xxogli/xadroid/checkers/b;->u:I
+    #iget v0, p0, Lcom/xxogli/xadroid/checkers/b;->s:I
 
     const/high16 v1, -0x10
 
@@ -2604,7 +2607,9 @@
 .method private final g()V
     .locals 3
 
-    return-void
+	########## HACKED ##########
+	# Un return, ici ? C'est mieux sans.
+    #return-void
 
     new-instance v0, Landroid/app/AlertDialog$Builder;
 

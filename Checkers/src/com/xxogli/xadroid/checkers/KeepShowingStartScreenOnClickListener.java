@@ -3,11 +3,12 @@ package com.xxogli.xadroid.checkers;
 import android.content.DialogInterface;
 
 /**
- * Unused and do nothing
+ * e
  */
-class UselessOnClickListener implements DialogInterface.OnClickListener {
+class KeepShowingStartScreenOnClickListener implements
+		DialogInterface.OnClickListener {
 
-	UselessOnClickListener(CheckersView view) {
+	KeepShowingStartScreenOnClickListener(CheckersView view) {
 	}
 
 	public void onClick(DialogInterface paramDialogInterface, int paramInt) {
