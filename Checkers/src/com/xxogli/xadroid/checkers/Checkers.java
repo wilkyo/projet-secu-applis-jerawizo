@@ -91,7 +91,7 @@ public class Checkers extends Activity {
 		localSubMenu1.add(1, 0, 0, "Move Coach").setCheckable(true)
 				.setChecked(this.view.a(false));
 		localSubMenu1.add(1, 1, 1, "Optional Jumps").setCheckable(true)
-				.setChecked(this.view.b(false));
+				.setChecked(this.view.getOptionalJumpStatus(false));
 		localSubMenu1.add(1, 2, 2, "View from White").setCheckable(true)
 				.setChecked(this.view.rotatedBoardStatus(false));
 		localSubMenu1.add(1, 3, 3, "Full Screen").setCheckable(true)
@@ -168,7 +168,7 @@ public class Checkers extends Activity {
 					return true;
 				}
 				if (i == 1) {
-					paramMenuItem.setChecked(this.view.b(true));
+					paramMenuItem.setChecked(this.view.getOptionalJumpStatus(true));
 					return true;
 				}
 				if (i == 2) {

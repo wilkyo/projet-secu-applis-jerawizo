@@ -316,69 +316,69 @@ public class CheckersView extends View {
 	 * @return
 	 */
 	private final boolean getData(SharedPreferences sharedPreferences) {
-		boolean bool1;
-		if (sharedPreferences != null)
-			;
-		try {
-			int i1 = sharedPreferences.getInt("format", 0);
-			if (i1 != 34)
+		boolean bool1 = false, bool2 = true;
+		if (sharedPreferences != null) {
+			if (sharedPreferences.getInt("format", 0) != 34)
 				bool1 = false;
-			while (true) {
-				// return bool1;
-				this.state = sharedPreferences.getInt("state", 1);
-				this.whitePiecePlacement = sharedPreferences.getInt("wp", 0);
-				this.blackPiecePlacement = sharedPreferences.getInt("bp", 0);
-				this.whiteKingPlacement = sharedPreferences.getInt("wk", 0);
-				this.blackKingPlacement = sharedPreferences.getInt("bk", 0);
-				this.l1 = sharedPreferences.getInt("l1", 0);
-				this.l2 = sharedPreferences.getInt("l2", 0);
-				this.lm = sharedPreferences.getInt("lm", 0);
-				this.capturePriority = sharedPreferences
-						.getBoolean("cap", true);
-				this.level = sharedPreferences.getInt("level", 3);
-				this.moveCoach = sharedPreferences.getBoolean("show", true);
-				this.onJoueLesNoirs = sharedPreferences.getBoolean("free",
-						false);
-				this.viewFromWhite = sharedPreferences.getBoolean("rot", false);
-				this.fullscreen = sharedPreferences.getBoolean("full", false);
-				this.startScreen = sharedPreferences.getBoolean("start", true);
-				this.animation = sharedPreferences.getBoolean("anim", true);
-				this.boardColor = sharedPreferences.getInt("color", 0);
-				getArrayValuesFromPreferences(sharedPreferences, "lwp",
-						this.lastWhitePiecePlacement);
-				getArrayValuesFromPreferences(sharedPreferences, "lwk",
-						this.lastWhiteKingPlacement);
-				getArrayValuesFromPreferences(sharedPreferences, "lbp",
-						this.lastBlackPiecePlacement);
-				getArrayValuesFromPreferences(sharedPreferences, "lbk",
-						this.lastBlackKingPlacement);
-				this.undoArrayPosition = sharedPreferences.getInt("lp", 0);
-				this.undoCpt = sharedPreferences.getInt("lc", 0);
-				setLevel(this.level);
-				boolean bool2 = true;
-				if ((this.state != 3) && (this.state != 4) && (this.state != 6))
-					bool2 = false;
-				synchronized (this.controller) {
-					this.controller.setPlateau(this.whitePiecePlacement,
-							this.whiteKingPlacement, this.blackPiecePlacement,
-							this.blackKingPlacement, bool2);
-					this.controller.a(0, bool2, this.onJoueLesNoirs);
-					this.nbPossibleMoves = this.controller.nbPossibleMoves;
-					if ((this.state == 4) || (this.state == 2))
-						this.controller.a(bool2, this.onJoueLesNoirs);
-					bool1 = true;
-					continue;
-					// bool2 = true;
+			try {
+				while (true) {
+					this.state = sharedPreferences.getInt("state", 1);
+					this.whitePiecePlacement = sharedPreferences
+							.getInt("wp", 0);
+					this.blackPiecePlacement = sharedPreferences
+							.getInt("bp", 0);
+					this.whiteKingPlacement = sharedPreferences.getInt("wk", 0);
+					this.blackKingPlacement = sharedPreferences.getInt("bk", 0);
+					this.l1 = sharedPreferences.getInt("l1", 0);
+					this.l2 = sharedPreferences.getInt("l2", 0);
+					this.lm = sharedPreferences.getInt("lm", 0);
+					this.capturePriority = sharedPreferences.getBoolean("cap",
+							true);
+					this.level = sharedPreferences.getInt("level", 3);
+					this.moveCoach = sharedPreferences.getBoolean("show", true);
+					this.onJoueLesNoirs = sharedPreferences.getBoolean("free",
+							false);
+					this.viewFromWhite = sharedPreferences.getBoolean("rot",
+							false);
+					this.fullscreen = sharedPreferences.getBoolean("full",
+							false);
+					this.startScreen = sharedPreferences.getBoolean("start",
+							true);
+					this.animation = sharedPreferences.getBoolean("anim", true);
+					this.boardColor = sharedPreferences.getInt("color", 0);
+					getArrayValuesFromPreferences(sharedPreferences, "lwp",
+							this.lastWhitePiecePlacement);
+					getArrayValuesFromPreferences(sharedPreferences, "lwk",
+							this.lastWhiteKingPlacement);
+					getArrayValuesFromPreferences(sharedPreferences, "lbp",
+							this.lastBlackPiecePlacement);
+					getArrayValuesFromPreferences(sharedPreferences, "lbk",
+							this.lastBlackKingPlacement);
+					this.undoArrayPosition = sharedPreferences.getInt("lp", 0);
+					this.undoCpt = sharedPreferences.getInt("lc", 0);
+					setLevel(this.level);
+
+					if ((this.state != 3) && (this.state != 4)
+							&& (this.state != 6))
+						bool2 = false;
+					synchronized (this.controller) {
+						this.controller.setPlateau(this.whitePiecePlacement,
+								this.whiteKingPlacement,
+								this.blackPiecePlacement,
+								this.blackKingPlacement, bool2);
+						this.controller.a(0, bool2, this.onJoueLesNoirs);
+						this.nbPossibleMoves = this.controller.nbPossibleMoves;
+						if ((this.state == 4) || (this.state == 2))
+							this.controller.a(bool2, this.onJoueLesNoirs);
+						bool1 = true;
+					}
 				}
+
+			} catch (ClassCastException localClassCastException) {
+					bool1 = false;
 			}
-		} catch (ClassCastException localClassCastException) {
-			while (true) {
-				bool1 = false;
-				continue;
-				// bool1 = false;
-			}
-		} finally {
 		}
+		return bool1;
 	}
 
 	/**
@@ -944,7 +944,7 @@ public class CheckersView extends View {
 	}
 
 	/**
-	 * a(Landroid/content/SharedPreferences$Editor;) TODO TFS
+	 * a(Landroid/content/SharedPreferences$Editor;)
 	 * 
 	 * @param paramEditor
 	 */
@@ -969,18 +969,14 @@ public class CheckersView extends View {
 			paramEditor.putBoolean("start", this.startScreen);
 			paramEditor.putBoolean("anim", this.animation);
 			paramEditor.putInt("color", this.boardColor);
-			setPreferenceEditor(paramEditor, "lwp",
-					this.lastWhitePiecePlacement);
+			setPreferenceEditor(paramEditor, "lwp",this.lastWhitePiecePlacement);
 			setPreferenceEditor(paramEditor, "lwk", this.lastWhiteKingPlacement);
-			setPreferenceEditor(paramEditor, "lbp",
-					this.lastBlackPiecePlacement);
+			setPreferenceEditor(paramEditor, "lbp",this.lastBlackPiecePlacement);
 			setPreferenceEditor(paramEditor, "lbk", this.lastBlackKingPlacement);
 			paramEditor.putInt("lp", this.undoArrayPosition);
 			paramEditor.putInt("lc", this.undoCpt);
-			return;
-		} finally {
-			// localObject = finally;
-			// throw localObject;
+		}finally{
+			
 		}
 	}
 
@@ -1033,40 +1029,31 @@ public class CheckersView extends View {
 	 * @param paramBoolean
 	 * @return
 	 */
-	public final boolean b(boolean paramBoolean) {
-		int i2, i1 = 1;
-		if (paramBoolean)
-			;
-		try {
-			boolean bool2;
-			if (this.onJoueLesNoirs) {
-				bool2 = false;
-				this.onJoueLesNoirs = bool2;
-				if ((this.state == 3) || (this.state == i1)) {
-					if (this.state != 3)
+	public final boolean getOptionalJumpStatus(boolean paramBoolean) {
+		int i1 = 1;
+		boolean bool1=false;
+		if (paramBoolean) {
+			try {
+				if (this.onJoueLesNoirs) {
+					this.onJoueLesNoirs = false;
+					if ((this.state == 3) || (this.state == i1)) {
+						this.l1 = 0;
+						this.l2 = 0;
+						this.lm = 0;
+						// if (this.p.a(0, i2, this.B) != i1)
 						// break;
-						i2 = i1;
-					this.l1 = 0;
-					this.l2 = 0;
-					this.lm = 0;
-					// if (this.p.a(0, i2, this.B) != i1)
-					// break;
+					}
 				}
+					this.capturePriority = true; // this.y = i1;
+					this.nbPossibleMoves = this.controller.nbPossibleMoves;
+					postInvalidate();
+					bool1 = this.onJoueLesNoirs;
+					i1 = 0;
+			} finally {
+				
 			}
-			while (true) {
-				this.capturePriority = true; // this.y = i1;
-				this.nbPossibleMoves = this.controller.nbPossibleMoves;
-				postInvalidate();
-				boolean bool1 = this.onJoueLesNoirs;
-				// return bool1;
-				bool2 = true;// bool2 = i1;
-				// break;
-				int i3 = 0;
-				// break;
-				i1 = 0;
-			}
-		} finally {
 		}
+		return bool1;
 	}
 
 	public final boolean rotatedBoardStatus(boolean paramBoolean) {
