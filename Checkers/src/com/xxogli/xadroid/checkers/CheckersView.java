@@ -12,12 +12,21 @@ import android.widget.Toast;
 
 /*  */
 public class CheckersView extends View {
+	/**
+	 * A
+	 */
 	private boolean moveCoach;
+	/**
+	 * B
+	 */
 	private boolean onJoueLesNoirs;
 	/**
-	 * view from white
+	 * C view from white
 	 */
 	private boolean viewFromWhite;
+	/**
+	 * D
+	 */
 	private boolean fullscreen;
 	/**
 	 * E
@@ -59,20 +68,65 @@ public class CheckersView extends View {
 	 * N
 	 */
 	private int nbPossibleMoves;
+	/**
+	 * O
+	 */
 	private String text1;
+	/**
+	 * P
+	 */
 	private float lastTouchedX;
+	/**
+	 * Q
+	 */
 	private float lastTouchedY;
+	/**
+	 * R
+	 */
 	private int R;
+	/**
+	 * a
+	 */
 	private Context context;
+	/**
+	 * b
+	 */
 	private Paint paint1;
+	/**
+	 * c
+	 */
 	private Paint paint2;
+	/**
+	 * d
+	 */
 	private Paint paint3;
+	/**
+	 * e
+	 */
 	private Paint paint4;
+	/**
+	 * f
+	 */
 	private Paint redCase;
+	/**
+	 * g
+	 */
 	private Paint paint6;
+	/**
+	 * h
+	 */
 	private Paint paint7;
+	/**
+	 * i
+	 */
 	private Paint greenCase;
+	/**
+	 * j
+	 */
 	private Paint paint9;
+	/**
+	 * k
+	 */
 	private int k;
 	private float l;
 	private int m;
@@ -105,13 +159,25 @@ public class CheckersView extends View {
 	 * u
 	 */
 	private int blackKingPlacement;
+	/**
+	 * v
+	 */
 	private int l1;
+	/**
+	 * w
+	 */
 	private int l2;
+	/**
+	 * x
+	 */
 	private int lm;
 	/**
-	 * Must capture / Do not show optional jumps
+	 * y Must capture / Do not show optional jumps
 	 */
 	private boolean capturePriority;
+	/**
+	 * z
+	 */
 	private int level;
 
 	public CheckersView(Context mContext,
@@ -382,216 +448,195 @@ public class CheckersView extends View {
 	}
 
 	/**
-	 * a(ZIIII) TODO TFS
+	 * a(ZIIII) TFS
 	 * 
-	 * @param paramBoolean
+	 * @param isIA
 	 * @param moveIndex
-	 *            Si négatif, contient l'action à entreprendre
+	 *            Si négatif, contient l'action à entreprendre<br />
+	 *            -3: new, -2: undo, -4: switch-color
 	 * @param v
 	 * @param d
 	 * @param n
 	 * @return
 	 */
-	private final boolean gameStatus(boolean paramBoolean, int moveIndex,
-			int v, int d, int n) {
-		int i1 = -1;
-		if (paramBoolean)
-			;
-		int i2;
-		boolean bool1;
-		String str2;
-		String str1;
-		int i10, i11;
-		do {
-			do {
-				while (true) {
-					try {
-						if (this.R > 0) {
-							if (this.R == 2) {
-								moveIndex = -2;
-								if (this.state != 2)
-									continue;
-								i11 = 1;
-								this.state = i11;
-								setLevel(this.level);
-								this.R = 0;
-								paramBoolean = false;
-							}
-						} else {
-							if (!paramBoolean)
-								break;
-							c(moveIndex);
-							if ((this.state != 5) && (this.state != 6)) {
-								if (d != 0)
-									continue;
-								this.text1 = "random play";
-							}
-							i2 = 1;
-							// return i2;
-							return i2 == 1;
-						}
-						moveIndex = i1;
-						// continue;
-						i11 = 3;
-						// continue;
-						if (d == i1) {
-							this.text1 = "only reply";
-							continue;
-						}
-					} finally {
+	private final boolean gameStatus(boolean isIA, int moveIndex, int v, int d,
+			int n) {
+		try {
+			if (isIA) {
+				if (this.R > 0) {
+					if (this.R == 2) {
+						moveIndex = -2;
+					} else { // :cond_3
+						moveIndex = -1;
 					}
-					if (d == -2) {
-						this.text1 = "opening";
-					} else if (v <= -32000) {
-						this.text1 = ("loss in #" + (v + 32500) / 2);
-					} else if (v >= 32000) {
-						this.text1 = ("win in #" + (32500 - v) / 2);
-					} else {
-						this.text1 = ("v=" + v + " d=" + d + " n=" + n);
-						// continue;
-						if (moveIndex == -3) {
-							alertDialog();
-							i2 = 1;
-						} else if (moveIndex == i1) {
-							if ((this.state == 2) || (this.state == 4)) {
-								this.R = 1;
-								this.controller.level = 1;
-								this.text1 = "stopping....";
-								i2 = 1;
-							} else {
-								this.R = 0;
-								this.controller.initPlateau();
-								this.state = 1;
-								this.whitePiecePlacement = this.controller.lastWhitePiecesPlacement;
-								this.blackPiecePlacement = this.controller.lastBlackPiecesPlacement;
-								this.whiteKingPlacement = this.controller.lastWhiteKingsPlacement;
-								this.blackKingPlacement = this.controller.lastBlackKingsPlacement;
-								this.l1 = 0;
-								this.l2 = 0;
-								this.lm = 0;
-								this.capturePriority = false;
-								this.undoArrayPosition = 0;
-								this.undoCpt = 0;
-								this.nbPossibleMoves = this.controller.nbPossibleMoves;
-								this.text1 = null;
-								i2 = 1;
-							}
-						} else if (moveIndex == -2) {
+					// :goto_0
+					if (this.state == 2) {
+						this.state = 1;
+					} else { // :cond_4
+						this.state = 3;
+					}
+					// :goto_1
+					setLevel(this.level);
+					this.R = 0;
+					isIA = false;
+				}
+			}
+			// :cond_0
+			if (isIA) {
+				c(moveIndex);
+				if (this.state != 5 && this.state != 6) {
+					if (d == 0) {
+						this.text1 = "random play";
+					} else { // :cond_5
+						if (d == -1) {
+							this.text1 = "only reply";
+						} else if (d == -2) { // :cond_6
+							this.text1 = "opening";
+						} else if (v <= -32000) {// :cond_7
+							this.text1 = "loss in #" + (v + 32500) / 2;
+						} else if (v >= 32000) { // :cond_8
+							this.text1 = "win in #" + (32500 - v) / 2;
+						} else { // cond_9
+							this.text1 = "v=" + v + " d=" + d + " n=" + n;
+						}
+					}
+				}
+			} else { // :cond_a
+				if (moveIndex == -3) {
+					newGameAlertDialog();
+				} else if (moveIndex == -1) { // :cond_b
+					if (this.state == 2) {
+						if (this.state == 4) {
+							// :cond_c
+							this.R = 1;
+							this.controller.level = 1;
+							this.text1 = "stopping....";
+						} else { // :cond_d
+							this.R = 0;
+							this.controller.initPlateau();
+							this.state = 1;
+							this.whitePiecePlacement = this.controller.lastWhitePiecesPlacement;
+							this.blackPiecePlacement = this.controller.lastBlackPiecesPlacement;
+							this.whiteKingPlacement = this.controller.lastWhiteKingsPlacement;
+							this.blackKingPlacement = this.controller.lastBlackKingsPlacement;
 							this.l1 = 0;
 							this.l2 = 0;
 							this.lm = 0;
-							if ((this.state == 2) || (this.state == 4)) {
-								this.R = 2;
-								this.controller.level = 1;
-								this.text1 = "stopping....";
-								i2 = 1;
-							} else {
-								this.R = 0;
-								if ((this.state == 1) || (this.state == 5))
-									break;
-								bool1 = false;
-								if (undo(bool1)) {
-									if (bool1)
-										;
-									for (this.state = 3;; this.state = 1) {
-										this.whitePiecePlacement = this.controller.lastWhitePiecesPlacement;
-										this.blackPiecePlacement = this.controller.lastBlackPiecesPlacement;
-										this.whiteKingPlacement = this.controller.lastWhiteKingsPlacement;
-										this.blackKingPlacement = this.controller.lastBlackKingsPlacement;
-										this.l1 = 0;
-										this.l2 = 0;
-										this.lm = 0;
-										int i4 = this.controller.a(0, bool1,
-												this.onJoueLesNoirs);
-										boolean bool2 = false;
-										if (i4 == 1)
-											bool2 = true;
-										this.capturePriority = bool2;
-										this.nbPossibleMoves = this.controller.nbPossibleMoves;
-										this.text1 = "undid half-move";
-										i2 = 1;
-										break;
-									}
-								}
-								this.text1 = "no more undo";
-								i2 = 1;
+							this.capturePriority = false;
+							this.undoArrayPosition = 0;
+							this.undoCpt = 0;
+							this.nbPossibleMoves = this.controller.nbPossibleMoves;
+							this.text1 = null;
+						}
+					} else { // :cond_c
+						this.R = 1;
+						this.controller.level = 1;
+						this.text1 = "stopping....";
+					}
+				} else if (moveIndex == -2) { // Undo :cond_e
+					this.l1 = 0;
+					this.l2 = 0;
+					this.lm = 0;
+					if (this.state != 2 && this.state == 4 || this.state == 2) {
+						// :cond_f
+						this.R = 2;
+						this.controller.level = 1;
+						this.text1 = "stopping....";
+					} else { // :cond_10
+						this.R = 0;
+						boolean bool;
+						bool = this.state == 1 || this.state == 5; // :cond_12
+						// :goto_4
+						if (undo(bool)) {
+							if (bool) {
+								this.state = 3;
+							} else { // :cond_13
+								this.state = 1;
 							}
-						} else {
-							if (moveIndex != -4)
-								break;
-							if (this.state == 1) {
-								this.state = 2;
-								this.controller.a(false, this.onJoueLesNoirs);
-								Context localContext2 = this.context;
-								if (!this.viewFromWhite)
-									break;
-								str2 = "computer now plays black";
-								Toast.makeText(localContext2, str2, 0).show();
-								i2 = 1;
-							} else {
-								int i5 = this.state;
-								i2 = 0;
-								if (i5 == 3) {
-									this.state = 4;
-									this.controller
-											.a(true, this.onJoueLesNoirs);
-									Context localContext1 = this.context;
-									if (!this.viewFromWhite)
-										break;
-									str1 = "computer now plays white\ngoto options to rotate board";
-									Toast.makeText(localContext1, str1, 0)
-											.show();
-									i2 = 1;
-								}
+							// :goto_5
+							this.whitePiecePlacement = this.controller.lastWhitePiecesPlacement;
+							this.blackPiecePlacement = this.controller.lastBlackPiecesPlacement;
+							this.whiteKingPlacement = this.controller.lastWhiteKingsPlacement;
+							this.blackKingPlacement = this.controller.lastBlackKingsPlacement;
+							this.l1 = 0;
+							this.l2 = 0;
+							this.lm = 0;
+							if (this.controller.a(0, bool, this.onJoueLesNoirs) == 1)
+								this.capturePriority = true;
+							// :cond_11
+							this.capturePriority = false;
+							this.nbPossibleMoves = this.controller.nbPossibleMoves;
+							this.text1 = "undid half-move";
+						} else { // :cond_14
+							this.text1 = "no more undo";
+						}
+					}
+				} else if (moveIndex == -4) { // Switch color :cond_15
+					if (this.state == 1) {
+						this.state = 2;
+						this.controller.a(false, this.onJoueLesNoirs);
+						String text;
+						if (this.viewFromWhite) {
+							text = "computer now plays black";
+						} else { // :cond_16
+							text = "computer now plays black\ngoto options to rotate board";
+						}
+						// :goto_6
+						Toast.makeText(this.context, text, Toast.LENGTH_SHORT)
+								.show();
+					} else { // :cond_17
+						if (this.state == 3) {
+							this.state = 0;
+							this.controller.a(true, this.onJoueLesNoirs);
+							String text;
+							if (this.viewFromWhite) {
+								text = "computer now plays white\ngoto options to rotate board";
+							} else { // :cond_18
+								text = "computer now plays white";
 							}
+							// :goto_7
+							Toast.makeText(this.context, text,
+									Toast.LENGTH_SHORT).show();
+						}
+					}
+				} else if (moveIndex == 1) { // :cond_19
+					if (this.state != 1 && this.state == 3 || this.state == 1) {
+						// :cond_1a
+						this.l2 = 0;
+						this.lm = 0;
+						int[] v6 = this.controller.b;
+						int v2 = 0;
+						int v3 = 0;
+						// :goto_8
+						int v1 = -1;
+						while (v2 < this.controller.nbPossibleMoves) { // :cond_1b
+							if ((this.l1 & v6[v2]) == this.l1) {
+								if (v6[v2] != 0) {
+									v1 = v3 + 1;
+								} else { // :cond_1f
+									v1 = v3;
+								}
+								// :goto_9
+								this.l2 |= v6[v2];
+								v3 = v1;
+								v1 = v2;
+							}
+							// :cond_1c
+							v2 += 1;
+						}
+						if (v3 == 1) {
+							c(v1);
+						} else { // :cond_1d
+							if (this.l2 == 0)
+								this.l1 = 0;
 						}
 					}
 				}
-				i2 = 0;
-			} while (moveIndex != 1);
-			if (this.state == 1)
-				break;
-			i10 = this.state;
-			i2 = 0;
-		} while (i10 != 3);
-		this.l2 = 0;
-		this.lm = 0;
-		int i6 = this.controller.nbPossibleMoves;
-		int[] arrayOfInt = this.controller.b;
-		int i7 = 0;
-		int i8 = 0;
-		while (true) {
-			if (i7 >= i6) {
-				if (i8 != 1)
-					break;
-				c(i1);
-				i2 = 1;
-				break;
 			}
-			if ((this.l1 & arrayOfInt[i7]) == this.l1) {
-				if (arrayOfInt[i7] != i2)
-					;
-				for (int i9 = i8 + 1;; i9 = i8) {
-					int i3 = arrayOfInt[i7];
-					this.l2 |= arrayOfInt[i7];
-					i8 = i9;
-					i1 = i7;
-					// break;
-					if (this.l2 == 0)
-						this.l1 = 0;
-					i3 = 1;
-					break;
-				}
-				bool1 = true;
-				// break;
-				str2 = "computer now plays black\ngoto options to rotate board";
-				// break;
-				str1 = "computer now plays white";
-				break;
-			}
-			i7++;
+			return true;
+		} catch (Exception e) {
+			return false;
 		}
-		return false; // willy zou
 	}
 
 	/**
@@ -848,7 +893,10 @@ public class CheckersView extends View {
 		return this.blackPiecePlacement == -1048576;
 	}
 
-	private final void alertDialog() {
+	/**
+	 * f()
+	 */
+	private final void newGameAlertDialog() {
 		new AlertDialog.Builder(this.context)
 				.setMessage("Start a new game?")
 				.setCancelable(false)
@@ -962,7 +1010,7 @@ public class CheckersView extends View {
 	 * @param d
 	 * @param n
 	 */
-	public final void move(int moveIndex, int v, int d, int n) {
+	public final void moveIA(int moveIndex, int v, int d, int n) {
 		if (gameStatus(true, moveIndex, v, d, n))
 			postInvalidate();
 	}

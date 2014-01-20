@@ -72,9 +72,21 @@ public class CheckersController extends Thread {
 	 * g
 	 */
 	public int lastBlackKingsPlacement;
+	/**
+	 * h
+	 */
 	public volatile int level = 1000;
+	/**
+	 * i
+	 */
 	private Random random = new Random();
+	/**
+	 * j
+	 */
 	private CheckersView view;
+	/**
+	 * k
+	 */
 	private boolean k;
 	private long currentTimeMillis;
 	private boolean m;
@@ -1612,13 +1624,13 @@ public class CheckersController extends Thread {
 			b();
 			if (this.nbPossibleMoves == 1) {
 				sleep();
-				this.view.move(0, 0, -1, 1);
+				this.view.moveIA(0, 0, -1, 1);
 			} else {
 				if (this.level != 0)
 					break;
 				sleep();
 				int moveIndex = this.random.nextInt(this.nbPossibleMoves);
-				this.view.move(moveIndex, 0, 0, 1);
+				this.view.moveIA(moveIndex, 0, 0, 1);
 			}
 		}
 		if (this.lastWhitePiecesPlacement == 4095) { // suite de 12 '1'
@@ -1629,7 +1641,7 @@ public class CheckersController extends Thread {
 				;
 			for (int i36 = 1;; i36 = 0) {
 				int i37 = localRandom.nextInt(i35 - i36);
-				this.view.move(i37, 0, -2, 1);
+				this.view.moveIA(i37, 0, -2, 1);
 				break;
 			}
 		}
@@ -1676,7 +1688,7 @@ public class CheckersController extends Thread {
 		int i17 = 0;
 		do {
 			do {
-				this.view.move(i2, i3, i4, this.leFameuxN);
+				this.view.moveIA(i2, i3, i4, this.leFameuxN);
 				// break;
 				bool1 = false;
 				// break;
