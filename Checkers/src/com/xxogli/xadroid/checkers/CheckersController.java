@@ -364,7 +364,15 @@ public class CheckersController extends Thread {
 			return paramInt2 + (paramInt1 - 32373);
 		return 0;
 	}
-
+	/**
+	 * a(IIII)
+	 * 
+	 * @param paramInt1
+	 * @param paramInt2
+	 * @param paramInt3
+	 * @param paramInt4
+	 * @return
+	 */
 	private final int a(int paramInt1, int paramInt2, int paramInt3,
 			int paramInt4) {
 		int i1 = this.x;
@@ -388,8 +396,17 @@ public class CheckersController extends Thread {
 		while (i4 < paramInt4);
 		// return i4;
 	}
-
-	private final int a(int paramInt1, int paramInt2, int paramInt3,
+	/**a(IIIIZ)
+	 * 
+	 * @param paramInt1
+	 * @param paramInt2
+	 * @param paramInt3
+	 * @param paramInt4
+	 * @param paramInt5
+	 * @param paramBoolean
+	 * @return
+	 */
+	private final int useInRun(int paramInt1, int paramInt2, int paramInt3,
 			int paramInt4, int paramInt5, boolean paramBoolean) {
 		this.leFameuxN = (1 + this.leFameuxN);
 		int i1 = 0;
@@ -458,7 +475,7 @@ public class CheckersController extends Thread {
 					if (i31 < localNbMoves)
 						break;
 					if (this.initialized)
-						b(paramInt3, i2, i30, i32);
+						setvalueParamFromLastParam(paramInt3, i2, i30, i32);
 					// return i32;
 					// return a(b(paramBoolean), paramInt3);
 					a(b(paramBoolean), paramInt3); // Willy Zou
@@ -490,7 +507,7 @@ public class CheckersController extends Thread {
 				if (paramBoolean)
 					;
 				for (boolean bool = false;; bool = true) {
-					i1 = -a(i33, i34, i35, i2, i29, bool);
+					i1 = -useInRun(i33, i34, i35, i2, i29, bool);
 					this.lastWhitePiecesPlacement = localWPPlacement;
 					this.lastWhiteKingsPlacement = localWKPlacement;
 					this.lastBlackPiecesPlacement = localBPPlacement;
@@ -507,7 +524,7 @@ public class CheckersController extends Thread {
 				if (i1 >= paramInt2) {
 					if (!this.initialized)
 						break;
-					b(paramInt3, i2, 128, i1);
+					setvalueParamFromLastParam(paramInt3, i2, 128, i1);
 					return i1;
 				}
 				i36 = 192;
@@ -1097,14 +1114,13 @@ public class CheckersController extends Thread {
 
 	/**
 	 * TODO TFS
-	 * 
+	 * b(IIII)V
 	 * @param paramInt1
 	 * @param paramInt2
 	 * @param paramInt3
 	 * @param paramInt4
 	 */
-	private final void b(int paramInt1, int paramInt2, int paramInt3,
-			int paramInt4) {
+	private final void setvalueParamFromLastParam(int paramInt1, int paramInt2, int paramInt3,int paramInt4) {
 		if (paramInt4 <= -32000) {
 			switch (paramInt3) {
 			default:
@@ -1710,7 +1726,7 @@ public class CheckersController extends Thread {
 			if (!this.t)
 				break;
 			bool2 = false;
-			i17 = -a(i15, i16, 1, i12, 0, bool2);
+			i17 = -useInRun(i15, i16, 1, i12, 0, bool2);
 			this.q[i14] = i17;
 			this.lastWhitePiecesPlacement = localLWPP;
 			this.lastWhiteKingsPlacement = localLWKP;
