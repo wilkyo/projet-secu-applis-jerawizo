@@ -6298,6 +6298,56 @@
     return v0
 .end method
 
+.method public final initPlateau(IIII)V
+    .locals 3
+
+    const/16 v2, 0xc
+
+    const/4 v1, 0x0
+
+    const/16 v0, 0xfff
+
+    .parameter "whitePiecesPlacement"
+    .parameter "whiteKingsPlacement"
+    .parameter "blackPiecesPlacement"
+    .parameter "blackKingsPlacement"
+
+    .prologue
+    .line 13
+    iput p1, p0, Lcom/xxogli/xadroid/checkers/a;->d:I
+
+    .line 14
+    iput p2, p0, Lcom/xxogli/xadroid/checkers/a;->e:I
+
+    .line 15
+    iput p3, p0, Lcom/xxogli/xadroid/checkers/a;->f:I
+
+    .line 16
+    iput p4, p0, Lcom/xxogli/xadroid/checkers/a;->g:I
+
+    .line 17
+    iput v2, p0, Lcom/xxogli/xadroid/checkers/a;->v:I
+
+    iput v2, p0, Lcom/xxogli/xadroid/checkers/a;->w:I
+
+    invoke-direct {p0, v1}, Lcom/xxogli/xadroid/checkers/a;->a(Z)I
+
+    move-result v0
+
+    iput v0, p0, Lcom/xxogli/xadroid/checkers/a;->x:I
+
+    invoke-direct {p0, v1, v1}, Lcom/xxogli/xadroid/checkers/a;->a(IZ)I
+
+    iget-boolean v0, p0, Lcom/xxogli/xadroid/checkers/a;->B:Z
+
+    if-eqz v0, :cond_0
+
+    invoke-direct {p0}, Lcom/xxogli/xadroid/checkers/a;->e()V
+
+    :cond_0
+    return-void
+.end method
+
 .method public final a()V
     .locals 3
 

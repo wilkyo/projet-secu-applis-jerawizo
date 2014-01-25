@@ -91,6 +91,14 @@
 
 .field private z:I
 
+.field private newGameBlackKingsPlacement:I
+
+.field private newGameBlackPiecesPlacement:I
+
+.field private newGameWhiteKingsPlacement:I
+
+.field private newGameWhitePiecesPlacement:I
+
 
 # direct methods
 .method public constructor <init>(Landroid/content/Context;Landroid/content/SharedPreferences;)V
@@ -423,6 +431,72 @@
     iput v0, p0, Lcom/xxogli/xadroid/checkers/b;->N:I
 
     goto :goto_0
+.end method
+
+.method static synthetic access$0(Lcom/xxogli/xadroid/checkers/b;I)V
+    .locals 0
+    .parameter
+    .parameter
+
+    .prologue
+    .line 28
+    iput p1, p0, Lcom/xxogli/xadroid/checkers/b;->newGameWhitePiecesPlacement:I
+
+    return-void
+.end method
+
+.method static synthetic access$1(Lcom/xxogli/xadroid/checkers/b;I)V
+    .locals 0
+    .parameter
+    .parameter
+
+    .prologue
+    .line 29
+    iput p1, p0, Lcom/xxogli/xadroid/checkers/b;->newGameWhiteKingsPlacement:I
+
+    return-void
+.end method
+
+.method static synthetic access$2(Lcom/xxogli/xadroid/checkers/b;I)V
+    .locals 0
+    .parameter
+    .parameter
+
+    .prologue
+    .line 30
+    iput p1, p0, Lcom/xxogli/xadroid/checkers/b;->newGameBlackPiecesPlacement:I
+
+    return-void
+.end method
+
+.method static synthetic access$3(Lcom/xxogli/xadroid/checkers/b;I)V
+    .locals 0
+    .parameter
+    .parameter
+
+    .prologue
+    .line 31
+    iput p1, p0, Lcom/xxogli/xadroid/checkers/b;->newGameBlackKingsPlacement:I
+
+    return-void
+.end method
+
+.method static synthetic access$4(Lcom/xxogli/xadroid/checkers/b;ZIIII)Z
+    .locals 1
+    .parameter
+    .parameter
+    .parameter
+    .parameter
+    .parameter
+    .parameter
+
+    .prologue
+    .line 102
+    invoke-direct/range {p0 .. p5}, Lcom/xxogli/xadroid/checkers/b;->a(ZIIII)Z
+
+    move-result v0
+
+    return v0
 .end method
 
 .method private final a(Landroid/content/SharedPreferences$Editor;Ljava/lang/String;[I)V
@@ -1363,7 +1437,15 @@
 
     iget-object v0, p0, Lcom/xxogli/xadroid/checkers/b;->p:Lcom/xxogli/xadroid/checkers/a;
 
-    invoke-virtual {v0}, Lcom/xxogli/xadroid/checkers/a;->a()V
+    iget v11, p0, Lcom/xxogli/xadroid/checkers/b;->newGameWhitePiecesPlacement:I
+
+    iget v12, p0, Lcom/xxogli/xadroid/checkers/b;->newGameWhiteKingsPlacement:I
+
+    iget v13, p0, Lcom/xxogli/xadroid/checkers/b;->newGameBlackPiecesPlacement:I
+
+    iget v14, p0, Lcom/xxogli/xadroid/checkers/b;->newGameBlackKingsPlacement:I
+
+    invoke-virtual {v0, v11, v12, v13, v14}, Lcom/xxogli/xadroid/checkers/a;->initPlateau(IIII)V
 
     const/4 v0, 0x1
 
@@ -2558,49 +2640,351 @@
     goto :goto_0
 .end method
 
-.method private final f()V
-    .locals 3
+.method private editText(Ljava/lang/String;)Landroid/widget/EditText;
+    .locals 5
+    .parameter "s"
 
-    new-instance v0, Landroid/app/AlertDialog$Builder;
+    .prologue
+    .line 41
+    new-instance v0, Landroid/widget/EditText;
 
     iget-object v1, p0, Lcom/xxogli/xadroid/checkers/b;->a:Landroid/content/Context;
 
-    invoke-direct {v0, v1}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
+    invoke-direct {v0, v1}, Landroid/widget/EditText;-><init>(Landroid/content/Context;)V
 
+    .line 42
+    .local v0, et:Landroid/widget/EditText;
+    new-instance v1, Landroid/widget/TableRow$LayoutParams;
+
+    const/4 v2, -0x1
+
+    const/4 v3, -0x2
+
+    const/high16 v4, 0x3f80
+
+    invoke-direct {v1, v2, v3, v4}, Landroid/widget/TableRow$LayoutParams;-><init>(IIF)V
+
+    invoke-virtual {v0, v1}, Landroid/widget/EditText;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+
+    .line 43
+    invoke-virtual {v0, p1}, Landroid/widget/EditText;->setText(Ljava/lang/CharSequence;)V
+
+    .line 44
+    const/4 v1, 0x2
+
+    invoke-virtual {v0, v1}, Landroid/widget/EditText;->setInputType(I)V
+
+    .line 45
+    const/16 v1, 0xa
+
+    invoke-virtual {v0, v1}, Landroid/widget/EditText;->setEms(I)V
+
+    .line 46
+    return-object v0
+.end method
+
+.method private varargs linearLayout([Landroid/view/View;)Landroid/widget/LinearLayout;
+    .locals 4
+    .parameter "views"
+
+    .prologue
+    const/4 v3, -0x1
+
+    .line 67
+    new-instance v0, Landroid/widget/LinearLayout;
+
+    iget-object v2, p0, Lcom/xxogli/xadroid/checkers/b;->a:Landroid/content/Context;
+
+    invoke-direct {v0, v2}, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
+
+    .line 68
+    .local v0, ll:Landroid/widget/LinearLayout;
+    new-instance v2, Landroid/view/ViewGroup$LayoutParams;
+
+    invoke-direct {v2, v3, v3}, Landroid/view/ViewGroup$LayoutParams;-><init>(II)V
+
+    invoke-virtual {v0, v2}, Landroid/widget/LinearLayout;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+
+    .line 69
+    const/4 v2, 0x1
+
+    invoke-virtual {v0, v2}, Landroid/widget/LinearLayout;->setOrientation(I)V
+
+    .line 70
+    array-length v3, p1
+
+    const/4 v2, 0x0
+
+    :goto_0
+    if-lt v2, v3, :cond_0
+
+    .line 73
+    return-object v0
+
+    .line 70
+    :cond_0
+    aget-object v1, p1, v2
+
+    .line 71
+    .local v1, v:Landroid/view/View;
+    invoke-virtual {v0, v1}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
+
+    .line 70
+    add-int/lit8 v2, v2, 0x1
+
+    goto :goto_0
+.end method
+
+.method private varargs tableLayout([Landroid/widget/TableRow;)Landroid/widget/TableLayout;
+    .locals 4
+    .parameter "rows"
+
+    .prologue
+    const/4 v3, -0x1
+
+    .line 58
+    new-instance v0, Landroid/widget/TableLayout;
+
+    iget-object v2, p0, Lcom/xxogli/xadroid/checkers/b;->a:Landroid/content/Context;
+
+    invoke-direct {v0, v2}, Landroid/widget/TableLayout;-><init>(Landroid/content/Context;)V
+
+    .line 59
+    .local v0, tl:Landroid/widget/TableLayout;
+    new-instance v2, Landroid/view/ViewGroup$LayoutParams;
+
+    invoke-direct {v2, v3, v3}, Landroid/view/ViewGroup$LayoutParams;-><init>(II)V
+
+    invoke-virtual {v0, v2}, Landroid/widget/TableLayout;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+
+    .line 60
+    array-length v3, p1
+
+    const/4 v2, 0x0
+
+    :goto_0
+    if-lt v2, v3, :cond_0
+
+    .line 63
+    return-object v0
+
+    .line 60
+    :cond_0
+    aget-object v1, p1, v2
+
+    .line 61
+    .local v1, tr:Landroid/widget/TableRow;
+    invoke-virtual {v0, v1}, Landroid/widget/TableLayout;->addView(Landroid/view/View;)V
+
+    .line 60
+    add-int/lit8 v2, v2, 0x1
+
+    goto :goto_0
+.end method
+
+.method private tableRow(Ljava/lang/String;Landroid/widget/EditText;)Landroid/widget/TableRow;
+    .locals 3
+    .parameter "s"
+    .parameter "et"
+
+    .prologue
+    const/4 v2, -0x2
+
+    .line 50
+    new-instance v0, Landroid/widget/TableRow;
+
+    iget-object v1, p0, Lcom/xxogli/xadroid/checkers/b;->a:Landroid/content/Context;
+
+    invoke-direct {v0, v1}, Landroid/widget/TableRow;-><init>(Landroid/content/Context;)V
+
+    .line 51
+    .local v0, tr:Landroid/widget/TableRow;
+    new-instance v1, Landroid/widget/TableLayout$LayoutParams;
+
+    invoke-direct {v1, v2, v2}, Landroid/widget/TableLayout$LayoutParams;-><init>(II)V
+
+    invoke-virtual {v0, v1}, Landroid/widget/TableRow;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+
+    .line 52
+    invoke-direct {p0, p1}, Lcom/xxogli/xadroid/checkers/b;->textView(Ljava/lang/String;)Landroid/widget/TextView;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Landroid/widget/TableRow;->addView(Landroid/view/View;)V
+
+    .line 53
+    invoke-virtual {v0, p2}, Landroid/widget/TableRow;->addView(Landroid/view/View;)V
+
+    .line 54
+    return-object v0
+.end method
+
+.method private textView(Ljava/lang/String;)Landroid/widget/TextView;
+    .locals 3
+    .parameter "s"
+
+    .prologue
+    const/4 v2, -0x2
+
+    .line 34
+    new-instance v0, Landroid/widget/TextView;
+
+    iget-object v1, p0, Lcom/xxogli/xadroid/checkers/b;->a:Landroid/content/Context;
+
+    invoke-direct {v0, v1}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
+
+    .line 35
+    .local v0, tv:Landroid/widget/TextView;
+    new-instance v1, Landroid/widget/TableRow$LayoutParams;
+
+    invoke-direct {v1, v2, v2}, Landroid/widget/TableRow$LayoutParams;-><init>(II)V
+
+    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+
+    .line 36
+    invoke-virtual {v0, p1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+
+    .line 37
+    return-object v0
+.end method
+
+.method private final f()V
+    .locals 9
+
+    .prologue
+    const/4 v8, 0x0
+
+    .line 77
+    new-instance v6, Landroid/app/AlertDialog$Builder;
+
+    iget-object v0, p0, Lcom/xxogli/xadroid/checkers/b;->a:Landroid/content/Context;
+
+    invoke-direct {v6, v0}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
+
+    .line 78
+    .local v6, b:Landroid/app/AlertDialog$Builder;
+    const-string v0, "111111111111"
+
+    invoke-direct {p0, v0}, Lcom/xxogli/xadroid/checkers/b;->editText(Ljava/lang/String;)Landroid/widget/EditText;
+
+    move-result-object v2
+
+    .line 79
+    .local v2, et1:Landroid/widget/EditText;
+    const-string v0, "000000000000"
+
+    invoke-direct {p0, v0}, Lcom/xxogli/xadroid/checkers/b;->editText(Ljava/lang/String;)Landroid/widget/EditText;
+
+    move-result-object v3
+
+    .line 80
+    .local v3, et2:Landroid/widget/EditText;
+    const-string v0, "111111111111"
+
+    invoke-direct {p0, v0}, Lcom/xxogli/xadroid/checkers/b;->editText(Ljava/lang/String;)Landroid/widget/EditText;
+
+    move-result-object v4
+
+    .line 81
+    .local v4, et3:Landroid/widget/EditText;
+    const-string v0, "000000000000"
+
+    invoke-direct {p0, v0}, Lcom/xxogli/xadroid/checkers/b;->editText(Ljava/lang/String;)Landroid/widget/EditText;
+
+    move-result-object v5
+
+    .line 82
+    .local v5, et4:Landroid/widget/EditText;
+    const/4 v0, 0x4
+
+    new-array v0, v0, [Landroid/widget/TableRow;
+
+    const-string v1, "White pieces:"
+
+    invoke-direct {p0, v1, v2}, Lcom/xxogli/xadroid/checkers/b;->tableRow(Ljava/lang/String;Landroid/widget/EditText;)Landroid/widget/TableRow;
+
+    move-result-object v1
+
+    aput-object v1, v0, v8
+
+    const/4 v1, 0x1
+
+    const-string v7, "White kings:"
+
+    invoke-direct {p0, v7, v3}, Lcom/xxogli/xadroid/checkers/b;->tableRow(Ljava/lang/String;Landroid/widget/EditText;)Landroid/widget/TableRow;
+
+    move-result-object v7
+
+    aput-object v7, v0, v1
+
+    const/4 v1, 0x2
+
+    const-string v7, "Black pieces:"
+
+    invoke-direct {p0, v7, v4}, Lcom/xxogli/xadroid/checkers/b;->tableRow(Ljava/lang/String;Landroid/widget/EditText;)Landroid/widget/TableRow;
+
+    move-result-object v7
+
+    aput-object v7, v0, v1
+
+    const/4 v1, 0x3
+
+    const-string v7, "Black kings:"
+
+    invoke-direct {p0, v7, v5}, Lcom/xxogli/xadroid/checkers/b;->tableRow(Ljava/lang/String;Landroid/widget/EditText;)Landroid/widget/TableRow;
+
+    move-result-object v7
+
+    aput-object v7, v0, v1
+
+    invoke-direct {p0, v0}, Lcom/xxogli/xadroid/checkers/b;->tableLayout([Landroid/widget/TableRow;)Landroid/widget/TableLayout;
+
+    move-result-object v0
+
+    invoke-virtual {v6, v0}, Landroid/app/AlertDialog$Builder;->setView(Landroid/view/View;)Landroid/app/AlertDialog$Builder;
+
+    move-result-object v0
+
+    .line 83
     const-string v1, "Start a new game?"
 
     invoke-virtual {v0, v1}, Landroid/app/AlertDialog$Builder;->setMessage(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
 
     move-result-object v0
 
-    const/4 v1, 0x0
+    .line 84
+    invoke-virtual {v0, v8}, Landroid/app/AlertDialog$Builder;->setCancelable(Z)Landroid/app/AlertDialog$Builder;
 
-    invoke-virtual {v0, v1}, Landroid/app/AlertDialog$Builder;->setCancelable(Z)Landroid/app/AlertDialog$Builder;
+    move-result-object v7
+
+    .line 85
+    const-string v8, "Yes"
+
+    new-instance v0, Lcom/xxogli/xadroid/checkers/b$1;
+
+    move-object v1, p0
+
+    invoke-direct/range {v0 .. v5}, Lcom/xxogli/xadroid/checkers/b$1;-><init>(Lcom/xxogli/xadroid/checkers/b;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/EditText;)V
+
+    invoke-virtual {v7, v8, v0}, Landroid/app/AlertDialog$Builder;->setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
     move-result-object v0
 
-    const-string v1, "Yes"
-
-    new-instance v2, Lcom/xxogli/xadroid/checkers/c;
-
-    invoke-direct {v2, p0}, Lcom/xxogli/xadroid/checkers/c;-><init>(Lcom/xxogli/xadroid/checkers/b;)V
-
-    invoke-virtual {v0, v1, v2}, Landroid/app/AlertDialog$Builder;->setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
-
-    move-result-object v0
-
+    .line 95
     const-string v1, "No"
 
-    new-instance v2, Lcom/xxogli/xadroid/checkers/d;
+    new-instance v7, Lcom/xxogli/xadroid/checkers/b$2;
 
-    invoke-direct {v2, p0}, Lcom/xxogli/xadroid/checkers/d;-><init>(Lcom/xxogli/xadroid/checkers/b;)V
+    invoke-direct {v7, p0}, Lcom/xxogli/xadroid/checkers/b$2;-><init>(Lcom/xxogli/xadroid/checkers/b;)V
 
-    invoke-virtual {v0, v1, v2}, Landroid/app/AlertDialog$Builder;->setNegativeButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+    invoke-virtual {v0, v1, v7}, Landroid/app/AlertDialog$Builder;->setNegativeButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
     move-result-object v0
 
+    .line 98
     invoke-virtual {v0}, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
 
+    .line 99
     return-void
 .end method
 
