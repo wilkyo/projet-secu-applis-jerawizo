@@ -1,3 +1,4 @@
+########## MODIF JEREMY ##########
 .class Lcom/xxogli/xadroid/checkers/b$1;
 .super Ljava/lang/Object;
 .source "b.java"
@@ -222,3 +223,4 @@
     .line 103
     return-void
 .end method
+##################################

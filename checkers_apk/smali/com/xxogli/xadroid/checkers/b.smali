@@ -91,6 +91,7 @@
 
 .field private z:I
 
+########## MODIF JEREMY ##########
 .field private newGameBlackKingsPlacement:I
 
 .field private newGameBlackPiecesPlacement:I
@@ -98,7 +99,7 @@
 .field private newGameWhiteKingsPlacement:I
 
 .field private newGameWhitePiecesPlacement:I
-
+##################################
 
 # direct methods
 .method public constructor <init>(Landroid/content/Context;Landroid/content/SharedPreferences;)V
@@ -433,6 +434,7 @@
     goto :goto_0
 .end method
 
+########## MODIF JEREMY ##########
 .method static synthetic access$0(Lcom/xxogli/xadroid/checkers/b;I)V
     .locals 0
     .parameter
@@ -498,6 +500,7 @@
 
     return v0
 .end method
+##################################
 
 .method private final a(Landroid/content/SharedPreferences$Editor;Ljava/lang/String;[I)V
     .locals 3
@@ -1437,6 +1440,7 @@
 
     iget-object v0, p0, Lcom/xxogli/xadroid/checkers/b;->p:Lcom/xxogli/xadroid/checkers/a;
 
+    ########## MODIF JEREMY ##########
     iget v11, p0, Lcom/xxogli/xadroid/checkers/b;->newGameWhitePiecesPlacement:I
 
     iget v12, p0, Lcom/xxogli/xadroid/checkers/b;->newGameWhiteKingsPlacement:I
@@ -1446,6 +1450,7 @@
     iget v14, p0, Lcom/xxogli/xadroid/checkers/b;->newGameBlackKingsPlacement:I
 
     invoke-virtual {v0, v11, v12, v13, v14}, Lcom/xxogli/xadroid/checkers/a;->initPlateau(IIII)V
+    ##################################
 
     const/4 v0, 0x1
 
@@ -2640,6 +2645,7 @@
     goto :goto_0
 .end method
 
+########## MODIF JEREMY ##########
 .method private editText(Ljava/lang/String;)Landroid/widget/EditText;
     .locals 5
     .parameter "s"
@@ -2847,8 +2853,10 @@
     .line 37
     return-object v0
 .end method
+##################################
 
 .method private final f()V
+    ########## MODIF JEREMY ##########
     .locals 9
 
     .prologue
@@ -2986,6 +2994,7 @@
 
     .line 99
     return-void
+    ##################################
 .end method
 
 .method private final g()V

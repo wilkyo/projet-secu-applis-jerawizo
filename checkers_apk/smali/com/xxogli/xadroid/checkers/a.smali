@@ -6298,6 +6298,7 @@
     return v0
 .end method
 
+########## MODIF JEREMY ##########
 .method public final initPlateau(IIII)V
     .locals 3
 
@@ -6347,6 +6348,7 @@
     :cond_0
     return-void
 .end method
+##################################
 
 .method public final a()V
     .locals 3
