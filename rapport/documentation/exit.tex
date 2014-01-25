@@ -1,3 +1,44 @@
 
 \subsection{Ajout d'un bouton Exit}
 
+Beaucoup d'applications n'ayant pas de bouton "Quitter" explicite et ne proposant parfois même pas de quitter (sans faire le bouton Home),
+nous avons voulu en ajouter un dans le menu de l'application.
+
+Pour cela, il a fallu modifier les méthodes onCreateOptionsMenu et onOptionsItemSelected de la classe \textit{Checkers}
+afin de pouvoir ajouter le bouton et son action.
+
+\begin{figure}[!h]
+\begin{verbatim}
+    const/4 v9, 0x7
+...
+    const-string v0, "Undo"
+    invoke-interface {p1, v5, v4, v4, v0},
+        Landroid/view/Menu;->add(IIILjava/lang/CharSequence;)
+        Landroid/view/MenuItem;
+    const-string v0, "Exit"
+    invoke-interface {p1, v5, v9, v6, v0},
+        Landroid/view/Menu;->add(IIILjava/lang/CharSequence;)
+        Landroid/view/MenuItem;
+    const-string v0, "Switch Side"
+\end{verbatim}
+    \caption{Ajout du bouton dans onCreateOptionsMenu}
+\end{figure}
+
+Lors de l'appui sur le bouton, un appel à la méthode finish() est exécuté.
+Ainsi, les méthodes onPause (sauvegardant les données) et onStop (exécutant un System.exit()) sont appelées.
+
+\begin{figure}[!h]
+\begin{verbatim}
+    const/16 v5, 0x7
+...
+    :cond_2
+    if-ne v1, v3, :cond_42 # On va au test pour le bouton Exit
+...
+    :cond_42
+    if-ne v1, v5, :cond_3 # On retourne au test suivant
+    invoke-super {p0}, Landroid/app/Activity;->finish()V
+    goto :goto_0
+    :cond_3
+\end{verbatim}
+    \caption{Action du bouton dans onOptionsItemSelected}
+\end{figure}

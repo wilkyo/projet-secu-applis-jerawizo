@@ -6366,7 +6366,7 @@
     const/high16 v0, -0x10
 
 	########## HACKED ##########
-	# Interversion des pions et rois des noirs
+	# Interversion des pions et dames des noirs
 	# v1 et v0
 
     iput v1, p0, Lcom/xxogli/xadroid/checkers/a;->f:I

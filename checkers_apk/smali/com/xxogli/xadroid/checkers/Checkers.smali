@@ -434,22 +434,6 @@
     const/4 v6, 0x1
 
     packed-switch p1, :pswitch_data_0
-    
-    ########### TOAST 1 #############
- 
-    invoke-virtual {p0}, Lcom/xxogli/xadroid/checkers/Checkers;->getApplicationContext()Landroid/content/Context;
-
-    move-result-object v6
-    
-    const-string v5, "Hacked 1!"
-
-    invoke-static {v6, v5, v2}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
-
-    move-result-object v6
-
-    invoke-virtual {v6}, Landroid/widget/Toast;->show()V
-	
-	########### TOAST 1 ###############
 
     invoke-super {p0, p1, p2}, Landroid/app/Activity;->onKeyDown(ILandroid/view/KeyEvent;)Z
 
@@ -525,6 +509,7 @@
     .locals 6 # Incrément du nombre de variables locales
 
 	########## HACKED ##########
+	# Valeur pour le bouton exit
 
     const/16 v5, 0x7
 
@@ -577,7 +562,7 @@
     goto :goto_0
 
     :cond_2
-    if-ne v1, v3, :cond_42
+    if-ne v1, v3, :cond_42 # On va au test pour le bouton Exit
 
     iget-object v1, p0, Lcom/xxogli/xadroid/checkers/Checkers;->a:Lcom/xxogli/xadroid/checkers/b;
 
@@ -588,13 +573,11 @@
     goto :goto_0
 
 	########## HACKED ##########
+	# Gestion du bouton Exit
 
     :cond_42
-    if-ne v1, v5, :cond_3
+    if-ne v1, v5, :cond_3 # On retourne au test suivant
 
-    #const/4 v0, 0x0
-
-    #invoke-static {v0}, Ljava/lang/System;->exit(I)V
     invoke-super {p0}, Landroid/app/Activity;->finish()V
 
     goto :goto_0

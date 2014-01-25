@@ -1,3 +1,21 @@
 
 \subsection{Commencer avec des Dames}
 
+Afin d'être à notre avantage, nous avons voulu faire commencer les noirs,
+sous-entendu le joueur humain en début de partie, avec uniquement des dames.
+Pour cela, il a fallu inverser les placements respectifs des pions et dames du joueur noir dans la méthode a.a() (correspondant à initPlateau).
+
+\begin{figure}[!h]
+\begin{verbatim}
+    const/high16 v0, -0x10
+	# Interversion des pions et dames des noirs v1 et v0
+    iput v1, p0, Lcom/xxogli/xadroid/checkers/a;->f:I
+    iput v0, p0, Lcom/xxogli/xadroid/checkers/a;->g:I
+\end{verbatim}
+    \caption{Interversion des pions et dames des noirs}
+\end{figure}
+
+La variable a.f correspond aux pions et a.g correspond aux dames.
+v0, que l'on place sur les dames, contient le placement initial des noirs.
+Pour les pions noirs, on place v1 = 0 qui correspond à aucun pion placé.
+Ainsi, tous les pions noirs sont des dames.
