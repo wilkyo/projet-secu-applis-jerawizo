@@ -46,7 +46,7 @@ $(EVIL): build
 
 sign: $(EVIL)
 	@echo "===== Signing ====="
-	jarsigner -sigalg MD5withRSA -digestalg SHA1 -keystore ~/.android/debug.keystore $(EVIL) androiddebugkey -storepass android
+	jarsigner -tsa https://timestamp.geotrust.com/tsa -sigalg MD5withRSA -digestalg SHA1 -keystore ~/.android/debug.keystore $(EVIL) androiddebugkey -storepass android
 
 uninstall:
 	@echo "===== Uninstalling ====="
@@ -57,6 +57,9 @@ install: uninstall sign
 	@echo "===== Installing ====="
 	adb install $(EVIL)
 
+reinstall: uninstall
+	@echo "===== Installing ====="
+	adb install $(EVIL)
 
 # make clean nettoie les dossiers créés
 # ATTENTION: Ceci supprimera le dossier out, donc faites attentions à vos modifications

@@ -1647,7 +1647,6 @@ public class CheckersController extends Thread {
 		while (true) {
 			b();
 			if (this.nbPossibleMoves == 1) {
-				// Thinking...
 				sleep();
 				this.view.moveIA(0, 0, -1, 1);
 			} else { // :cond_0

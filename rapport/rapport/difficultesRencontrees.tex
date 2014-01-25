@@ -1,15 +1,32 @@
-% TODO
-Signature de clé (PoC).
-PoC corrigé sur pas mal d'appareils.
-PoC inutile pour Checkers.
+\subsection{Signatures}
+
+À la base, nous devions modifier l'application \textbf{Castle Defense}.
+Le problème qui s'est rapidement posé est que l'application ne se lançait pas après signature avec une de nos clés.
+Ceci s'est expliqué par le fait que l'application possédait une constante permettant de vérifier qu'elle était bien signée par la clé du développeur,
+empêchant ainsi toute recompilation par une personne tierce.
+
+Lors d'une séance de travaux pratiques, nous avons pris connaissance d'un moyen de passer outre cette vérification en utilisant une preuve de réalisation
+(proof of concept \cite{PoC}) afin de faire passer notre application modifiée pour celle d'origine et ainsi pouvoir l'exécuter sans problème.
+
+Par la suite, cette faille de sécurité a été corrigée sur la plupart des appareils mobiles,
+rendant impossible toute modification sur \textbf{Castle Defense}.
+D'un autre coté, le PoC n'était pas nécessaire sur l'application \textbf{Checkers},
+nous permettant donc de signer simplement l'application avec la clé de debug d'Android.
+
+
+\subsection{Code Natif}
 
 % TODO
 Code natif dans de nombreuses applications.
 Assembleur ARM.
 Dur à comprendre et modifier.
 
+
+\subsection{Un code obscur}
+
 % TODO
 Obscurtion du code de Checkers.
 Suppression à la main des erreurs de décompilation.
 Analyse.
 Refactoring des variables et méthodes.
+

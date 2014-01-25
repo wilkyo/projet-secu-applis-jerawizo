@@ -27,4 +27,4 @@ bib:
 
 clean:
 	@echo "===== Cleaning ====="
-	rm -rf *.toc *.out *run.xml *.aux *.log *.blg *.bib *.bbl
+	rm -rf *.toc *.out *run.xml *.aux *.log *.blg *.bbl
