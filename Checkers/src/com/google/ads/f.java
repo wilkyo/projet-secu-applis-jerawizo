@@ -39,31 +39,31 @@ public final class f
 
   public final void a(String paramString)
   {
-    a.d("Prior ad identifier = " + paramString);
+    a.manageFullScreen("Prior ad identifier = " + paramString);
     this.g = paramString;
   }
 
   final void b()
   {
-    a.d("Ad clicked.");
+    a.manageFullScreen("Ad clicked.");
     this.b.add(Long.valueOf(SystemClock.elapsedRealtime()));
   }
 
   public final void b(String paramString)
   {
-    a.d("Prior impression ticket = " + paramString);
+    a.manageFullScreen("Prior impression ticket = " + paramString);
     this.a = paramString;
   }
 
   final void c()
   {
-    a.d("Ad request loaded.");
+    a.manageFullScreen("Ad request loaded.");
     this.c = SystemClock.elapsedRealtime();
   }
 
   final void d()
   {
-    a.d("Ad request started.");
+    a.manageFullScreen("Ad request started.");
     this.d = SystemClock.elapsedRealtime();
     f = 1L + f;
   }
@@ -120,7 +120,7 @@ public final class f
 
   final void l()
   {
-    a.d("Interstitial network error.");
+    a.manageFullScreen("Interstitial network error.");
     this.h = true;
   }
 
@@ -131,13 +131,13 @@ public final class f
 
   final void n()
   {
-    a.d("Interstitial no fill.");
+    a.manageFullScreen("Interstitial no fill.");
     this.i = true;
   }
 
   public final void o()
   {
-    a.d("Landing page dismissed.");
+    a.manageFullScreen("Landing page dismissed.");
     this.e.add(Long.valueOf(SystemClock.elapsedRealtime()));
   }
 

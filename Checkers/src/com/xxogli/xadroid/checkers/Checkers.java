@@ -73,7 +73,7 @@ public class Checkers extends Activity {
 		this.view = new CheckersView(this, getPreferences(0));
 		test("by Aart J.C. Bik");
 		setContentView(this.view);
-		setFullscreen(this.view.d(false));
+		setFullscreen(this.view.manageFullScreen(false));
 		AdView localAdView = new AdView(this, AdSize.BANNER, "a15255c5da8fc08");
 		if (localAdView != null) {
 			addContentView(localAdView, new ViewGroup.LayoutParams(-1, -1));
@@ -95,7 +95,7 @@ public class Checkers extends Activity {
 		localSubMenu1.add(1, 2, 2, "View from White").setCheckable(true)
 				.setChecked(this.view.rotatedBoardStatus(false));
 		localSubMenu1.add(1, 3, 3, "Full Screen").setCheckable(true)
-				.setChecked(this.view.d(false));
+				.setChecked(this.view.manageFullScreen(false));
 		localSubMenu1.add(1, 4, 4, "Start Screen").setCheckable(true)
 				.setChecked(this.view.getStartScreen(false));
 		localSubMenu1.add(1, 5, 5, "Animation").setCheckable(true)
@@ -177,7 +177,7 @@ public class Checkers extends Activity {
 					return true;
 				}
 				if (i == 3) {
-					boolean bool = this.view.d(true);
+					boolean bool = this.view.manageFullScreen(true);
 					paramMenuItem.setChecked(bool);
 					setFullscreen(bool);
 					return true;

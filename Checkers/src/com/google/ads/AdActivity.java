@@ -56,7 +56,7 @@ public class AdActivity extends Activity
     {
       if (this.f != null)
       {
-        a.b(this.f);
+        a.getOptionalJumpStatus(this.f);
         this.f.a(null);
       }
       if (this.l != null)

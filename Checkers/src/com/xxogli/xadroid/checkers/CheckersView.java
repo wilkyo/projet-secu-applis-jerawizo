@@ -1150,19 +1150,22 @@ public class CheckersView extends View {
 		}
 	}
 
-	public final boolean d(boolean paramBoolean) {
+	public final boolean manageFullScreen(boolean paramBoolean) {
 		if (paramBoolean)
-			;
-		try {
-			if (this.fullscreen)
-				;
-			for (boolean bool2 = false;; bool2 = true) {
-				this.fullscreen = bool2;
-				boolean bool1 = this.fullscreen;
-				return bool1;
+			return paramBoolean;
+		else{
+			try {
+				if (this.fullscreen)
+					return this.fullscreen;
+				for (boolean bool2 = false;; bool2 = true) {
+					this.fullscreen = bool2;
+					boolean bool1 = this.fullscreen;
+					return bool1;
+				}
+			} finally {
 			}
-		} finally {
 		}
+		
 	}
 
 	public void draw(Canvas paramCanvas) {
