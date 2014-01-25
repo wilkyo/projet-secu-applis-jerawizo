@@ -24,6 +24,9 @@ public class EndGameTableBase {
 	public static byte[] o;
 	public static byte[] p;
 	public static byte[] q;
+	/**
+	 * r
+	 */
 	public static boolean loaded;
 	private static BufferedInputStream s;
 

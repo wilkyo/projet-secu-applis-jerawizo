@@ -88,6 +88,9 @@ public class CheckersController extends Thread {
 	 * k
 	 */
 	private boolean k;
+	/**
+	 * l
+	 */
 	private long currentTimeMillis;
 	private boolean m;
 	private int n;
@@ -364,6 +367,7 @@ public class CheckersController extends Thread {
 			return paramInt2 + (paramInt1 - 32373);
 		return 0;
 	}
+
 	/**
 	 * a(IIII)
 	 * 
@@ -396,7 +400,9 @@ public class CheckersController extends Thread {
 		while (i4 < paramInt4);
 		// return i4;
 	}
-	/**a(IIIIZ)
+
+	/**
+	 * a(IIIIZ)
 	 * 
 	 * @param paramInt1
 	 * @param paramInt2
@@ -1113,14 +1119,15 @@ public class CheckersController extends Thread {
 	}
 
 	/**
-	 * TODO TFS
-	 * b(IIII)V
+	 * TODO TFS b(IIII)V
+	 * 
 	 * @param paramInt1
 	 * @param paramInt2
 	 * @param paramInt3
 	 * @param paramInt4
 	 */
-	private final void setvalueParamFromLastParam(int paramInt1, int paramInt2, int paramInt3,int paramInt4) {
+	private final void setvalueParamFromLastParam(int paramInt1, int paramInt2,
+			int paramInt3, int paramInt4) {
 		if (paramInt4 <= -32000) {
 			switch (paramInt3) {
 			default:
@@ -1633,172 +1640,164 @@ public class CheckersController extends Thread {
 	}
 
 	/**
-	 * run() TODO TFS
+	 * run() TFS Thread de l'IA.
 	 */
 	public void run() {
+		// :goto_0
 		while (true) {
 			b();
 			if (this.nbPossibleMoves == 1) {
+				// Thinking...
 				sleep();
 				this.view.moveIA(0, 0, -1, 1);
-			} else {
-				if (this.level != 0)
-					break;
-				sleep();
-				int moveIndex = this.random.nextInt(this.nbPossibleMoves);
-				this.view.moveIA(moveIndex, 0, 0, 1);
-			}
-		}
-		if (this.lastWhitePiecesPlacement == 4095) { // suite de 12 '1'
-			sleep();
-			Random localRandom = this.random;
-			int i35 = this.nbPossibleMoves;
-			if (this.t)
-				;
-			for (int i36 = 1;; i36 = 0) {
-				int i37 = localRandom.nextInt(i35 - i36);
-				this.view.moveIA(i37, 0, -2, 1);
-				break;
-			}
-		}
-		this.currentTimeMillis = System.currentTimeMillis();
-		this.n = 0;
-		this.m = false;
-		boolean bool1;
-		int i1 = 0;
-		int i2 = 0;
-		int i3 = 0;
-		int i4 = 0;
-		int localLWPP = 0;
-		int localLWKP = 0;
-		int localLBPP = 0;
-		int localLBKP = 0;
-		int localNbWhiteAlive = 0;
-		int localNbBlackAlive = 0;
-		int i11 = 0;
-		int i12 = 0;
-		if ((!this.onJoueLesNoirs) && (EndGameTableBase.loaded)) {
-			bool1 = true;
-			this.u = bool1;
-			i1 = this.nbPossibleMoves;
-			i2 = 0;
-			i3 = 0;
-			i4 = 0;
-			this.leFameuxN = 1;
-			localLWPP = this.lastWhitePiecesPlacement;
-			localLWKP = this.lastWhiteKingsPlacement;
-			localLBPP = this.lastBlackPiecesPlacement;
-			localLBKP = this.lastBlackKingsPlacement;
-			localNbWhiteAlive = this.nbWhiteAlive;
-			localNbBlackAlive = this.nbBlackAlive;
-			i11 = this.x;
-			i12 = 1;
-			if (i12 <= 64)
-				;// break;
-		}
-		int i13;
-		int i14;
-		int i21;
-		int i22;
-		boolean bool2;
-		int i17 = 0;
-		do {
-			do {
-				this.view.moveIA(i2, i3, i4, this.leFameuxN);
-				// break;
-				bool1 = false;
-				// break;
-				i13 = -32767;
-				i14 = 0;
-				if (i14 < i1)
-					break;
-			} while ((i13 <= -32000) || (i13 >= 32000));
-			i21 = 0;
-			i22 = i2;
-			if (i21 < i1 - 1)
-				break;
-			i12++;
-			i2 = i22;
-			// break;
-			b(i14);
-			int i15 = -32767;
-			int i16 = -i13;
-			if (!this.t)
-				break;
-			bool2 = false;
-			i17 = -useInRun(i15, i16, 1, i12, 0, bool2);
-			this.q[i14] = i17;
-			this.lastWhitePiecesPlacement = localLWPP;
-			this.lastWhiteKingsPlacement = localLWKP;
-			this.lastBlackPiecesPlacement = localLBPP;
-			this.lastBlackKingsPlacement = localLBKP;
-			this.nbWhiteAlive = localNbWhiteAlive;
-			this.nbBlackAlive = localNbBlackAlive;
-			this.x = i11;
-		} while (this.m);
-		int i18 = 0;
-		int i19 = 0;
-		if (i17 > i13) {
-			i18 = i12;
-			i19 = i17;
-		}
-		for (int i20 = i14;; i20 = i2) {
-			i14++;
-			i13 = i17;
-			i4 = i18;
-			i3 = i19;
-			i2 = i20;
-			// break;
-			bool2 = true;
-			// break;
-			int i23 = i1 - 1;
-			int i24 = 1;
-			int i25 = i23;
-			if (i21 >= i25) {
-				if (i24 != 0)
-					break;
-				i21++;
-				break;
-			}
-			int i27 = 0;
-			if (this.q[i25] > this.q[(i25 - 1)]) {
-				int i30 = this.q[i25];
-				this.q[i25] = this.q[(i25 - 1)];
-				this.q[(i25 - 1)] = i30;
-				int i31 = this.o[i25];
-				this.o[i25] = this.o[(i25 - 1)];
-				this.o[(i25 - 1)] = i31;
-				int i32 = this.a[i25];
-				this.a[i25] = this.a[(i25 - 1)];
-				this.a[(i25 - 1)] = i32;
-				int i33 = this.p[i25];
-				this.p[i25] = this.p[(i25 - 1)];
-				this.p[(i25 - 1)] = i33;
-				int i34 = this.b[i25];
-				this.b[i25] = this.b[(i25 - 1)];
-				this.b[(i25 - 1)] = i34;
-				if (i22 == i25) {
-					i22--;
-					i27 = i22;
+			} else { // :cond_0
+				if (this.level == 0) {
+					// Random
+					sleep();
+					int moveIndex = this.random.nextInt(this.nbPossibleMoves);
+					this.view.moveIA(moveIndex, 0, 0, 1);
+				} else { // :cond_1
+					if (this.lastWhitePiecesPlacement == 4095) { // suite de 12
+																	// '1'
+						// Config initiale
+						sleep();
+						// :goto_1
+						this.view.moveIA(
+								this.random.nextInt(this.nbPossibleMoves
+										- (this.t ? 1 : 0)), 0, -2, 1);
+					} else { // :cond_3
+						this.currentTimeMillis = System.currentTimeMillis();
+						this.n = 0;
+						this.m = false;
+						// :goto_2
+						this.u = !this.onJoueLesNoirs
+								&& EndGameTableBase.loaded;
+						int v13 = 0;
+						int v11 = 0;
+						int v10 = 0;
+						this.leFameuxN = 1;
+						int localLWPP = this.lastWhitePiecesPlacement;
+						int localLWKP = this.lastWhiteKingsPlacement;
+						int localLBPP = this.lastBlackPiecesPlacement;
+						int localLBKP = this.lastBlackKingsPlacement;
+						int localNbWhiteAlive = this.nbWhiteAlive;
+						int localNbBlackAlive = this.nbBlackAlive;
+						int v21 = this.x;
+						// :goto_3
+						int v9 = -32767;
+						int v12 = 0;
+						int v2 = 0;
+						for (int v6 = 1; v6 <= 64; v6++) {
+							// :cond_6
+							// :goto_4
+							if (v12 >= this.nbPossibleMoves) {
+								v2 = -32000;
+								if (v9 > v2 && v9 < 32000) {
+									int v5 = 0;
+									v2 = v13;
+									int v3 = 0;
+									while (v3 == 0) {
+										// :goto_5
+										v3 = this.nbPossibleMoves - 1;
+										if (v5 < v3) {
+											// :cond_a
+											v3 = 1;
+											int v4 = this.nbPossibleMoves - 1;
+											// :goto_8
+											while (v5 < v4) {
+												// :cond_b
+												if (this.q[v4] > this.q[v4 - 1]) {
+													v3 = this.q[v4];
+													this.q[v4] = this.q[v4 - 1];
+													this.q[v4 - 1] = v3;
+													v3 = this.o[v4];
+													this.o[v4] = this.o[v4 - 1];
+													this.o[v4 - 1] = v3;
+													v3 = this.a[v4];
+													this.a[v4] = this.a[v4 - 1];
+													this.a[v4 - 1] = v3;
+													v3 = this.p[v4];
+													this.p[v4] = this.p[v4 - 1];
+													this.p[v4 - 1] = v3;
+													v3 = this.b[v4];
+													this.b[v4] = this.b[v4 - 1];
+													this.b[v4 - 1] = v3;
+													if (v2 == v4) {
+														v2 -= 1;
+													} else { // :cond_d
+														v3 = v4 - 1;
+														if (v2 == v3) {
+															v2 += 1;
+														}
+													}
+													// :cond_c
+													// :goto_9
+													int tmp = 0;
+													v3 = v2;
+													v2 = tmp;
+												} else { // :cond_e
+													int tmp = v3;
+													v3 = v2;
+													v2 = tmp;
+												}
+												// :goto_a
+												v4 -= 1;
+												int tmp = v2;
+												v2 = v3;
+												v3 = tmp;
+											}
+											if (v3 == 0)
+												v5 += 1;
+										}
+									}
+									// :cond_7
+									v6++;
+									v13 = v2;
+									v9 = -32767;
+									v12 = 0;
+								} else { // :cond_4
+									break;
+								}
+							} else { // :cond_8
+								b(v12);
+								// :goto_6
+								this.q[v12] = -useInRun(-32767, -v9, 1, v6, 0,
+										!this.t);
+								this.lastWhitePiecesPlacement = localLWPP;
+								this.lastWhiteKingsPlacement = localLWKP;
+								this.lastBlackPiecesPlacement = localLBPP;
+								this.lastBlackKingsPlacement = localLBKP;
+								this.nbWhiteAlive = localNbWhiteAlive;
+								this.nbBlackAlive = localNbBlackAlive;
+								this.x = v21;
+								if (!this.m) {
+									int v3, v4, v5;
+									if (v2 > v9) {
+										v3 = v6;
+										v4 = v2;
+										v5 = v12;
+									} else { // :cond_f
+										v2 = v9;
+										v3 = v10;
+										v4 = v11;
+										v5 = v13;
+									}
+									// :goto_7
+									v12 += 1;
+									v9 = v2;
+									v10 = v3;
+									v11 = v4;
+									v13 = v5;
+								} else { // :cond_4
+									break;
+								}
+							}
+						}
+						// :cond_4
+						this.view.moveIA(v13, v11, v10, this.leFameuxN);
+					}
 				}
 			}
-			int i26;
-			for (int i28 = 0;; i28 = i26) {
-				i25--;
-				int i29 = i28;
-				i22 = i27;
-				i24 = i29;
-				// break;
-				if (i22 != i25 - 1)
-					break;
-				i22++;
-				// break;
-				i26 = i24;
-				i27 = i22;
-			}
-			i17 = i13;
-			i18 = i4;
-			i19 = i3;
 		}
 	}
 }
