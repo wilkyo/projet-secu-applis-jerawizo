@@ -87,7 +87,7 @@ public class CheckersController extends Thread {
 	/**
 	 * k
 	 */
-	private boolean k;
+	private boolean iAMustPlay;
 	/**
 	 * l
 	 */
@@ -348,7 +348,7 @@ public class CheckersController extends Thread {
 
 	public CheckersController(CheckersView view) {
 		this.view = view;
-		this.k = false;
+		this.iAMustPlay = false;
 		this.o = new int[4096];
 		this.a = new int[4096];
 		this.p = new int[4096];
@@ -1009,15 +1009,15 @@ public class CheckersController extends Thread {
 	/**
 	 * b() TFS Attends que k soit vrai
 	 */
-	private final void b() {
+	private final void iAWaitingItsTurn() {
 		// :goto_0
-		while (!this.k) { // :cond_0
+		while (!this.iAMustPlay) { // :cond_0
 			try { // :try_start_1
 				wait();
 			} catch (InterruptedException e) {
 			}
 		}
-		this.k = false;
+		this.iAMustPlay = false;
 	}
 
 	/**
@@ -1635,7 +1635,7 @@ public class CheckersController extends Thread {
 	public final void a(boolean paramBoolean1, boolean onJoueLesNoirs) {
 		this.t = paramBoolean1;
 		this.onJoueLesNoirs = onJoueLesNoirs;
-		this.k = true;
+		this.iAMustPlay = true;
 		notify();
 	}
 
@@ -1645,7 +1645,7 @@ public class CheckersController extends Thread {
 	public void run() {
 		// :goto_0
 		while (true) {
-			b();
+			iAWaitingItsTurn();
 			if (this.nbPossibleMoves == 1) {
 				sleep();
 				this.view.moveIA(0, 0, -1, 1);

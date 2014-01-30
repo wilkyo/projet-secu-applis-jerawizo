@@ -14,10 +14,26 @@ Fonctionnement de l'appli en interne
 Le jeu est composé de 8 cases sur 8, c’est-à-dire 4 cases en moins que le jeu de dame classique.  Se joue en deux modes : utilisateur contre ordinateur ou utilisateur contre utilisateur.\\
 Un joueur peut choisir une couleur (des pions/dames noires ou des pions/dames blanche).  Le jeu est initialement constitué de 3 lignes de 4 pions espacés d’une case. Chaque pion/dame peut se déplacer en diagonale. 
 Un pion se transforme en une dame (K) lorsqu’il arrive à la dernière ligne du camp de l’adversaire. Une dame ou un pion peut faire une prise en faisant un déplacement en diagonal. Mais une dame possède l’avantage de traverser plusieurs lignes vide.\\
-Un joueur est désigné gagnant si l’adversaire ne possède plus de dames ou de pions. 
+Un joueur est désigné gagnant si l’adversaire ne possède plus de dames ou de pions.
+
 \subsubsection{Décompilation et analyse du code}
 
-\newpage
+Afin de pouvoir analyser le code de l'application plus aisément, nous avons dû trouver un moyen de décompiler l'application vers du code java.
+Pour ce faire, nous avons utilisé \textit{dex2jar} \cite{dex2jar},
+une api permettant de décompiler un fichier apk en un fichier jar contenant des fichiers class.
+Ensuite, nous avons dû utiliser \textit{jd-gui} \cite{jdgui} sur ce fichier jar pour en afficher le code source.
+L'application permet d'exporter les sources ainsi décompilées.
+
+Une fois le code java de l'application en notre possession, nous avons pu commencer à l'analyser.
+Nous avons vite remarqué que le code avait été obscurcit avant d'être compilé par le développeur de l'application.
+Cela signifie que toutes variables et fonctions avaient un nom sans aucun sens, ce qui gêna la compréhension du code.
+Nous avons aussi remarqué que la décompilation c'était mal passée à cause de return et de break à des endroits incongrus.
+Nous avons donc commencé par supprimer ces erreurs afin de pouvoir avoir un code "compilable" sous Eclipse.
+Ceci nous a offert un accès à l'outil de refactorisation de code pour renommer les variables après avoir compris à quoi elles pouvaient servir.
+
+Malgré cela, à cause du problème de décompilation, certaines méthodes n'avaient aucun sens.
+Nous avons donc décidé de relire le code smali des méthodes correspondantes afin de le traduire manuellement en java et ainsi avoir le code original exact.
+
 \subsubsection{Architecture}
 Dans un point de vue général, le développeur du jeu Checkers a adopté une architecture MVC. Ce qui nous a beaucoup aidé à determiner les différentes 
 classes. 
