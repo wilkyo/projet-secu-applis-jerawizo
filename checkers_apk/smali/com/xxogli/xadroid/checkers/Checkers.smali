@@ -291,6 +291,8 @@
 
     invoke-interface {v1, v2}, Landroid/view/MenuItem;->setChecked(Z)Landroid/view/MenuItem;
 
+
+
     const-string v1, "Start Screen"
 
     invoke-interface {v0, v4, v8, v8, v1}, Landroid/view/SubMenu;->add(IIILjava/lang/CharSequence;)Landroid/view/MenuItem;
@@ -330,10 +332,36 @@
     move-result v2
 
     invoke-interface {v1, v2}, Landroid/view/MenuItem;->setChecked(Z)Landroid/view/MenuItem;
-
-    const/4 v1, 0x6
+##############################################################################################
+#RAYA
+ const/4 v1, 0x6
 
     const/4 v2, 0x6
+
+    const-string v3, "Switcher les Dames"
+
+    invoke-interface {v0, v4, v1, v2, v3}, Landroid/view/SubMenu;->add(IIILjava/lang/CharSequence;)Landroid/view/MenuItem;
+
+    move-result-object v1
+
+    invoke-interface {v1, v4}, Landroid/view/MenuItem;->setCheckable(Z)Landroid/view/MenuItem;
+
+    move-result-object v1
+
+    iget-object v2, p0, Lcom/xxogli/xadroid/checkers/Checkers;->a:Lcom/xxogli/xadroid/checkers/b;
+
+    invoke-virtual {v2, v5}, Lcom/xxogli/xadroid/checkers/b;->permuter(Z)Z
+
+    move-result v2
+
+    invoke-interface {v1, v2}, Landroid/view/MenuItem;->setChecked(Z)Landroid/view/MenuItem;
+
+#######################################
+
+
+    const/4 v1, 0x7
+
+    const/4 v2, 0x7
 
     const-string v3, "Board Color"
 
@@ -686,9 +714,26 @@
     invoke-interface {p1, v1}, Landroid/view/MenuItem;->setChecked(Z)Landroid/view/MenuItem;
 
     goto :goto_0
-
+############# Raya ##################
     :cond_9
     const/4 v2, 0x6
+
+    if-ne v1, v2, :cond_10
+   
+    iget-object v1, p0, Lcom/xxogli/xadroid/checkers/Checkers;->a:Lcom/xxogli/xadroid/checkers/b;
+
+    invoke-virtual {v1, v0}, Lcom/xxogli/xadroid/checkers/b;->permuter(Z)Z
+
+    move-result v1
+
+    invoke-interface {p1, v1}, Landroid/view/MenuItem;->setChecked(Z)Landroid/view/MenuItem;
+
+
+    goto/16 :goto_0
+##########################
+
+:cond_10
+    const/4 v2, 0x7
 
     if-ne v1, v2, :cond_0
 
@@ -698,6 +743,7 @@
 
     goto/16 :goto_0
 
+##################
     :pswitch_2
     iget-object v2, p0, Lcom/xxogli/xadroid/checkers/Checkers;->a:Lcom/xxogli/xadroid/checkers/b;
 
