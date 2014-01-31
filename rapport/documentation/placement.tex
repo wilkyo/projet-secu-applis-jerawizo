@@ -1,3 +1,117 @@
 
 \subsection{Choisir le placement des pions}
 
+\begin{lstlisting}[caption=b.java (CheckersView.java), label=lstPlacementB]
+package com.xxogli.xadroid.checkers;
+
+// CheckersView
+public class b extends View {
+
+	private Context a;
+	// CheckersController
+	private a p;
+	
+	private int ngWhitePiecesPlacement;
+	private int ngWhiteKingsPlacement;
+	private int ngBlackPiecesPlacement;
+	private int ngBlackKingsPlacement;
+
+	private TextView textView(String s) {
+		TextView tv = new TextView(a);
+		tv.setText(s);
+		return tv;
+	}
+	
+	private EditText editText(String s) {
+		EditText et = new EditText(a);
+		et.setText(s);
+		return et;
+	}
+	
+	private TableRow tableRow(String s, EditText et) {
+		TableRow tr = new TableRow(a);
+		tr.addView(textView(s));
+		tr.addView(et);
+		return tr;
+	}
+	
+	private TableLayout tableLayout(TableRow ...rows) {
+		TableLayout tl = new TableLayout(a);
+		for(TableRow tr : rows) {
+			tl.addView(tr);
+		}
+		return tl;
+	}
+	
+	private LinearLayout linearLayout(View ...views) {
+		LinearLayout ll = new LinearLayout(a);
+		for(View v : views) {
+			ll.addView(v);
+		}
+		return ll;
+	}
+
+	private int value(EditText et) {
+		return Integer.parseInt(new StringBuilder(et.getText().toString()).reverse().toString(), 2);
+	}
+	
+	// newGameDialog
+	public void f() {
+		AlertDialog.Builder b = new AlertDialog.Builder(a);
+		final EditText et1 = editText("111111111111");
+		final EditText et2 = editText("000000000000");
+		final EditText et3 = editText("111111111111");
+		final EditText et4 = editText("000000000000");
+		b.setView(tableLayout(
+			tableRow("White pieces:", et1),
+			tableRow("White kings:", et2),
+			tableRow("Black pieces:", et3),
+			tableRow("Black kings:", et4)
+		)).setMessage("Start a new game?")
+		.setCancelable(false)
+		.setPositiveButton("Yes", new OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				ngWhitePiecesPlacement = value(et1);
+				ngWhiteKingsPlacement = value(et2);
+				ngBlackPiecesPlacement = value(et3) << 20;
+				ngBlackKingsPlacement = value(et4) << 20;
+				a(false, -1, 0, 0, 0);
+				postInvalidate();
+			}
+		})
+		.setNegativeButton("No", new OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+			}
+		}).show();
+	}
+	
+	// gameStatus
+	private final boolean a(boolean b, int m, int v, int d, int n) {
+		p.initPlateau(ngWhitePiecesPlacement, ngWhiteKingsPlacement, ngBlackPiecesPlacement, ngBlackKingsPlacement);
+		return false;
+	}
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption=a.java (CheckersController.java), label=lstPlacementA]
+package com.xxogli.xadroid.checkers;
+
+// CheckersController
+public class a {
+
+	public int lastWhitePiecesPlacement;
+	public int lastWhiteKingsPlacement;
+	public int lastBlackPiecesPlacement;
+	public int lastBlackKingsPlacement;
+
+	public final void initPlateau(int whitePiecesPlacement,
+			int whiteKingsPlacement, int blackPiecesPlacement,
+			int blackKingsPlacement) {
+		this.lastWhitePiecesPlacement = whitePiecesPlacement;
+		this.lastWhiteKingsPlacement = whiteKingsPlacement;
+		this.lastBlackPiecesPlacement = blackPiecesPlacement;
+		this.lastBlackKingsPlacement = blackKingsPlacement;
+	}
+
+}
+\end{lstlisting}
