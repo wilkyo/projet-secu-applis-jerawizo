@@ -16,7 +16,8 @@ OUT=checkers_apk
 APK = $(SRC:=.apk)
 
 # Le adb
-ADB = ~/Documents/Programmes/android-sdk-macosx/platform-tools/adb
+#ADB = ~/Documents/Programmes/android-sdk-macosx/platform-tools/adb
+ADB = adb
 
 ########################################################################
 # CIBLES                                                               #
