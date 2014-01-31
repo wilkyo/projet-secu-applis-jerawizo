@@ -25,16 +25,10 @@
 
 .field private final synthetic val$et2:Landroid/widget/EditText;
 
-.field private final synthetic val$et3:Landroid/widget/EditText;
-
-.field private final synthetic val$et4:Landroid/widget/EditText;
-
 
 # direct methods
-.method constructor <init>(Lcom/xxogli/xadroid/checkers/b;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/EditText;)V
+.method constructor <init>(Lcom/xxogli/xadroid/checkers/b;Landroid/widget/EditText;Landroid/widget/EditText;)V
     .locals 0
-    .parameter
-    .parameter
     .parameter
     .parameter
     .parameter
@@ -47,11 +41,7 @@
 
     iput-object p3, p0, Lcom/xxogli/xadroid/checkers/b$1;->val$et2:Landroid/widget/EditText;
 
-    iput-object p4, p0, Lcom/xxogli/xadroid/checkers/b$1;->val$et3:Landroid/widget/EditText;
-
-    iput-object p5, p0, Lcom/xxogli/xadroid/checkers/b$1;->val$et4:Landroid/widget/EditText;
-
-    .line 95
+    .line 93
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -60,146 +50,105 @@
 
 # virtual methods
 .method public onClick(Landroid/content/DialogInterface;I)V
-    .locals 6
+    .locals 7
     .parameter "dialog"
     .parameter "which"
 
     .prologue
     const/4 v4, 0x2
 
+    const/high16 v3, -0x10
+
     const/4 v1, 0x0
+
+    .line 95
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    iget-object v2, p0, Lcom/xxogli/xadroid/checkers/b$1;->val$et1:Landroid/widget/EditText;
+
+    invoke-virtual {v2}, Landroid/widget/EditText;->getText()Landroid/text/Editable;
+
+    move-result-object v2
+
+    invoke-interface {v2}, Landroid/text/Editable;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-direct {v0, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->reverse()Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {v0, v4}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;I)I
+
+    move-result v6
+
+    .line 96
+    .local v6, i:I
+    iget-object v0, p0, Lcom/xxogli/xadroid/checkers/b$1;->this$0:Lcom/xxogli/xadroid/checkers/b;
+
+    xor-int/lit8 v2, v6, -0x1
+
+    and-int/lit16 v2, v2, 0xfff
+
+    iput v2, v0, Lcom/xxogli/xadroid/checkers/b;->newGameWhitePiecesPlacement:I
 
     .line 97
     iget-object v0, p0, Lcom/xxogli/xadroid/checkers/b$1;->this$0:Lcom/xxogli/xadroid/checkers/b;
 
-    new-instance v2, Ljava/lang/StringBuilder;
+    and-int/lit16 v2, v6, 0xfff
 
-    iget-object v3, p0, Lcom/xxogli/xadroid/checkers/b$1;->val$et1:Landroid/widget/EditText;
-
-    invoke-virtual {v3}, Landroid/widget/EditText;->getText()Landroid/text/Editable;
-
-    move-result-object v3
-
-    invoke-interface {v3}, Landroid/text/Editable;->toString()Ljava/lang/String;
-
-    move-result-object v3
-
-    invoke-direct {v2, v3}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->reverse()Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-static {v2, v4}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;I)I
-
-    move-result v2
-
-    #setter for: Lcom/xxogli/xadroid/checkers/b;->newGameWhitePiecesPlacement:I
-    invoke-static {v0, v2}, Lcom/xxogli/xadroid/checkers/b;->access$0(Lcom/xxogli/xadroid/checkers/b;I)V
+    iput v2, v0, Lcom/xxogli/xadroid/checkers/b;->newGameWhiteKingsPlacement:I
 
     .line 98
-    iget-object v0, p0, Lcom/xxogli/xadroid/checkers/b$1;->this$0:Lcom/xxogli/xadroid/checkers/b;
+    new-instance v0, Ljava/lang/StringBuilder;
 
-    new-instance v2, Ljava/lang/StringBuilder;
+    iget-object v2, p0, Lcom/xxogli/xadroid/checkers/b$1;->val$et2:Landroid/widget/EditText;
 
-    iget-object v3, p0, Lcom/xxogli/xadroid/checkers/b$1;->val$et2:Landroid/widget/EditText;
-
-    invoke-virtual {v3}, Landroid/widget/EditText;->getText()Landroid/text/Editable;
-
-    move-result-object v3
-
-    invoke-interface {v3}, Landroid/text/Editable;->toString()Ljava/lang/String;
-
-    move-result-object v3
-
-    invoke-direct {v2, v3}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->reverse()Ljava/lang/StringBuilder;
+    invoke-virtual {v2}, Landroid/widget/EditText;->getText()Landroid/text/Editable;
 
     move-result-object v2
 
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-interface {v2}, Landroid/text/Editable;->toString()Ljava/lang/String;
 
     move-result-object v2
 
-    invoke-static {v2, v4}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;I)I
+    invoke-direct {v0, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    move-result v2
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->reverse()Ljava/lang/StringBuilder;
 
-    #setter for: Lcom/xxogli/xadroid/checkers/b;->newGameWhiteKingsPlacement:I
-    invoke-static {v0, v2}, Lcom/xxogli/xadroid/checkers/b;->access$1(Lcom/xxogli/xadroid/checkers/b;I)V
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {v0, v4}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;I)I
+
+    move-result v0
+
+    shl-int/lit8 v6, v0, 0x14
 
     .line 99
     iget-object v0, p0, Lcom/xxogli/xadroid/checkers/b$1;->this$0:Lcom/xxogli/xadroid/checkers/b;
 
-    new-instance v2, Ljava/lang/StringBuilder;
+    xor-int/lit8 v2, v6, -0x1
 
-    iget-object v3, p0, Lcom/xxogli/xadroid/checkers/b$1;->val$et3:Landroid/widget/EditText;
+    and-int/2addr v2, v3
 
-    invoke-virtual {v3}, Landroid/widget/EditText;->getText()Landroid/text/Editable;
-
-    move-result-object v3
-
-    invoke-interface {v3}, Landroid/text/Editable;->toString()Ljava/lang/String;
-
-    move-result-object v3
-
-    invoke-direct {v2, v3}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->reverse()Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-static {v2, v4}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;I)I
-
-    move-result v2
-
-    shl-int/lit8 v2, v2, 0x14
-
-    #setter for: Lcom/xxogli/xadroid/checkers/b;->newGameBlackPiecesPlacement:I
-    invoke-static {v0, v2}, Lcom/xxogli/xadroid/checkers/b;->access$2(Lcom/xxogli/xadroid/checkers/b;I)V
+    iput v2, v0, Lcom/xxogli/xadroid/checkers/b;->newGameBlackPiecesPlacement:I
 
     .line 100
     iget-object v0, p0, Lcom/xxogli/xadroid/checkers/b$1;->this$0:Lcom/xxogli/xadroid/checkers/b;
 
-    new-instance v2, Ljava/lang/StringBuilder;
+    and-int v2, v6, v3
 
-    iget-object v3, p0, Lcom/xxogli/xadroid/checkers/b$1;->val$et4:Landroid/widget/EditText;
-
-    invoke-virtual {v3}, Landroid/widget/EditText;->getText()Landroid/text/Editable;
-
-    move-result-object v3
-
-    invoke-interface {v3}, Landroid/text/Editable;->toString()Ljava/lang/String;
-
-    move-result-object v3
-
-    invoke-direct {v2, v3}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->reverse()Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-static {v2, v4}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;I)I
-
-    move-result v2
-
-    shl-int/lit8 v2, v2, 0x14
-
-    #setter for: Lcom/xxogli/xadroid/checkers/b;->newGameBlackKingsPlacement:I
-    invoke-static {v0, v2}, Lcom/xxogli/xadroid/checkers/b;->access$3(Lcom/xxogli/xadroid/checkers/b;I)V
+    iput v2, v0, Lcom/xxogli/xadroid/checkers/b;->newGameBlackKingsPlacement:I
 
     .line 101
     iget-object v0, p0, Lcom/xxogli/xadroid/checkers/b$1;->this$0:Lcom/xxogli/xadroid/checkers/b;
@@ -213,7 +162,7 @@
     move v5, v1
 
     #calls: Lcom/xxogli/xadroid/checkers/b;->a(ZIIII)Z
-    invoke-static/range {v0 .. v5}, Lcom/xxogli/xadroid/checkers/b;->access$4(Lcom/xxogli/xadroid/checkers/b;ZIIII)Z
+    invoke-static/range {v0 .. v5}, Lcom/xxogli/xadroid/checkers/b;->access$0(Lcom/xxogli/xadroid/checkers/b;ZIIII)Z
 
     .line 102
     iget-object v0, p0, Lcom/xxogli/xadroid/checkers/b$1;->this$0:Lcom/xxogli/xadroid/checkers/b;

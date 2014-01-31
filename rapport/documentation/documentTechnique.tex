@@ -61,6 +61,13 @@ numberstyle=\tiny\color{mygray},
 stepnumber=2
 }
 
+\makeatletter
+\DeclareRobustCommand\ttfamily
+        {\not@math@alphabet\ttfamily\mathtt
+         \fontfamily\ttdefault\selectfont\hyphenchar\font=-1\relax}
+\makeatother
+\DeclareTextFontCommand{\mytexttt}{\ttfamily\hyphenchar\font=45\relax}
+
 \begin{document}
 
 \begin{titlepage}

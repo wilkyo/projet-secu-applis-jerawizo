@@ -94,18 +94,32 @@
 .field private switchdame:Z
 
 ########## MODIF JEREMY ##########
-.field private newGameBlackKingsPlacement:I
+.field public newGameBlackKingsPlacement:I
 
-.field private newGameBlackPiecesPlacement:I
+.field public newGameBlackPiecesPlacement:I
 
-.field private newGameWhiteKingsPlacement:I
+.field public newGameWhiteKingsPlacement:I
 
-.field private newGameWhitePiecesPlacement:I
+.field public newGameWhitePiecesPlacement:I
 ##################################
 
 # direct methods
 .method public constructor <init>(Landroid/content/Context;Landroid/content/SharedPreferences;)V
     .locals 9
+
+    ########## MODIF JEREMY ##########
+    .line 35
+    const/4 v6, 0x0
+    const/16 v7, 0xfff
+    iput v7, p0, Lcom/xxogli/xadroid/checkers/b;->newGameWhitePiecesPlacement:I
+    .line 36
+    iput v6, p0, Lcom/xxogli/xadroid/checkers/b;->newGameWhiteKingsPlacement:I
+    .line 37
+    const/high16 v7, -0x10
+    iput v6, p0, Lcom/xxogli/xadroid/checkers/b;->newGameBlackPiecesPlacement:I
+    .line 38
+    iput v7, p0, Lcom/xxogli/xadroid/checkers/b;->newGameBlackKingsPlacement:I
+    ##################################
 
     const/high16 v8, -0x3ee0
 
@@ -437,55 +451,7 @@
 .end method
 
 ########## MODIF JEREMY ##########
-.method static synthetic access$0(Lcom/xxogli/xadroid/checkers/b;I)V
-    .locals 0
-    .parameter
-    .parameter
-
-    .prologue
-    .line 28
-    iput p1, p0, Lcom/xxogli/xadroid/checkers/b;->newGameWhitePiecesPlacement:I
-
-    return-void
-.end method
-
-.method static synthetic access$1(Lcom/xxogli/xadroid/checkers/b;I)V
-    .locals 0
-    .parameter
-    .parameter
-
-    .prologue
-    .line 29
-    iput p1, p0, Lcom/xxogli/xadroid/checkers/b;->newGameWhiteKingsPlacement:I
-
-    return-void
-.end method
-
-.method static synthetic access$2(Lcom/xxogli/xadroid/checkers/b;I)V
-    .locals 0
-    .parameter
-    .parameter
-
-    .prologue
-    .line 30
-    iput p1, p0, Lcom/xxogli/xadroid/checkers/b;->newGameBlackPiecesPlacement:I
-
-    return-void
-.end method
-
-.method static synthetic access$3(Lcom/xxogli/xadroid/checkers/b;I)V
-    .locals 0
-    .parameter
-    .parameter
-
-    .prologue
-    .line 31
-    iput p1, p0, Lcom/xxogli/xadroid/checkers/b;->newGameBlackKingsPlacement:I
-
-    return-void
-.end method
-
-.method static synthetic access$4(Lcom/xxogli/xadroid/checkers/b;ZIIII)Z
+.method static synthetic access$0(Lcom/xxogli/xadroid/checkers/b;ZIIII)Z
     .locals 1
     .parameter
     .parameter
@@ -495,7 +461,7 @@
     .parameter
 
     .prologue
-    .line 102
+    .line 114
     invoke-direct/range {p0 .. p5}, Lcom/xxogli/xadroid/checkers/b;->a(ZIIII)Z
 
     move-result v0
@@ -1485,17 +1451,7 @@
 
     iget-object v0, p0, Lcom/xxogli/xadroid/checkers/b;->p:Lcom/xxogli/xadroid/checkers/a;
 
-    ########## MODIF JEREMY ##########
-    iget v11, p0, Lcom/xxogli/xadroid/checkers/b;->newGameWhitePiecesPlacement:I
-
-    iget v12, p0, Lcom/xxogli/xadroid/checkers/b;->newGameWhiteKingsPlacement:I
-
-    iget v13, p0, Lcom/xxogli/xadroid/checkers/b;->newGameBlackPiecesPlacement:I
-
-    iget v14, p0, Lcom/xxogli/xadroid/checkers/b;->newGameBlackKingsPlacement:I
-
-    invoke-virtual {v0, v11, v12, v13, v14}, Lcom/xxogli/xadroid/checkers/a;->initPlateau(IIII)V
-    ##################################
+    invoke-virtual {v0}, Lcom/xxogli/xadroid/checkers/a;->a()V
 
     const/4 v0, 0x1
 
@@ -2936,142 +2892,104 @@
 
 .method private final f()V
     ########## MODIF JEREMY ##########
-    .locals 9
+   .locals 7
 
     .prologue
-    const/4 v8, 0x0
+    const/4 v6, 0x0
 
-    .line 77
-    new-instance v6, Landroid/app/AlertDialog$Builder;
+    .line 87
+    new-instance v0, Landroid/app/AlertDialog$Builder;
 
-    iget-object v0, p0, Lcom/xxogli/xadroid/checkers/b;->a:Landroid/content/Context;
+    iget-object v3, p0, Lcom/xxogli/xadroid/checkers/b;->a:Landroid/content/Context;
 
-    invoke-direct {v6, v0}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
+    invoke-direct {v0, v3}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
 
-    .line 78
-    .local v6, b:Landroid/app/AlertDialog$Builder;
-    const-string v0, "111111111111"
+    .line 88
+    .local v0, b:Landroid/app/AlertDialog$Builder;
+    const-string v3, "000000000000"
 
-    invoke-direct {p0, v0}, Lcom/xxogli/xadroid/checkers/b;->editText(Ljava/lang/String;)Landroid/widget/EditText;
-
-    move-result-object v2
-
-    .line 79
-    .local v2, et1:Landroid/widget/EditText;
-    const-string v0, "000000000000"
-
-    invoke-direct {p0, v0}, Lcom/xxogli/xadroid/checkers/b;->editText(Ljava/lang/String;)Landroid/widget/EditText;
-
-    move-result-object v3
-
-    .line 80
-    .local v3, et2:Landroid/widget/EditText;
-    const-string v0, "111111111111"
-
-    invoke-direct {p0, v0}, Lcom/xxogli/xadroid/checkers/b;->editText(Ljava/lang/String;)Landroid/widget/EditText;
-
-    move-result-object v4
-
-    .line 81
-    .local v4, et3:Landroid/widget/EditText;
-    const-string v0, "000000000000"
-
-    invoke-direct {p0, v0}, Lcom/xxogli/xadroid/checkers/b;->editText(Ljava/lang/String;)Landroid/widget/EditText;
-
-    move-result-object v5
-
-    .line 82
-    .local v5, et4:Landroid/widget/EditText;
-    const/4 v0, 0x4
-
-    new-array v0, v0, [Landroid/widget/TableRow;
-
-    const-string v1, "White pieces:"
-
-    invoke-direct {p0, v1, v2}, Lcom/xxogli/xadroid/checkers/b;->tableRow(Ljava/lang/String;Landroid/widget/EditText;)Landroid/widget/TableRow;
+    invoke-direct {p0, v3}, Lcom/xxogli/xadroid/checkers/b;->editText(Ljava/lang/String;)Landroid/widget/EditText;
 
     move-result-object v1
 
-    aput-object v1, v0, v8
+    .line 89
+    .local v1, et1:Landroid/widget/EditText;
+    const-string v3, "000000000000"
 
-    const/4 v1, 0x1
+    invoke-direct {p0, v3}, Lcom/xxogli/xadroid/checkers/b;->editText(Ljava/lang/String;)Landroid/widget/EditText;
 
-    const-string v7, "White kings:"
+    move-result-object v2
 
-    invoke-direct {p0, v7, v3}, Lcom/xxogli/xadroid/checkers/b;->tableRow(Ljava/lang/String;Landroid/widget/EditText;)Landroid/widget/TableRow;
+    .line 90
+    .local v2, et2:Landroid/widget/EditText;
+    const/4 v3, 0x2
 
-    move-result-object v7
+    new-array v3, v3, [Landroid/widget/TableRow;
 
-    aput-object v7, v0, v1
+    const-string v4, "White:"
 
-    const/4 v1, 0x2
+    invoke-direct {p0, v4, v1}, Lcom/xxogli/xadroid/checkers/b;->tableRow(Ljava/lang/String;Landroid/widget/EditText;)Landroid/widget/TableRow;
 
-    const-string v7, "Black pieces:"
+    move-result-object v4
 
-    invoke-direct {p0, v7, v4}, Lcom/xxogli/xadroid/checkers/b;->tableRow(Ljava/lang/String;Landroid/widget/EditText;)Landroid/widget/TableRow;
+    aput-object v4, v3, v6
 
-    move-result-object v7
+    const/4 v4, 0x1
 
-    aput-object v7, v0, v1
+    const-string v5, "Black:"
 
-    const/4 v1, 0x3
+    invoke-direct {p0, v5, v2}, Lcom/xxogli/xadroid/checkers/b;->tableRow(Ljava/lang/String;Landroid/widget/EditText;)Landroid/widget/TableRow;
 
-    const-string v7, "Black kings:"
+    move-result-object v5
 
-    invoke-direct {p0, v7, v5}, Lcom/xxogli/xadroid/checkers/b;->tableRow(Ljava/lang/String;Landroid/widget/EditText;)Landroid/widget/TableRow;
+    aput-object v5, v3, v4
 
-    move-result-object v7
+    invoke-direct {p0, v3}, Lcom/xxogli/xadroid/checkers/b;->tableLayout([Landroid/widget/TableRow;)Landroid/widget/TableLayout;
 
-    aput-object v7, v0, v1
+    move-result-object v3
 
-    invoke-direct {p0, v0}, Lcom/xxogli/xadroid/checkers/b;->tableLayout([Landroid/widget/TableRow;)Landroid/widget/TableLayout;
+    invoke-virtual {v0, v3}, Landroid/app/AlertDialog$Builder;->setView(Landroid/view/View;)Landroid/app/AlertDialog$Builder;
 
-    move-result-object v0
+    move-result-object v3
 
-    invoke-virtual {v6, v0}, Landroid/app/AlertDialog$Builder;->setView(Landroid/view/View;)Landroid/app/AlertDialog$Builder;
+    .line 91
+    const-string v4, "Start a new game?"
 
-    move-result-object v0
+    invoke-virtual {v3, v4}, Landroid/app/AlertDialog$Builder;->setMessage(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
 
-    .line 83
-    const-string v1, "Start a new game?"
+    move-result-object v3
 
-    invoke-virtual {v0, v1}, Landroid/app/AlertDialog$Builder;->setMessage(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
+    .line 92
+    invoke-virtual {v3, v6}, Landroid/app/AlertDialog$Builder;->setCancelable(Z)Landroid/app/AlertDialog$Builder;
 
-    move-result-object v0
+    move-result-object v3
 
-    .line 84
-    invoke-virtual {v0, v8}, Landroid/app/AlertDialog$Builder;->setCancelable(Z)Landroid/app/AlertDialog$Builder;
+    .line 93
+    const-string v4, "Yes"
 
-    move-result-object v7
+    new-instance v5, Lcom/xxogli/xadroid/checkers/b$1;
 
-    .line 85
-    const-string v8, "Yes"
+    invoke-direct {v5, p0, v1, v2}, Lcom/xxogli/xadroid/checkers/b$1;-><init>(Lcom/xxogli/xadroid/checkers/b;Landroid/widget/EditText;Landroid/widget/EditText;)V
 
-    new-instance v0, Lcom/xxogli/xadroid/checkers/b$1;
+    invoke-virtual {v3, v4, v5}, Landroid/app/AlertDialog$Builder;->setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
-    move-object v1, p0
+    move-result-object v3
 
-    invoke-direct/range {v0 .. v5}, Lcom/xxogli/xadroid/checkers/b$1;-><init>(Lcom/xxogli/xadroid/checkers/b;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/widget/EditText;)V
+    .line 105
+    const-string v4, "No"
 
-    invoke-virtual {v7, v8, v0}, Landroid/app/AlertDialog$Builder;->setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+    new-instance v5, Lcom/xxogli/xadroid/checkers/b$2;
 
-    move-result-object v0
+    invoke-direct {v5, p0}, Lcom/xxogli/xadroid/checkers/b$2;-><init>(Lcom/xxogli/xadroid/checkers/b;)V
 
-    .line 95
-    const-string v1, "No"
+    invoke-virtual {v3, v4, v5}, Landroid/app/AlertDialog$Builder;->setNegativeButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
-    new-instance v7, Lcom/xxogli/xadroid/checkers/b$2;
+    move-result-object v3
 
-    invoke-direct {v7, p0}, Lcom/xxogli/xadroid/checkers/b$2;-><init>(Lcom/xxogli/xadroid/checkers/b;)V
+    .line 108
+    invoke-virtual {v3}, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
 
-    invoke-virtual {v0, v1, v7}, Landroid/app/AlertDialog$Builder;->setNegativeButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
-
-    move-result-object v0
-
-    .line 98
-    invoke-virtual {v0}, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
-
-    .line 99
+    .line 109
     return-void
     ##################################
 .end method

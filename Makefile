@@ -15,7 +15,8 @@ OUT=checkers_apk
 # Le fichier apk
 APK = $(SRC:=.apk)
 
-
+# Le adb
+ADB = ~/Documents/Programmes/android-sdk-macosx/platform-tools/adb
 
 ########################################################################
 # CIBLES                                                               #
@@ -50,16 +51,16 @@ sign: $(EVIL)
 
 uninstall:
 	@echo "===== Uninstalling ====="
-	adb uninstall $(SRC)
+	$(ADB) uninstall $(SRC)
 
 # make install tente d'installer l'apk modifié sur un appareil 
 install: uninstall sign
 	@echo "===== Installing ====="
-	adb install $(EVIL)
+	$(ADB) install $(EVIL)
 
 reinstall: uninstall
 	@echo "===== Installing ====="
-	adb install $(EVIL)
+	$(ADB) install $(EVIL)
 
 # make clean nettoie les dossiers créés
 # ATTENTION: Ceci supprimera le dossier out, donc faites attentions à vos modifications
