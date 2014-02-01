@@ -16,11 +16,9 @@ nous permettant donc de signer simplement l'application avec la clé de debug d'
 
 \subsection{Code Natif}
 
-% TODO
-Code natif dans de nombreuses applications.
-Assembleur ARM.
-Dur à comprendre et modifier.
+En décompilant les \texttt{.apk}, nous nous sommes rendu compte que, pour de nombreux jeux sur Android, la majorité du code est contenu dans une librairie écrite en \texttt{C/C++}, et que le code Java ne sert qu'à gérer la publicité et à faire le lien entre Android et les fonctions de la librairie native.
 
+Bien qu'il soit possible de désassembler ces librairies, d'avoir les noms des classes et fonctions en clair, et de modifier les instructions en faisant des modifications hexadécimales, nous avons préféré chercher un jeu qui n'utilise pas de librairie car il est bien plus compliqué de modifier de l'assembleur.
 
 \subsection{Un code obscur}
 
