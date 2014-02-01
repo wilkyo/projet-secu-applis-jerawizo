@@ -3,6 +3,24 @@
 
 Après avoir modifié le placement des pions de manière statique dans le code, nous avons voulu aller plus loin en donnant la possibilité au joueur de choisir ce placement. Nous savions déjà quel endroit du code il fallait modifier pour changer les pions à la création d'une nouvelle partie, il fallait juste réussir à modifier la boîte de dialogue qui demande confirmation au joueur lorsque l'on choisit `New Game' dans le menu. Nous voulions que cette boîte de dialogue contienne deux champs de saisie supplémentaires (un pour les pions blancs et un pour les noirs) dans lesquels l'utilisateur puisse saisir une suite de douze `0' et/ou `1', et qu'en cliquant sur `Yes' pour lancer la nouvelle partie, le plateau soit initialisé avec des pions normaux là où les champs contiennent des `0', et des dames là où ils contiennent des `1'.\\
 
+\begin{figure}[h]
+\centering
+\begin{subfigure}{.4\textwidth}
+\centering
+\includegraphics[width=\textwidth]{dialog}
+\label{fig:dialogBoite}
+\caption{Boîte de dialogue}
+\end{subfigure}~
+\begin{subfigure}{.4\textwidth}
+\centering
+\includegraphics[width=\textwidth]{dialog2}
+\label{fig:dialogPlacement}
+\caption{Initialisation du plateau}
+\end{subfigure}
+\label{fig:dialog}
+\caption{Placement des pions}
+\end{figure}
+
 Pour ce faire, l'idée était de faire un vrai projet Android pour pouvoir créer et tester facilement une boîte de dialogue, puis d'exporter le projet en \mytexttt{.apk}, décompiler cet \mytexttt{.apk}, récupérer le code de la boîte de dialogue dans le fichier \mytexttt{.smali} correspondant, et le mettre à la place du code de la vraie boîte de dialogue du jeu.
 
 Nous avons donc fait un projet Android contenant les classes \mytexttt{b} (listing \ref{lstPlacementB}) et \mytexttt{a} (listing \ref{lstPlacementA}), ainsi qu'une classe \mytexttt{MainActivity} présente uniquement pour pouvoir lancer l'application et tester la boîte de dialogue. La classe \mytexttt{b} correspond à la classe \mytexttt{CheckersView} qui est la vue du jeu, et la classe \mytexttt{a} correspond à la classe \mytexttt{CheckersController} qui est le contrôleur. \`{A} noter que certaines lignes de la classe \mytexttt{b} ont été retirées (comme l'affectation du layout pour les éléments de la boîte de dialogue ou le constructeur) afin de la simplifier.\\
