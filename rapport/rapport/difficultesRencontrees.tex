@@ -21,6 +21,37 @@ En décompilant les \texttt{.apk}, nous nous sommes rendu compte que, pour de no
 Bien qu'il soit possible de désassembler ces librairies, d'avoir les noms des classes et fonctions en clair, et de modifier les instructions en faisant des modifications hexadécimales, nous avons préféré chercher un jeu qui n'utilise pas de librairie car il est bien plus compliqué de modifier de l'assembleur.
 
 \subsection{Un code obscur}
+Après avoir effectué la décompilation de l'apk vers du code en hexadécimal, et ce dernier vers du code java, nous étions face à un code presque illisible car les variables
+, les noms des méthodes et les noms des classes étaient constitués avec des lettres de l'alphabet. Ce qui ne nous a pas beaucoup aidé pour la comprehension du code.
+Seule la classe principale \textit{Checkers} restait inchanger. Il nous a fallu donc d'étudier minusieusement chaque variables, méthodes, classes et leurs relations pour pouvoir
+décrypté les noms.
+\subsubsection{Les variables}
+\begin{verbatim}
+...
+  private int q;
+  private int r;
+  private int S[];
+  private int T[];
+...
+\end{verbatim}
+  
+\subsubsection{Les méthodes}
+  \begin{verbatim}
+...
+  private final int a(boolean f){...}
+  private final int a(boolean l, int a,int b){...} 
+  private final int a(boolean g1, int a1, int a2){...}
+  private final int a(boolean j, int a){...}
+...
+  \end{verbatim}
+\newpage
+\subsubsection{Les classes}
+\begin{verbatim}
+public class Checkers extends Activity {
+	private b view;
+	...  
+}
+public class b extends View {...} //classe CheckersView
 
-Après la décompilation et le passage du code smali en code java, nous avons eu des codes qui sont totalement obscur car les noms des classes et des variables étaient représentés par des lettres de l’alphabet.
-Pour nous aider à mieux comprendre le fonctionnement du checkers, il nous a fallu supprimer les erreurs générées et de faire du refactoring car le code java était totalement en désordre.
+public class a extends {...} //classe de la ControleurView
+\end{verbatim}

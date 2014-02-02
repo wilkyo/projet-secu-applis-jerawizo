@@ -7,13 +7,15 @@ Fonctionnement de l'appli en interne
 \subsubsection{Principe}
 \begin{figure}[hp]
 	      \begin{center}
-		\fbox{\includegraphics[scale=0.5]{principe}}
+		\includegraphics[scale=0.5]{principe}
 	      \end{center}
 	\legend{Principe}
 \end{figure}
+
 Le jeu est composé de 8 cases sur 8, c’est-à-dire 4 cases en moins que le jeu de dame classique.  Se joue en deux modes : utilisateur contre ordinateur ou utilisateur contre utilisateur.\\
 Un joueur peut choisir une couleur (des pions/dames noires ou des pions/dames blanche).  Le jeu est initialement constitué de 3 lignes de 4 pions espacés d’une case. Chaque pion/dame peut se déplacer en diagonale. 
-Un pion se transforme en une dame (K) lorsqu’il arrive à la dernière ligne du camp de l’adversaire. Une dame ou un pion peut faire une prise en faisant un déplacement en diagonal. Mais une dame possède l’avantage de traverser plusieurs lignes vide.\\
+Une dame ou un pion peut faire une prise en faisant un déplacement en diagonal. Le jeu oblige à faire une prise (Must capture) si l'utilisateur n'a pas activé l'option capture optionnelle. 
+Un pion se déplace uniquement en avant et se transforme en une dame (K) lorsqu’il arrive à la dernière ligne du camp de l’adversaire. Une dame peut effectuer une prise en faisant un déplacement en arrière ou en avant\\
 Un joueur est désigné gagnant si l’adversaire ne possède plus de dames ou de pions.
 
 \subsubsection{Décompilation et analyse du code}
@@ -39,7 +41,7 @@ Dans un point de vue général, le développeur du jeu Checkers a adopté une ar
 classes. 
 \begin{figure}[hp]
 	      \begin{center}
-		\fbox{\includegraphics[scale=0.6]{archi}}
+		\includegraphics[scale=0.6]{archi}
 	      \end{center}
 	\legend{architecture}
 \end{figure}

@@ -4,15 +4,15 @@ Nous avons remarqué que l'application possède une seule point d'entrée pour a
 L'application charge la vue pour la publicité dans la méthode onCreate().
 \begin{figure}[hp]
 	      \begin{center}
-		\fbox{\includegraphics[scale=0.7]{pub}}
+		\includegraphics[scale=0.7]{pub}
 	      \end{center}
 	\legend{Affichage de la publicité}
 \end{figure}
 
 \begin{table}[here]
     \begin{center}
-	\begin{tabular}{|l|}
-	\hline
+	\begin{tabular}{l}
+	%\hline
 	const/16 v1, 0x50 \\[0.2cm]
 	
 	invoke-virtual {v0, v1}, Lcom/google/ads/AdView;->setGravity(I)V \\[0.2cm]
@@ -22,7 +22,7 @@ L'application charge la vue pour la publicité dans la méthode onCreate().
 	invoke-direct/range {v1 .. v1}, Lcom/google/ads/AdRequest;-><init>()V \\[0.2cm]
 
 	invoke-virtual {v0, v1}, Lcom/google/ads/AdView;->loadAd(Lcom/google/ads/AdRequest;)V \\
-	\hline
+	%\hline
 	\end{tabular}
     \end{center}
     \caption{\label{}code smali pour la publicité}
