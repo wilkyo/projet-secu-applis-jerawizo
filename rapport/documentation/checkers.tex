@@ -1,9 +1,6 @@
 
 \subsection{L'Application Checkers}
 
-l'application Checkers (principe), décompilation, un bytecode obscure
-dex2jar, jd-gui, correction des erreurs, éclaircissement du code, une archi mvc.
-Fonctionnement de l'appli en interne
 \subsubsection{Principe}
 \begin{figure}[hp]
 	      \begin{center}
@@ -13,9 +10,9 @@ Fonctionnement de l'appli en interne
 \end{figure}
 
 Le jeu est composé de 8 cases sur 8, c’est-à-dire 4 cases en moins que le jeu de dame classique.  Se joue en deux modes : utilisateur contre ordinateur ou utilisateur contre utilisateur.\\
-Un joueur peut choisir une couleur (des pions/dames noires ou des pions/dames blanche).  Le jeu est initialement constitué de 3 lignes de 4 pions espacés d’une case. Chaque pion/dame peut se déplacer en diagonale. 
+Un joueur peut choisir une couleur (des pions/dames noires ou des pions/dames blanches).  Le jeu est initialement constitué de 3 lignes de 4 pions espacés d’une case. Chaque \hbox{pion/dame} peut se déplacer en diagonale. 
 Une dame ou un pion peut faire une prise en faisant un déplacement en diagonal. Le jeu oblige à faire une prise (Must capture) si l'utilisateur n'a pas activé l'option capture optionnelle. 
-Un pion se déplace uniquement en avant et se transforme en une dame (K) lorsqu’il arrive à la dernière ligne du camp de l’adversaire. Une dame peut effectuer une prise en faisant un déplacement en arrière ou en avant\\
+Un pion se déplace uniquement en avant et se transforme en une dame (K) lorsqu’il arrive à la dernière ligne du camp de l’adversaire. Une dame peut effectuer une prise en faisant un déplacement en arrière ou en avant.\\
 Un joueur est désigné gagnant si l’adversaire ne possède plus de dames ou de pions.
 
 \subsubsection{Décompilation et analyse du code}
@@ -37,8 +34,8 @@ Malgré cela, à cause du problème de décompilation, certaines méthodes n'ava
 Nous avons donc décidé de relire le code smali des méthodes correspondantes afin de le traduire manuellement en java et ainsi avoir le code original exact.
 
 \subsubsection{Architecture}
-Dans un point de vue général, le développeur du jeu Checkers a adopté une architecture MVC. Ce qui nous a beaucoup aidé à determiner les différentes 
-classes. 
+Dans un point de vue général, le développeur du jeu Checkers a adopté une architecture MVC.
+Ce qui nous a beaucoup aidé à determiner les différentes classes.\\
 \begin{figure}[hp]
 	      \begin{center}
 		\includegraphics[scale=0.6]{archi}
@@ -47,5 +44,6 @@ classes.
 \end{figure}
 La classe Checkers est la classe principale de l’application.
 La classe CherckersView (b.smali) hérite de la classe android.view.View qui gére les vues de l’application. La classe AdView gère la vue pour la publicité.
-CheckersController (a.smali) est le controleur principal de l’application. Les classes KeepShowingStartScreenOnclickListener (e.smali), NewGameAlertDialogNoButtonListener (d.smali), NewGameAlertDialogYesButtonListener (c.smali) et StopShowingStartScreenOnclickListener (f.smali) implémente l'interface DialogInterface.OnclickListener sont les classes qui gère les clics.
+CheckersController (a.smali) est le controleur principal de l’application. Les classes KeepShowingStartScreenOnclickListener (e.smali), NewGameAlertDialogNoButtonListener (d.smali), NewGameAlertDialogYesButtonListener (c.smali) et StopShowingStartScreenOnclickListener (f.smali) sont les classes qui gèrent les clics.
+Elles implémentent l'interface DialogInterface.OnclickListener.
 AdRequest est la classe qui est responsable du chargement de la publicité.

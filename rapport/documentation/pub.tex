@@ -1,12 +1,12 @@
 
 \subsection{Suppression de la publicité}
-Nous avons remarqué que l'application possède une seule point d'entrée pour afficher la publicité.
-L'application charge la vue pour la publicité dans la méthode onCreate().
+Nous avons remarqué que l'application ne possèdait qu'un seule point d'entrée pour afficher la publicité.
+L'application charge la vue pour la publicité dans la méthode \hbox{onCreate()}.
 \begin{figure}[hp]
 	      \begin{center}
 		\includegraphics[scale=0.7]{pub}
 	      \end{center}
-	\legend{Affichage de la publicité}
+	\caption{Affichage de la publicité}
 \end{figure}
 
 \begin{table}[here]
@@ -26,6 +26,9 @@ L'application charge la vue pour la publicité dans la méthode onCreate().
 	\end{tabular}
     \end{center}
     \caption{\label{}code smali pour la publicité}
-\end{table} 
+\end{table}
+
+Pour supprimer la publicité, il a suffit de supprimer ces quelques lignes.
 La variable v1 contient l'instance de la classe \textit{com.google.ads.AdRequest} qui est le point d'entrée de la publicité dans l'application.
 La variable v0 est la vue \textit{com.google.ads.AdView} associée à la publicité. Le chargement de la publicité se fait par la méthode \textit{loadAd(AdRequest adrequest)}.
+

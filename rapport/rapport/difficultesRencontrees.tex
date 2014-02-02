@@ -3,7 +3,7 @@
 À la base, nous devions modifier l'application \textbf{Castle Defense}.
 Le problème qui s'est rapidement posé est que l'application ne se lançait pas après signature avec une de nos clés.
 Ceci s'est expliqué par le fait que l'application possédait une constante permettant de vérifier qu'elle était bien signée par la clé du développeur,
-empêchant ainsi toute recompilation par une personne tierce.
+empêchant ainsi toute recompilation par une tierce personne.
 
 Lors d'une séance de travaux pratiques, nous avons pris connaissance d'un moyen de passer outre cette vérification en utilisant une preuve de réalisation
 (proof of concept \cite{PoC}) afin de faire passer notre application modifiée pour celle d'origine et ainsi pouvoir l'exécuter sans problème.
@@ -20,9 +20,10 @@ En décompilant les \texttt{.apk}, nous nous sommes rendu compte que, pour de no
 
 Bien qu'il soit possible de désassembler ces librairies, d'avoir les noms des classes et fonctions en clair, et de modifier les instructions en faisant des modifications hexadécimales, nous avons préféré chercher un jeu qui n'utilise pas de librairie car il est bien plus compliqué de modifier de l'assembleur.
 
+
 \subsection{Un code obscur}
-Après avoir effectué la décompilation de l'apk vers du code en hexadécimal, et ce dernier vers du code java, nous étions face à un code presque illisible car les variables, les noms des méthodes et les noms des classes étaient constitués avec des lettres de l'alphabet. Ce qui ne nous a pas beaucoup aidés pour la compréhension du code.
-Seule la classe principale \textit{Checkers} est inchangée. Il nous a fallu donc d'étudier minutieusement chaque variables, méthodes, classes et leurs relations pour pouvoir décrypté les noms.
+Après avoir effectué la décompilation de l'apk vers du code en hexadécimal, et ce dernier vers du code java, nous étions face à un code presque illisible car les variables, les noms des méthodes et les noms des classes étaient constitués avec des lettres de l'alphabet. Ce qui ne nous a pas beaucoup aidé pour la compréhension du code.
+Seule la classe principale \textit{Checkers} est inchangée. Il nous a fallu donc étudier minutieusement chaque variable, méthode, classe et leurs relations pour pouvoir décrypter les noms.
 \subsubsection{Les variables}
 \begin{verbatim}
 ...
