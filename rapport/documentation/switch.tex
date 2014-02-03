@@ -18,11 +18,11 @@ Pour celà nous avons d'abord ajouté une option "Switcher les Dames" dans le me
 		  \end{center}
 	\caption{ajout d'une option dans le menu}
 \end{figure}
-On a effectué cet ajout dans \textit{Chechers.smali} comme sur la Figure 8.\newpage
+On a effectué cet ajout dans \textit{Chechers.smali} comme on peut le voir sur la Figure 9.\newpage
 
 \begin{figure}[h!]
 \begin{verbatim}
-    const/4 v1, 0x6
+	const/4 v1, 0x6
     const/4 v2, 0x6
     const-string v3, "Switcher les Dames"
     invoke-interface {v0, v4, v1, v2, v3}, Landroid/view/SubMenu;->
@@ -39,12 +39,12 @@ On a effectué cet ajout dans \textit{Chechers.smali} comme sur la Figure 8.\new
     invoke-interface {v1, v2}, Landroid/view/MenuItem;->
 		setChecked(Z)Landroid/view/MenuItem;
     \end{verbatim}
-    \caption{Ajout du bouton dans onCreateOptionsMenu}
+    \caption{Ajout de l'Option dans onCreateOptionsMenu}
 \end{figure}
 
 
 Après avoir ajouté l'option "Switcher les Dames" dans le menu des Options, nous insérons la méthode permuter() qui prend 
-un booléen en paramètre et qui renvoie l'état de la variable \textbf{switchdame} qui est un attribut de la "classe b" de type booléen.
+un booléen en paramètre et qui renvoie l'état de la variable \textbf{switchdame} qui est un attribut de la "classe b" de type booléen que nous avons ajouté.
 
 
 \begin{figure}[!hp]
@@ -65,14 +65,14 @@ un booléen en paramètre et qui renvoie l'état de la variable \textbf{switchda
     goto :goto_0
 .end method
 \end{verbatim}
-    \caption{Ajout du bouton dans onCreateOptionsMenu}
+    \caption{Ajout de l'action dans onCreateOptionsMenu}
 \end{figure}
 
 Nous avons ensuite ajouté l'action à exécuter lorsqu'on choisit l'option "Switcher les Dames" dans \textit{onOptionsItemSelected}.
 
 \begin{figure}[!hp]
 \begin{verbatim}
-  :cond_9
+    :cond_9
     const/4 v2, 0x6
     if-ne v1, v2, :cond_10
     iget-object v1, p0, Lcom/xxogli/xadroid/checkers/Checkers;->
@@ -87,17 +87,18 @@ Nous avons ensuite ajouté l'action à exécuter lorsqu'on choisit l'option "Swi
     \caption{Ajout de l'action dans le onOptionsItemSelected}
 \end{figure}
 
-\paragraph{Remarque}
-Lors de l'execution nous avons constaté qu'il y avait un soucis avec la permutation.
-Ce dernier est dû au au fait que le controller prévoit à l'avance le coup qu'il va jouer en fonction
+\paragraph{Remarque:}
+Lors de l'execution, nous avons constaté qu'il y avait un soucis avec la permutation.
+Ce dernier est dû au au fait que le contrôleur doit prévoir à l'avance le coup qu'il va jouer en fonction
 de la position des jetons qu'il a avant d'effectuer le switch.
+Ainsi, on se retrouve avec un jeton supplémentaire de l'ancien type.
 
 
-Le résultat est affiché comme suit
+Le résultat est affiché comme suit.
 
 \begin{figure}[h!]
 	      \begin{center}
-			\includegraphics[width=0.5\textwidth]{state1}
+			\includegraphics[width=0.4\textwidth]{state1}
 	      \end{center}
 	\caption{avant modification}
 \end{figure}
