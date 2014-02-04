@@ -1,4 +1,18 @@
 
 \subsection{Des applications difficilement modifiables}
 
-Castle Defense, librarie, code natif, attaque héxa, rétro engeneering...
+À la base, nous avions choisi de modifier l'application \textbf{Castle Defense}, un jeu de \textbf{Elite Games},
+afin de nous accorder des avantages pendant la partie.
+Nous avons donc décompilé l'application afin d'analyser où il faudrait appliquer les modifications,
+mais nous ne trouvions rien de concluant parmis les quelques packages dont elle était composée.
+Les seules pistes qu'on pouvait trouver concernaient la publicité et l'obtention de bonus en répondant à des enquêtes ou en suivant des liens divers.
+
+Un fichier retenait tout de même notre attention: \texttt{libgame.so}.
+Ce fichier est en fait une librairie codée en C/C++ puis compilée pour être utilisée par l'application en natif.
+En analysant un peu la structure de cette librairie, elle se révéla contenir un grand nombre de méthodes intéressantes à modifier.
+Nous nous sommes donc mis en quête des appels vers ces méthodes dans le code smali, mais sans succès.
+Les seules méthodes appelées concernaient l'action de toucher l'écran et elles devaient probablement faire appel aux méthodes internes à la librairie.
+
+La seule solution qui s'offrait à nous était donc d'attaquer cette librairie directement en héxadécimal.
+Cette solution fut vite écartée et remplacée par la recherche d'une autre application ne contenant pas de code natif.
+C'est ainsi que nous avons fini par trouver l'application \textbf{Checkers}, jeu de dames de \textbf{User inc.}.
