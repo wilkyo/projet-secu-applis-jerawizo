@@ -2,7 +2,7 @@
 \subsection{Suppression de la publicité}
 Nous avons remarqué que l'application ne possèdait qu'un seule point d'entrée pour afficher la publicité.
 L'application charge la vue pour la publicité dans la méthode \hbox{onCreate()}.
-\begin{figure}[hp]
+\begin{figure}[!h]
 	      \begin{center}
 		\includegraphics[scale=0.7]{pub}
 	      \end{center}
@@ -31,4 +31,3 @@ L'application charge la vue pour la publicité dans la méthode \hbox{onCreate()
 Pour supprimer la publicité, il a suffit de supprimer ces quelques lignes.
 La variable v1 contient l'instance de la classe \textit{com.google.ads.AdRequest} qui est le point d'entrée de la publicité dans l'application.
 La variable v0 est la vue \textit{com.google.ads.AdView} associée à la publicité. Le chargement de la publicité se fait par la méthode \textit{loadAd(AdRequest adrequest)}.
-

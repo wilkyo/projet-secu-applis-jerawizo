@@ -22,22 +22,22 @@ On a effectué cet ajout dans \textit{Chechers.smali} comme on peut le voir sur 
 
 \begin{figure}[h!]
 \begin{verbatim}
-	const/4 v1, 0x6
+    const/4 v1, 0x6
     const/4 v2, 0x6
     const-string v3, "Switcher les Dames"
     invoke-interface {v0, v4, v1, v2, v3}, Landroid/view/SubMenu;->
-		add(IIILjava/lang/CharSequence;)Landroid/view/MenuItem;
+        add(IIILjava/lang/CharSequence;)Landroid/view/MenuItem;
     move-result-object v1
     invoke-interface {v1, v4}, Landroid/view/MenuItem;->
-		setCheckable(Z)Landroid/view/MenuItem;
+        setCheckable(Z)Landroid/view/MenuItem;
     move-result-object v1
     iget-object v2, p0, Lcom/xxogli/xadroid/checkers/Checkers;->
-		a:Lcom/xxogli/xadroid/checkers/b;
+        a:Lcom/xxogli/xadroid/checkers/b;
     invoke-virtual {v2, v5}, Lcom/xxogli/xadroid/checkers/b;->
-		permuter(Z)Z
+        permuter(Z)Z
     move-result v2
     invoke-interface {v1, v2}, Landroid/view/MenuItem;->
-		setChecked(Z)Landroid/view/MenuItem;
+        setChecked(Z)Landroid/view/MenuItem;
     \end{verbatim}
     \caption{Ajout de l'Option dans onCreateOptionsMenu}
 \end{figure}
@@ -76,12 +76,12 @@ Nous avons ensuite ajouté l'action à exécuter lorsqu'on choisit l'option "Swi
     const/4 v2, 0x6
     if-ne v1, v2, :cond_10
     iget-object v1, p0, Lcom/xxogli/xadroid/checkers/Checkers;->
-		a:Lcom/xxogli/xadroid/checkers/b;
+        a:Lcom/xxogli/xadroid/checkers/b;
     invoke-virtual {v1, v0}, Lcom/xxogli/xadroid/checkers/b;->
-		permuter(Z)Z
+         permuter(Z)Z
     move-result v1
     invoke-interface {p1, v1}, Landroid/view/MenuItem;->
-		setChecked(Z)Landroid/view/MenuItem;
+        setChecked(Z)Landroid/view/MenuItem;
     goto/16 :goto_0
 \end{verbatim}
     \caption{Ajout de l'action dans le onOptionsItemSelected}
